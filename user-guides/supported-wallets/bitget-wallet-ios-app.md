@@ -22,7 +22,7 @@ Additionally, if WalletConnect fails to connect, closing the WalletConnect popup
 
 3. In the search bar, type "Sepolia", and choose "Ethereum Sepolia" from the list of suggestions.
 4. If a message saying "Adding network is not supported yet" appears, it means that the Sepolia network cannot be added to the currently used address.
-In this case, please create a new wallet or restore a wallet by importing a mnemonic phrase or using a keyless wallet.
+   In this case, please create a new wallet or restore a wallet by importing a mnemonic phrase or using a keyless wallet.
 
 <figure>
   <img src="/img/user-guides/bitget_wallet_30.webp" alt="Ethereum Sepolia" />
@@ -30,7 +30,7 @@ In this case, please create a new wallet or restore a wallet by importing a mnem
 </figure>
 
 5. If you encounter a "WalletConnect connection failed" message, please close the WalletConnect popup on the website and reopen it.
-Then, try scanning the QR code again to connect.
+   Then, try scanning the QR code again to connect.
 
 <figure className="no-max-height">
   <img src="/img/user-guides/bitget_wallet_50.webp" width="300" alt="WalletConnect Connection Failed" />

@@ -2,8 +2,8 @@
 sidebar_position: 5
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Quick Start Guide for Rainbow Kit
 
@@ -19,22 +19,18 @@ To start using the INTMAX WalletSDK RainbowKit/Wagmi Plugin in your project, you
 
 <Tabs>
   <TabItem value="npm" label="npm" default>
-  ```sh
-npm install intmax-walletsdk @rainbow-me/rainbowkit wagmi --save
-	```
-	</TabItem>
-	<TabItem value="yarn" label="yarn">
-	```sh
-yarn add intmax-walletsdk @rainbow-me/rainbowkit wagmi
-	```
-	</TabItem>
+    ```sh npm install intmax-walletsdk @rainbow-me/rainbowkit wagmi --save ```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    ```sh yarn add intmax-walletsdk @rainbow-me/rainbowkit wagmi ```
+  </TabItem>
 </Tabs>
 
 ## Usage
 
 ### Importing the SDK
 
-After installation, you can import the necessary components from the SDK into your project. Here's an example of how to import the intmaxwalletsdk function and other required modules 
+After installation, you can import the necessary components from the SDK into your project. Here's an example of how to import the intmaxwalletsdk function and other required modules
 
 ```ts
 import { intmaxwalletsdk } from "intmax-walletsdk/rainbowkit";
@@ -47,18 +43,18 @@ Next, you can add wallet providers to your application. This example demonstrate
 
 ```ts
 const additionalWallets = [
-	intmaxwalletsdk({
-		wallet: {
-			url: "https://intmaxwallet-sdk-wallet.vercel.app/",
-			name: "IntmaxWalletSDK Demo",
-			iconUrl: "https://intmaxwallet-sdk-wallet.vercel.app/vite.svg",
-		},
-		metadata: {
-			name: "Rainbow-Kit Demo",
-			description: "Rainbow-Kit Demo",
-			icons: ["https://intmaxwallet-sdk-wallet.vercel.app/vite.svg"],
-		},
-	}),
+  intmaxwalletsdk({
+    wallet: {
+      url: "https://intmaxwallet-sdk-wallet.vercel.app/",
+      name: "IntmaxWalletSDK Demo",
+      iconUrl: "https://intmaxwallet-sdk-wallet.vercel.app/vite.svg",
+    },
+    metadata: {
+      name: "Rainbow-Kit Demo",
+      description: "Rainbow-Kit Demo",
+      icons: ["https://intmaxwallet-sdk-wallet.vercel.app/vite.svg"],
+    },
+  }),
 ];
 ```
 
@@ -99,6 +95,7 @@ ReactDOM.createRoot(root).render(
  </React.StrictMode>,
 );
 ```
+
 ​
 Explore the [API reference](../api-reference) section for more methods/events.
 For an end-to-end code example, you can check out the [wallet example](https://github.com/InternetMaximalism/intmax-walletsdk/tree/main/examples/rainbowkit) GitHub repository.

@@ -121,11 +121,9 @@ INTMAX uses a unique address format that differs from Ethereum.
   The derivation is environment-specific: the INTMAX address produced on Mainnet is different from the one produced on the network, even when starting from the same Ethereum address. Always double-check which network you are targeting before submitting transactions.
 
   **Mainnet**: A 95-character string starting with **i** (lowercase)
-
   - Example: `i9bX5qzARYR7geR35g4K9972DB8fcWqPjNNgQnoGFViZaTLaSiKUTEd7geR35g4K9972DB8fcWqPjNNgQnoGFViZPctJYmE`
 
   **Testnet**: A 95-character string starting with **T** (uppercase)
-
   - Example: `T6ubiG36LmNce6uzcJU3h5JR5FWa72jBBLUGmEPx5VXcFtvXnBB3bqice6uzcJU3h5JR5FWa72jBBLUGmEPx5VXcB3prnCZ`
 
   **Important**: Be careful not to mix them up.
@@ -152,7 +150,7 @@ export interface INTMAXClient {
   signMessage: (message: string) => Promise<SignMessageResponse>;
   verifySignature: (
     signature: SignMessageResponse,
-    message: string | Uint8Array
+    message: string | Uint8Array,
   ) => Promise<boolean>;
 
   // token
@@ -164,21 +162,17 @@ export interface INTMAXClient {
   fetchTransactions: (params: {}) => Promise<Transaction[]>;
   broadcastTransaction: (
     rawTransfers: BroadcastTransactionRequest[],
-    isWithdrawal: boolean
+    isWithdrawal: boolean,
   ) => Promise<BroadcastTransactionResponse>;
 
   // deposit
   fetchDeposits: (params: {}) => Promise<Transaction[]>;
-  deposit: (
-    params: PrepareDepositTransactionRequest
-  ) => Promise<PrepareDepositTransactionResponse>;
+  deposit: (params: PrepareDepositTransactionRequest) => Promise<PrepareDepositTransactionResponse>;
 
   // withdrawal
   fetchWithdrawals: () => Promise<FetchWithdrawalsResponse>;
   withdraw: (params: WithdrawRequest) => Promise<WithdrawalResponse>;
-  claimWithdrawal: (
-    params: ContractWithdrawal[]
-  ) => Promise<ClaimWithdrawalTransactionResponse>;
+  claimWithdrawal: (params: ContractWithdrawal[]) => Promise<ClaimWithdrawalTransactionResponse>;
 
   // Fees
   getTransferFee: () => Promise<FeeResponse>;
@@ -338,8 +332,7 @@ export interface PrepareDepositTransactionRequest {
 }
 
 // Extended interface for deposit transaction gas estimation
-export interface PrepareEstimateDepositTransactionRequest
-  extends PrepareDepositTransactionRequest {
+export interface PrepareEstimateDepositTransactionRequest extends PrepareDepositTransactionRequest {
   isGasEstimation: boolean; // Flag indicating if this is for gas estimation only
 }
 
@@ -731,8 +724,7 @@ const depositList: Transaction[] = await client.fetchDeposits({})[
     tokenIndex: 0,
     transfers: [],
     txType: "Deposit",
-    digest:
-      "0x47f90ce9ee420a145e237397d106a35c6d3cf3c96c4f8eb2fa7caed26a6b2c17",
+    digest: "0x47f90ce9ee420a145e237397d106a35c6d3cf3c96c4f8eb2fa7caed26a6b2c17",
     tokenAddress: "0x1e4da6fb14da45f025622e501e28ade8dc5e4ec8",
   }
 ];
@@ -1026,9 +1018,7 @@ const tokens = await client.getTokensList();
 console.log("Available tokens:", tokens);
 
 const nativeToken = tokens.find(
-  (t) =>
-    t.contractAddress.toLowerCase() ===
-    "0x0000000000000000000000000000000000000000"
+  (t) => t.contractAddress.toLowerCase() === "0x0000000000000000000000000000000000000000",
 );
 ```
 

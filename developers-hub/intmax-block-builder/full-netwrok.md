@@ -48,7 +48,6 @@ To ensure stable operation in the mainnet environment, the Block Builder should 
 ### Prerequisites
 
 - Docker installed on your system
-
   - **[Windows Docker Link](https://docs.docker.com/desktop/install/windows-install)**
   - **[Mac Docker Link](https://docs.docker.com/desktop/install/mac-install)**
 
@@ -100,13 +99,11 @@ This interactive command will prompt you for:
 1. **L2 RPC URL**: Your Scroll Sepolia RPC endpoint
 
    **Scroll Mainnet RPC Examples**
-
    - `https://rpc.ankr.com/scroll`
    - `https://scroll-mainnet.infura.io/v3/YOUR_PROJECT_ID`
    - `https://scroll-mainnet.g.alchemy.com/v2/YOUR_API_KEY`
 
    **Scroll Testnet RPC Examples**
-
    - `https://rpc.ankr.com/scroll_sepolia_testnet`
    - `https://scroll-sepolia.infura.io/v3/YOUR_PROJECT_ID`
    - `https://scroll-sepolia.g.alchemy.com/v2/YOUR_API_KEY`

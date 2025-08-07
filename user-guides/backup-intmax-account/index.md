@@ -14,6 +14,7 @@ Backing up your transaction data is especially important, as it provides an effe
 ## Important Security Information
 
 ### Private Key
+
 - **Private keys are extremely important data. Never share it with anyone.**
 - If your private key becomes known, others can access your assets on INTMAX. Operations such as withdrawals from INTMAX network to Ethereum will also become possible.
 - If you need to share it with a third party, please do so with full understanding of the risks.

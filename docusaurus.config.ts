@@ -64,9 +64,7 @@ const config: Config = {
   ],
 
   // Enable the Docusaurus themes
-  themes: [
-    '@docusaurus/theme-mermaid',
-  ],
+  themes: ["@docusaurus/theme-mermaid"],
   markdown: {
     mermaid: true,
   },

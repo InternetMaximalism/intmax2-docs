@@ -3,12 +3,12 @@ sidebar_position: 3
 hide_table_of_contents: true
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Quick Start Guide for Dapp
 
-Here's a quick start guide on setting up INTMAX WalletSDK in your React dApp, which can be adapted for Next.js with minor adjustments. This dApp will let you connect to any compatible web wallet: 
+Here's a quick start guide on setting up INTMAX WalletSDK in your React dApp, which can be adapted for Next.js with minor adjustments. This dApp will let you connect to any compatible web wallet:
 
 ## Installation
 
@@ -18,27 +18,21 @@ For your dApp connection, you'll need to install intmax-walletsdk and import int
 
 <Tabs>
   <TabItem value="npm" label="npm" default>
-  ```sh
-  npm install intmax-walletsdk
-	```
-	</TabItem>
-	<TabItem value="yarn" label="yarn">
-	```sh
-	yarn add intmax-walletsdk
-	```
-	</TabItem>
-	<TabItem value="pnpm" label="pnpm">
-	```sh
-	pnpm add intmax-walletsdk
-	```
-	</TabItem>
+    ```sh npm install intmax-walletsdk ```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    ```sh yarn add intmax-walletsdk ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```sh pnpm add intmax-walletsdk ```
+  </TabItem>
 </Tabs>
 
 ## Usage
 
 ### Import and Create a New Client Using `intmaxbDappClient`
 
-Start by importingintmaxDappClient  from walletnext/dapp and configuring it. To configure it, you need to set a name, wallet URL, metadata of dapp, and a provider. 
+Start by importingintmaxDappClient from walletnext/dapp and configuring it. To configure it, you need to set a name, wallet URL, metadata of dapp, and a provider.
 
 ```ts
 // App.tsx
@@ -46,24 +40,24 @@ Start by importingintmaxDappClient  from walletnext/dapp and configuring it. To 
 import { ethereumProvider, intmaxDappClient } from "intmax-walletsdk/dapp";
 
 const createsdk = (walletUrl: string) => {
-	return intmaxDappClient({
-		wallet: { url: walletUrl, name: "DEMO Wallet", window: { mode: "iframe" } },
-		metadata: DAPP_METADATA,
-		providers: { eip155: ethereumProvider() },
-	});
+  return intmaxDappClient({
+    wallet: { url: walletUrl, name: "DEMO Wallet", window: { mode: "iframe" } },
+    metadata: DAPP_METADATA,
+    providers: { eip155: ethereumProvider() },
+  });
 };
 ```
 
-Your metadata should contain the name, description, dApp icon of the dApp. 
+Your metadata should contain the name, description, dApp icon of the dApp.
 
 #### Example
 
 ```ts
 const DEFAULT_WALLET_URL = "https://wallet.intmax.io";
 const DAPP_METADATA = {
-	name: "Dapp Example",
-	description: "This is a simple example of how to use the dapp client.",
-	icons: [DEFAULT_DAPP_ICON_URL],
+  name: "Dapp Example",
+  description: "This is a simple example of how to use the dapp client.",
+  icons: [DEFAULT_DAPP_ICON_URL],
 };
 ```
 
@@ -71,20 +65,20 @@ In this example, intmaxDappClient is configured to use ethereumProvider which is
 After configuring the client, you can use it by passing in the wallet URL of your choice.
 
 ```ts
-const sdk = createsdk(DEFAULT_WALLET_URL)
+const sdk = createsdk(DEFAULT_WALLET_URL);
 ```
 
 ### Initialize wallet connection
 
-To connect to the wallet account, initialize the provider and then use eth_requestAccounts the method to initiate a walletnext pairing process between dApp and wallet. the eth_accounts fetches the accounts available in the wallet. 
+To connect to the wallet account, initialize the provider and then use eth_requestAccounts the method to initiate a walletnext pairing process between dApp and wallet. the eth_accounts fetches the accounts available in the wallet.
 
 #### Example
 
 ```ts
 const handleConnect = async () => {
-    const ethereum = await sdk.provider("eip155");
-    await ethereum.request({ method: "eth_requestAccounts", params: [] });
-    const accounts = (await ethereum.request({ method: "eth_accounts", params: [] })) as string[];
+  const ethereum = await sdk.provider("eip155");
+  await ethereum.request({ method: "eth_requestAccounts", params: [] });
+  const accounts = (await ethereum.request({ method: "eth_accounts", params: [] })) as string[];
 };
 ```
 
@@ -96,11 +90,14 @@ To set up a function to sign transactions, invoke the eth_sign method. This init
 
 ```ts
 const handleSignMessage = async () => {
-    if (accounts.length === 0) await handleConnect();
-    
-    const ethereum = await sdk.provider("eip155");
-    const _accounts = (await ethereum.request({ method: "eth_accounts", params: [] })) as string[];
-    const result = await ethereum.request({ method: "eth_sign", params: [_accounts[0], "Hello Webmax"] });    
+  if (accounts.length === 0) await handleConnect();
+
+  const ethereum = await sdk.provider("eip155");
+  const _accounts = (await ethereum.request({ method: "eth_accounts", params: [] })) as string[];
+  const result = await ethereum.request({
+    method: "eth_sign",
+    params: [_accounts[0], "Hello Webmax"],
+  });
 };
 ```
 
@@ -111,16 +108,15 @@ To send a transaction, the eth_sendTransaction method is triggered. This method 
 #### Example
 
 ```ts
-
 const handleSendTransaction = async () => {
-	if (accounts.length === 0) await handleConnect();
-	
-	const ethereum = await sdk.provider("eip155");
-	const _accounts = (await ethereum.request({ method: "eth_accounts", params: [] })) as string[];
-	const result = await ethereum.request({
-		method: "eth_sendTransaction",
-		params: [{ from: _accounts[0], to: _accounts[0], value: "0x0" }],
-	});
+  if (accounts.length === 0) await handleConnect();
+
+  const ethereum = await sdk.provider("eip155");
+  const _accounts = (await ethereum.request({ method: "eth_accounts", params: [] })) as string[];
+  const result = await ethereum.request({
+    method: "eth_sendTransaction",
+    params: [{ from: _accounts[0], to: _accounts[0], value: "0x0" }],
+  });
 };
 ```
 
@@ -142,32 +138,32 @@ intmaxwalletsdk can be used to handle the signing of typed data using `eth_signT
 
 ```ts
 const handleSignTypedData = async () => {
-	if (accounts.length === 0) await handleConnect();
+  if (accounts.length === 0) await handleConnect();
 
-	const typedData = {
-		types: {
-			EIP712Domain: [
-				{ name: "name", type: "string" },
-				{ name: "version", type: "string" },
-			],
-			Person: [
-				{ name: "name", type: "string" },
-				{ name: "age", type: "uint256" },
-			],
-		},
-		domain: { name: "Webmax Dapp Example", version: "1" },
-		primaryType: "Person",
-		message: { name: "Bob", age: 25 },
-	};
+  const typedData = {
+    types: {
+      EIP712Domain: [
+        { name: "name", type: "string" },
+        { name: "version", type: "string" },
+      ],
+      Person: [
+        { name: "name", type: "string" },
+        { name: "age", type: "uint256" },
+      ],
+    },
+    domain: { name: "Webmax Dapp Example", version: "1" },
+    primaryType: "Person",
+    message: { name: "Bob", age: 25 },
+  };
 
-	const ethereum = await sdk.provider("eip155");
-	const _accounts = (await ethereum.request({ method: "eth_accounts", params: [] })) as string[];
-	const result = await ethereum.request({
-		method: "eth_signTypedData_v4",
-		params: [_accounts[0], JSON.stringify(typedData)],
-	});
+  const ethereum = await sdk.provider("eip155");
+  const _accounts = (await ethereum.request({ method: "eth_accounts", params: [] })) as string[];
+  const result = await ethereum.request({
+    method: "eth_signTypedData_v4",
+    params: [_accounts[0], JSON.stringify(typedData)],
+  });
 
-	setResult(result as string);
+  setResult(result as string);
 };
 ```
 

@@ -11,12 +11,12 @@ This can occur especially if the withdrawal was executed when Ethereum gas fees 
 Below is an explanation of the procedure to withdraw this remaining ETH.
 
 1. If there is more ETH remaining than the gas fee in the address used for mining, a "Withdraw Rest Amount" button will be displayed.
-  If you wish to withdraw this amount, please click the "Withdraw Rest Amount" button.
+   If you wish to withdraw this amount, please click the "Withdraw Rest Amount" button.
 
 <figure><img src="/img/user-guides/other_features_10.webp" alt="Withdraw Rest Amount" /></figure>
 
 2. Specify the destination Ethereum address for the withdrawal.
-  You cannot use the currently connected wallet as the destination.
+   You cannot use the currently connected wallet as the destination.
 
 <figure><img src="/img/user-guides/other_features_20.webp" alt="Withdraw Rest Amount" /></figure>
 

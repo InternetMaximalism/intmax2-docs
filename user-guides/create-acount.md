@@ -55,7 +55,6 @@ INTMAX accounts look different from Ethereum addresses, even when starting from 
 
    After signing the messages, you will be redirected to the INTMAX homepage. Here, you can view your newly created INTMAX address.
    Follow the steps below:
-
    1. Click the Ethereum wallet address displayed at the top right of the screen.
    2. A pop-up window will appear, showing both your Ethereum address and your INTMAX address.
 

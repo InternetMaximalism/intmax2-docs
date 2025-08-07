@@ -11,22 +11,22 @@ Creates a confirmation asking the user to add the specified chain to the wallet 
 
 ### Params\[0\]
 
-| Parameter | Type     | Required | Description |
-|-----------|----------|----------|-------------|
-| `chainId` | String   | Yes      | The chain ID is a `0x`-prefixed hexadecimal string |
-| `chainName` | String | Yes      | A human-readable name for the chain. |
-| `rpcUrls` | Array\[string\] | Yes | One or more URLs pointing to RPC endpoints that can be used to communicate with the chain. |
-| `iconUrls` | Array\[string\] | No | One or more URLs pointing to reasonably sized images that can be used to visually identify the chain. |
-| `nativeCurrency` | Object | Yes | Describes the native currency of the chain using the `name`, `symbol`, and `decimals` fields. |
-| `nativeCurrency.decimals` | Integer | Yes | A non-negative integer. |
-| `nativeCurrency.symbol` | String | Yes | A human-readable symbol. |
-| `nativeCurrency.name` | String | No | A human-readable name. |
-| `blockExplorerUrls` | Array\[string\] | No | One or more URLs pointing to block explorer sites for the chain. |
+| Parameter                 | Type            | Required | Description                                                                                           |
+| ------------------------- | --------------- | -------- | ----------------------------------------------------------------------------------------------------- |
+| `chainId`                 | String          | Yes      | The chain ID is a `0x`-prefixed hexadecimal string                                                    |
+| `chainName`               | String          | Yes      | A human-readable name for the chain.                                                                  |
+| `rpcUrls`                 | Array\[string\] | Yes      | One or more URLs pointing to RPC endpoints that can be used to communicate with the chain.            |
+| `iconUrls`                | Array\[string\] | No       | One or more URLs pointing to reasonably sized images that can be used to visually identify the chain. |
+| `nativeCurrency`          | Object          | Yes      | Describes the native currency of the chain using the `name`, `symbol`, and `decimals` fields.         |
+| `nativeCurrency.decimals` | Integer         | Yes      | A non-negative integer.                                                                               |
+| `nativeCurrency.symbol`   | String          | Yes      | A human-readable symbol.                                                                              |
+| `nativeCurrency.name`     | String          | No       | A human-readable name.                                                                                |
+| `blockExplorerUrls`       | Array\[string\] | No       | One or more URLs pointing to block explorer sites for the chain.                                      |
 
 ## Response Parameters
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
+| Parameter | Type | Description                                                                              |
+| --------- | ---- | ---------------------------------------------------------------------------------------- |
 | `null`    |      | The method **MUST** return `null` if the request was successful, and an error otherwise. |
 
 ## Request Example

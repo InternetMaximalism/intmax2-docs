@@ -13,16 +13,16 @@ None
 
 ## Response Parameters
 
-| Parameter     | Type               | Description                       |
-|---------------|--------------------|-----------------------------------|
-| `AddressList` | Array\[string\]    | Addresses owned by the client.    |
+| Parameter     | Type            | Description                    |
+| ------------- | --------------- | ------------------------------ |
+| `AddressList` | Array\[string\] | Addresses owned by the client. |
 
 ## Request Example
 
 ```typescript
 await window.ethereum.request({
-  "method": "eth_accounts",
-  "params": []
+  method: "eth_accounts",
+  params: [],
 });
 ```
 

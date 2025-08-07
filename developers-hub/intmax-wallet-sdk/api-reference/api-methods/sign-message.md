@@ -11,32 +11,29 @@ The sign method calculates an Ethereum-specific signature. Adding a prefix to th
 
 ### Params\[0\]
 
-| Parameter | Type   | Required | Description |
-|-----------|--------|----------|-------------|
+| Parameter | Type   | Required | Description        |
+| --------- | ------ | -------- | ------------------ |
 | `DATA`    | String | Yes      | address (20 Bytes) |
 
 ### Params\[1\]
 
-| Parameter | Type   | Required | Description |
-|-----------|--------|----------|-------------|
+| Parameter | Type   | Required | Description               |
+| --------- | ------ | -------- | ------------------------- |
 | `DATA`    | String | Yes      | message to sign (N Bytes) |
 
 ## Response Parameters
 
-| Parameter | Type     | Description |
-|-----------|----------|-------------|
-| `DATA`    | String   | signature   |
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| `DATA`    | String | signature   |
 
 ## Request Example
 
 ```typescript
-ethereum.request({ 
-  method: "eth_sign", 
-  params: [
-    "0x7a2054d370f93ec7d8a08e065121118dc8f4bf29", 
-    "Hello Webmax"
-  ] 
-})
+ethereum.request({
+  method: "eth_sign",
+  params: ["0x7a2054d370f93ec7d8a08e065121118dc8f4bf29", "Hello Webmax"],
+});
 ```
 
 ## Response Example

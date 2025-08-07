@@ -28,7 +28,6 @@ Although a few issues were identified, **all contract-level vulnerabilities have
 For full details, please refer to the ChainSecurity audit PDF.
 
 - **ZKP Circuits Audit Report**
-
   - [Read the full audit by ChainSecurity](https://www.chainsecurity.com/security-audit/intmax-2-zkp-circuits) – Covers the integrity and correctness of zero-knowledge proof generation and validation.
 
 - **Smart Contracts Audit Report**
