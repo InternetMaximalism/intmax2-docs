@@ -1,0 +1,15 @@
+# Build outputs
+build/
+.docusaurus/
+node_modules/
+
+# Generated files
+*.min.js
+.cache-loader
+
+# Markdown files (if you want to skip linting them entirely)
+# **/*.md
+
+# Docs content (optional - uncomment if you want to skip linting docs)
+# docs/**/*.md
+# developers-hub/**/*.md
