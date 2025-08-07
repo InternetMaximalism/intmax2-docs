@@ -43,10 +43,9 @@ const config: Config = {
         docs: {
           path: "user-guides",
           routeBasePath: "user-guides",
-          // sidebarPath: false,
           sidebarPath: require.resolve("./sidebars.ts"),
         },
-        blog: false, // Disable the blog feature
+        blog: false,
       } satisfies Preset.Options,
     ],
   ],
@@ -64,7 +63,19 @@ const config: Config = {
   ],
 
   // Enable the Docusaurus themes
-  themes: ["@docusaurus/theme-mermaid"],
+  themes: [
+    "@docusaurus/theme-mermaid",
+    [
+      "@easyops-cn/docusaurus-search-local",
+      {
+        hashed: true,
+        language: ["en"],
+        indexDocs: false,
+        indexBlog: false,
+        indexPages: true,
+      },
+    ],
+  ],
   markdown: {
     mermaid: true,
   },
