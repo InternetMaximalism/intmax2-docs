@@ -1,0 +1,10 @@
+{
+  "label": "Quickstart",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "title": "Quickstart",
+    "slug": "/intmax-wallet-sdk/quickstart",
+    "description": "To help developers quickly get started with our SDK, we provide case tutorials from scratch for the following three basic scenarios."
+  }
+}

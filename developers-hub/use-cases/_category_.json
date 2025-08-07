@@ -1,0 +1,10 @@
+{
+  "label": "Use Cases",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "title": "Use Cases",
+    "slug": "/use-cases",
+    "description": "INTMAX enables ultra-low-cost, private, and scalable payments and microtransactions through a stateless, ZK-based protocol ideal for high-frequency, sub-cent use cases."
+  }
+}

@@ -1,0 +1,115 @@
+---
+sidebar_position: 4
+hide_table_of_contents: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Quick Start Guide for Wallet
+
+Here's a quick start guide on setting up intmaxwalletsdk in your web wallet. This enables Wallet Next compatible dapps to connect to your wallet.
+
+## Installation
+
+**Prerequisites**: Node.js 18.0+
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+  ```sh
+npm install intmax-walletsdk
+	```
+	</TabItem>
+	<TabItem value="yarn" label="yarn">
+	```sh
+yarn add intmax-walletsdk
+	```
+	</TabItem>
+	<TabItem value="pnpm" label="pnpm">
+	```sh
+pnpm add intmax-walletsdk
+	```
+	</TabItem>
+</Tabs>
+
+## Usage
+
+Import and initialize wallet client intmaxWalletClient.
+
+```ts
+import { intmaxWalletClient } from "intmax-walletsdk/wallet";
+
+const sdk = intmaxWalletClient();
+```
+
+`intmaxWalletClient` provides a set of methods to facilitate interaction between wallets and dApps. These methods are essential for setting up event listeners, signaling readiness, and cleaning up resources. The available methods are as follows:
+
+### `.on(path, cb)`
+
+Registers a callback function to be executed when a specific event occurs. Use the .on() method to listen for specific events and handle them accordingly.
+
+**Params:**
+- `path` (string): The event path, typically a combination of namespace and method name (e.g., "eip155/eth_requestAccounts", "intmax/intmax_ready", etc).
+- `cb` (function): The callback function to be executed. It receives a `context` object and should return an `AbstractResponse` or a Promise that resolves to an AbstractResponse. Check API reference for the event paths and expected return.
+
+#### Example
+
+```ts
+// To handle account request events
+sdk.on("eip155/eth_requestAccounts", (context) => {
+  return context.success({
+    accounts: ["0x1234..."],
+  });
+});
+
+// To connect dapp to wallet
+sdk.on("intmax/intmax_connect", async (c) => {	
+	if (isConnected(c, connections)) {
+		return c.success({
+			supportedNamespaces: ["eip155", "intmax"],
+			supportedChains: supportedChains,
+			accounts: { eip155: ethereumAccounts },
+		});
+	}
+}
+
+// To sign transaction
+sdk.on("eip155/eth_sign", async (c) => {
+	const [address, data] = c.req.params;
+	try {
+		const signature = await signMessage(address, data, c.req.metadata);
+		return c.success(signature);
+	} catch {
+		return c.failure("", { code: 4001 });
+	}
+});
+```
+
+### `.ready()`
+
+Signals that the wallet is ready to handle requests. This method sends a `intmax_ready` message to the parent window.
+
+**Params:** None
+
+#### Example
+
+```ts
+sdk.ready();
+```
+
+### `.destruct()`
+
+Cleans up resources by removing event listeners and stopping message dispatching. When your wallet is no longer needed or before it is closed, call the `.destruct()` method to clean up resources.
+
+**Params:** None
+
+#### Example
+
+```ts
+sdk.destruct();
+```
+
+By following these methods, developers can effectively integrate the intmaxWalletClient  into their wallets, enabling seamless communication and interaction between wallets and DApps.
+
+Explore the [API reference](../api-reference) section for more methods/events.
+For an end-to-end code example, you can check out the [wallet example](https://github.com/InternetMaximalism/intmax-walletsdk/tree/main/examples/wallet) GitHub repository.

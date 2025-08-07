@@ -1,0 +1,10 @@
+{
+  "label": "Core Concepts",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "title": "Core Concepts",
+    "slug": "/core-concepts",
+    "description": "INTMAX redefines rollup design by separating computation from consensus. It uses client-side zero-knowledge proofs, stateless aggregators, and minimal on-chain commitments to enable scalable, private, and permissionless payments. Users maintain their own state, while the rollup contract verifies only cryptographic proofs—not transaction data."
+  }
+}

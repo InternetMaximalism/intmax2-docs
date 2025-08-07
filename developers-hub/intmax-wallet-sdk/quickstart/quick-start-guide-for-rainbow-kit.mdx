@@ -1,0 +1,104 @@
+---
+sidebar_position: 5
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Quick Start Guide for Rainbow Kit
+
+The RainbowKit/Wagmi SDK is a powerful toolkit for developers to integrate blockchain-based applications with various wallet providers. INTMAX WalletSDK simplifies the process of connecting to blockchain web wallets, managing wallet connections, and interacting with blockchain networks. It is designed to be flexible and easy to use, supporting a wide range of blockchain networks and wallet providers.
+
+Here's a quick start guide on setting up INTMAX WalletSDK in your Rainbow Kit setup. This enables INTMAX WalletSDK-compatible wallet connections from Rainbow Kit.
+
+## Installation
+
+**Prerequisites**: Node.js 18.0+
+
+To start using the INTMAX WalletSDK RainbowKit/Wagmi Plugin in your project, you need to install them via npm or yarn. Open your terminal and run the following command:
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+  ```sh
+npm install intmax-walletsdk @rainbow-me/rainbowkit wagmi --save
+	```
+	</TabItem>
+	<TabItem value="yarn" label="yarn">
+	```sh
+yarn add intmax-walletsdk @rainbow-me/rainbowkit wagmi
+	```
+	</TabItem>
+</Tabs>
+
+## Usage
+
+### Importing the SDK
+
+After installation, you can import the necessary components from the SDK into your project. Here's an example of how to import the intmaxwalletsdk function and other required modules 
+
+```ts
+import { intmaxwalletsdk } from "intmax-walletsdk/rainbowkit";
+// ...
+```
+
+### Adding Wallet Providers
+
+Next, you can add wallet providers to your application. This example demonstrates how to add a custom wallet provider using the `intmaxwalletsdk` function:
+
+```ts
+const additionalWallets = [
+	intmaxwalletsdk({
+		wallet: {
+			url: "https://intmaxwallet-sdk-wallet.vercel.app/",
+			name: "IntmaxWalletSDK Demo",
+			iconUrl: "https://intmaxwallet-sdk-wallet.vercel.app/vite.svg",
+		},
+		metadata: {
+			name: "Rainbow-Kit Demo",
+			description: "Rainbow-Kit Demo",
+			icons: ["https://intmaxwallet-sdk-wallet.vercel.app/vite.svg"],
+		},
+	}),
+];
+```
+
+### Integrating with React
+
+Finally, integrate the SDK with your React application by wrapping your app component with `RainbowKitProvider` and `WagmiConfig`:
+
+```ts
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { RainbowKitProvider, connectorsForWallets } from "@rainbow-me/rainbowkit";
+import { WagmiConfig, createConfig } from "wagmi";
+​
+const connectors = connectorsForWallets([
+ {
+    groupName: "IntmaxWalletSDK",
+    wallets: additionalWallets,
+ },
+]);
+​
+const wagmiConfig = createConfig({
+ autoConnect: true,
+ connectors,
+ publicClient,
+});
+​
+const root = document.getElementById("root");
+if (!root) throw new Error("No root element found");
+​
+ReactDOM.createRoot(root).render(
+ <React.StrictMode>
+    <WagmiConfig config={wagmiConfig}>
+      <RainbowKitProvider chains={chains}>
+        <App />
+      </RainbowKitProvider>
+    </WagmiConfig>
+ </React.StrictMode>,
+);
+```
+​
+Explore the [API reference](../api-reference) section for more methods/events.
+For an end-to-end code example, you can check out the [wallet example](https://github.com/InternetMaximalism/intmax-walletsdk/tree/main/examples/rainbowkit) GitHub repository.

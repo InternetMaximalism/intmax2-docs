@@ -1,0 +1,10 @@
+{
+  "label": "INTAMX Wallet SDK",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "title": "INTMAX Wallet SDK",
+    "slug": "/intmax-wallet-sdk",
+    "description": "INTMAX WalletSDK is a protocol and SDK that enables direct communication between web wallets and Dapps, following a model similar to EIP-1193. It simplifies how users connect their wallets to decentralized applications."
+  }
+}

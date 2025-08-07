@@ -1,0 +1,10 @@
+{
+  "label": "INTMAX Nodes",
+  "position": 6,
+  "link": {
+    "type": "generated-index",
+    "title": "INTMAX Nodes",
+    "slug": "/intmax-nodes",
+    "description": "INTMAX nodes are responsible for maintaining the network's integrity and facilitating transactions. They play a crucial role in the rollup architecture by processing transactions, generating proofs, and ensuring that the state remains consistent across the network."
+  }
+}

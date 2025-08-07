@@ -1,0 +1,10 @@
+{
+  "label": "INTMAX Client SDK",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "title": "INTMAX Client SDK",
+    "slug": "/intmax-client-sdk",
+    "description": "The INTMAX Client SDK provides a secure, high-performance interface to interact with the INTMAX network, abstracting complex blockchain operations behind a simple API. Built with WebAssembly (WASM) for fast cryptographic execution, it manages the entire flow — from transaction creation and signing to broadcasting — for both web and server-side environments."
+  }
+}

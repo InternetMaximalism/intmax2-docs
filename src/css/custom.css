@@ -1,0 +1,17 @@
+header h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+figure img {
+  max-height: 450px;
+  height: auto;
+}
+
+figure.no-max-size img {
+  max-height: none;
+}
+
