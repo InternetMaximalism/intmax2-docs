@@ -10,7 +10,7 @@ title: Privacy Mining
 
 ## Introduction
 
-Privacy mining aims to enhance and sustain the anonymity set of the privacy protocol. In INTMAX, this process involves making deposits to the network, which strengthens privacy while allowing participants to earn ITX tokens as rewards. 
+Privacy mining aims to enhance and sustain the anonymity set of the privacy protocol. In INTMAX, this process involves making deposits to the network, which strengthens privacy while allowing participants to earn ITX tokens as rewards.
 
 ## How it works
 
@@ -36,17 +36,16 @@ ITX is currently **non-transferable**, but will become transferable and usable a
 
 Based on your deposit amount, you will be assigned points used to calculate your share of the rewards. The table below shows how these points are allocated:
 
-| Mining Amount  | Points |
-|----------------|--------|
-| 0.1 ETH        | 1      |
-| 1 ETH          | 4      |
-| 10 ETH         | 9      |
-| 100 ETH        | 16     |
-
+| Mining Amount | Points |
+| ------------- | ------ |
+| 0.1 ETH       | 1      |
+| 1 ETH         | 4      |
+| 10 ETH        | 9      |
+| 100 ETH       | 16     |
 
 Your total rewards are proportional to the number of points you have relative to everyone else.
 
-**Example:** Suppose that on March 14, Person A requests a mining reward of 0.1 ETH, and Person B requests 1 ETH. Assume that no one else has made a request. According to the table, the contribution for 0.1 ETH is 1 point, while the contribution for 1 ETH is 4 points. This means the total points for the day is 5 points. If the total reward distributed per day is 10,000 ITX, then Person A will receive 10,000 * 1 / 5 = 2,000 ITX, and Person B will receive 10,000 * 4 / 5 = 8,000 ITX. The reward will be sent to the user's Ethereum address on March 15.
+**Example:** Suppose that on March 14, Person A requests a mining reward of 0.1 ETH, and Person B requests 1 ETH. Assume that no one else has made a request. According to the table, the contribution for 0.1 ETH is 1 point, while the contribution for 1 ETH is 4 points. This means the total points for the day is 5 points. If the total reward distributed per day is 10,000 ITX, then Person A will receive 10,000 _ 1 / 5 = 2,000 ITX, and Person B will receive 10,000 _ 4 / 5 = 8,000 ITX. The reward will be sent to the user's Ethereum address on March 15.
 
 ## Reward Schedule
 
@@ -68,7 +67,7 @@ Any fractional amounts resulting from token distribution will also be burned.
 ### Reward Distribution Rules
 
 Once the **2–5 day lock period** ends and the user’s status changes to **"Claimable,"** they can claim their rewards.
-If a user violates the mining rules, the associated deposit will be **ineligible** for rewards. 
+If a user violates the mining rules, the associated deposit will be **ineligible** for rewards.
 
 ### Rule of Mining and Lock Period
 
@@ -78,7 +77,7 @@ If a user violates the mining rules, the associated deposit will be **ineligible
 - There are no restrictions on the amount of tokens that can be withdrawn.
 - Even if you breach the above rules, you can still withdraw your deposited funds. Using the official UI is recommended, as it is specifically designed to prevent common rule violations.
 
-## AML Rules 
+## AML Rules
 
 - Money deposits from high-risk addresses (e.g., sanctioned addresses) undergo AML (Anti-Money Laundering) verification and may be rejected into the system.
 - A "Proof of Innocence" mechanism is available if needed, allowing users to prove their funds are not illicitly mixed.
@@ -92,8 +91,8 @@ If a user violates the mining rules, the associated deposit will be **ineligible
 
 ## Comparison With the Old Rules
 
-| Rule | Old Version | New Version |
-| --- | --- | --- |
+| Rule                        | Old Version                                   | New Version                                |
+| --------------------------- | --------------------------------------------- | ------------------------------------------ |
 | Partial reward distribution | After 2 weeks (1/3), then after 3 months(2/3) | All rewards claimed 2–5 days after deposit |
 | Circulation slashing        | Reduce mining rewards                         | None                                       |
 | Rushy Deposit               | Reduce mining rewards                         | None                                       |

@@ -92,8 +92,7 @@ const initializeClient = useCallback(async () => {
 
     setClient(newClient);
   } catch (err) {
-    const errorMessage =
-      err instanceof Error ? err.message : "Failed to initialize client";
+    const errorMessage = err instanceof Error ? err.message : "Failed to initialize client";
     setError(errorMessage);
     console.error("IntMax Client initialization failed:", err);
   } finally {
@@ -177,8 +176,7 @@ export const useIntMaxClient = () => {
 
       setClient(newClient);
     } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Failed to initialize client";
+      const errorMessage = err instanceof Error ? err.message : "Failed to initialize client";
       setError(errorMessage);
       console.error("IntMax Client initialization failed:", err);
     } finally {
@@ -242,15 +240,7 @@ The following React component demonstrates how to use the useIntMaxClient hook t
 import { useIntMaxClient } from "./hooks/useIntMaxClient";
 
 function App() {
-  const {
-    client,
-    isLoggedIn,
-    loading,
-    error,
-    initializeClient,
-    login,
-    logout,
-  } = useIntMaxClient();
+  const { client, isLoggedIn, loading, error, initializeClient, login, logout } = useIntMaxClient();
 
   if (loading) {
     return (
@@ -419,8 +409,7 @@ const initializeClient = useCallback(async () => {
 
     setClient(newClient);
   } catch (err) {
-    const errorMessage =
-      err instanceof Error ? err.message : "Failed to initialize client";
+    const errorMessage = err instanceof Error ? err.message : "Failed to initialize client";
     setError(errorMessage);
     console.error("IntMax Client initialization failed:", err);
   } finally {
@@ -504,8 +493,7 @@ export const useIntMaxClient = () => {
 
       setClient(newClient);
     } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Failed to initialize client";
+      const errorMessage = err instanceof Error ? err.message : "Failed to initialize client";
       setError(errorMessage);
       console.error("IntMax Client initialization failed:", err);
     } finally {

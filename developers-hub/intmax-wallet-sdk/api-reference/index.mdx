@@ -52,10 +52,7 @@ export type AbstractRequest<NS extends string = string, Params = unknown> = {
   metadata?: unknown;
 };
 
-export type AbstractSuccessResponse<
-  NS extends string = string,
-  Result = unknown
-> = {
+export type AbstractSuccessResponse<NS extends string = string, Result = unknown> = {
   id: number;
   namespace: NS | ChainedNamespace<NS>;
   method: string;

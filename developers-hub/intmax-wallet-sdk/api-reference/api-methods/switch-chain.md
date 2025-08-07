@@ -11,27 +11,27 @@ Requests that the wallet switches its active Ethereum chain
 
 ### Params\[0\]
 
-| Parameter | Type     | Required | Description |
-|-----------|----------|----------|-------------|
-| `chainId` | String   | Yes      | The chain ID is a `0x`-prefixed hexadecimal string. |
+| Parameter | Type   | Required | Description                                         |
+| --------- | ------ | -------- | --------------------------------------------------- |
+| `chainId` | String | Yes      | The chain ID is a `0x`-prefixed hexadecimal string. |
 
 ## Response Parameters
 
-| Parameter | Type     | Description |
-|-----------|----------|-------------|
-| `null`    |          | `null` is returned **if the active chain was switched**, and an error otherwise. |
+| Parameter | Type | Description                                                                      |
+| --------- | ---- | -------------------------------------------------------------------------------- |
+| `null`    |      | `null` is returned **if the active chain was switched**, and an error otherwise. |
 
 ## Request Example
 
 ```typescript
-ethereum.request({ 
-  method: "wallet_switchEthereumChain", 
+ethereum.request({
+  method: "wallet_switchEthereumChain",
   params: [
-    { 
-      chainId: "0x89"
-    }
-  ]
-})
+    {
+      chainId: "0x89",
+    },
+  ],
+});
 ```
 
 ## Response Example

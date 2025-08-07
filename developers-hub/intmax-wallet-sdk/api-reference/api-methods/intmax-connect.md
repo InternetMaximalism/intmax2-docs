@@ -13,9 +13,9 @@ None
 
 ## Response Parameters
 
-| Parameter             | Type                  | Description |
-|-----------------------|-----------------------|-------------|
-| `IntmaxConnectResult` |                       |             |
+| Parameter             | Type | Description |
+| --------------------- | ---- | ----------- |
+| `IntmaxConnectResult` |      |             |
 
 ## Request Example
 

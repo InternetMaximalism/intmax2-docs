@@ -13,16 +13,16 @@ None
 
 ## Response Parameters
 
-| Parameter | Type     | Description |
-|-----------|----------|-------------|
-| `chainId` | String   | The chain ID is a `0x`-prefixed hexadecimal string. |
+| Parameter | Type   | Description                                         |
+| --------- | ------ | --------------------------------------------------- |
+| `chainId` | String | The chain ID is a `0x`-prefixed hexadecimal string. |
 
 ## Request Example
 
 ```typescript
 await window.ethereum.request({
- "method": "eth_chainId",
- "params": [],
+  method: "eth_chainId",
+  params: [],
 });
 ```
 

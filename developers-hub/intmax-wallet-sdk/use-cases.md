@@ -8,7 +8,7 @@ Here are examples of using the INTMAX WalletSDK protocol. However, the INTMAX Wa
 
 ## Connect with Web Wallet
 
-As the most orthodox usage, integrating DappSDK from  INTMAX WalletSDK into a Dapp allows connections with web wallets compatible with the protocol. This usage is identical to how protocols like WalletConnect are utilized.
+As the most orthodox usage, integrating DappSDK from INTMAX WalletSDK into a Dapp allows connections with web wallets compatible with the protocol. This usage is identical to how protocols like WalletConnect are utilized.
 
 ## Bookmarklet Wallet
 

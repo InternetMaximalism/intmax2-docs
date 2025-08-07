@@ -13,10 +13,9 @@ None
 
 ## Response Parameters
 
-| Parameter            | Type                  | Description |
-|----------------------|-----------------------|-------------|
-| `IntmaxReadyResult`  |                       |             |
-
+| Parameter           | Type | Description |
+| ------------------- | ---- | ----------- |
+| `IntmaxReadyResult` |      |             |
 
 ## Request Example
 
@@ -24,10 +23,10 @@ None
 const sdk = intmaxWalletClient();
 
 sdk.on("intmax/intmax_ready", (c) => {
-	return c.success({
-		supportedNamespaces: ["eip155", "intmax"],
-		supportedChains: supportedChains,
-	});
+  return c.success({
+    supportedNamespaces: ["eip155", "intmax"],
+    supportedChains: supportedChains,
+  });
 });
 ```
 

@@ -19,8 +19,8 @@ You can **filter** the transaction list by category for easier browsing.
 
 When you press the **"Share"** button:
 
-* A **private link** is created.
-* Only the person you share it with can **view the transaction details**.
+- A **private link** is created.
+- Only the person you share it with can **view the transaction details**.
 
 ## Transaction Types
 

@@ -11,25 +11,26 @@ Presents a data message for the user to sign in a structured and readable format
 
 ### Params\[0\]
 
-| Parameter | Type   | Required | Description |
-|-----------|--------|----------|-------------|
+| Parameter | Type   | Required | Description                                              |
+| --------- | ------ | -------- | -------------------------------------------------------- |
 | `DATA`    | String | Yes      | The address of the requested signing account. (20 Bytes) |
 
 ### Params\[1\]
 
-| Parameter      | Type   | Required | Description |
-|----------------|--------|----------|-------------|
-| `types`        | Object | Yes      | Message to sign (N Bytes) |
+| Parameter            | Type   | Required | Description                                                                    |
+| -------------------- | ------ | -------- | ------------------------------------------------------------------------------ |
+| `types`              | Object | Yes      | Message to sign (N Bytes)                                                      |
 | `types.EIP712Domain` | Array  | Yes      | An array specifying one or more of the following domain separator values below |
-| `domain`       | Object | Yes      | Contains the domain separator values specified in the `EIP712Domain` type |
-| `primaryType`  | String | Yes      |  |
-| `message`      | Object | Yes      | The message you're proposing the user to sign. |
+| `domain`             | Object | Yes      | Contains the domain separator values specified in the `EIP712Domain` type      |
+| `primaryType`        | String | Yes      |                                                                                |
+| `message`            | Object | Yes      | The message you're proposing the user to sign.                                 |
 
 ## Response Parameters
+
 ​
-| Parameter | Type     | Description |
+| Parameter | Type | Description |
 |-----------|----------|-------------|
-| `DATA`    | String   | signature   |
+| `DATA` | String | signature |
 
 ## Request Example
 
@@ -103,4 +104,5 @@ await window.ethereum.request({
 ```json
 "0x4355c47d63924e8a72e509b65029052eb6c299d53a04e167c5775fd466751c9d07299936d304c153f6443dfa05f40ff007d72911b6f72307f996231605b915621c"
 ```
+
 ​

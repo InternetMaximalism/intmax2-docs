@@ -13,21 +13,21 @@ Creates, signs, and sends a new transaction to the network. Creates new message 
 
 ### Params\[0\]
 
-| Parameter | Type     | Required | Description |
-|-----------|----------|----------|-------------|
-| `from`    | String   | Yes      | The address the transaction is sent from. (20 Bytes) |
-| `to`      | String   | Yes (optional when creating new contract) | The address the transaction is directed to. (20 Bytes) |
-| `gas`     | String   | No (default: 90000) | Integer of the gas provided for the transaction execution. It will return unused gas. |
-| `gasPrice`| String   | No       | The gas price the sender is willing to pay to miners in wei. |
-| `value`   | String   | Yes      | Integer of the value sent with this transaction, in Wei. |
-| `data`    | String   | No       | The compiled code of a contract OR the hash of the invoked method signature and encoded parameters. |
-| `nonce`   | Integer  | No       | Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce. |
+| Parameter  | Type    | Required                                  | Description                                                                                         |
+| ---------- | ------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `from`     | String  | Yes                                       | The address the transaction is sent from. (20 Bytes)                                                |
+| `to`       | String  | Yes (optional when creating new contract) | The address the transaction is directed to. (20 Bytes)                                              |
+| `gas`      | String  | No (default: 90000)                       | Integer of the gas provided for the transaction execution. It will return unused gas.               |
+| `gasPrice` | String  | No                                        | The gas price the sender is willing to pay to miners in wei.                                        |
+| `value`    | String  | Yes                                       | Integer of the value sent with this transaction, in Wei.                                            |
+| `data`     | String  | No                                        | The compiled code of a contract OR the hash of the invoked method signature and encoded parameters. |
+| `nonce`    | Integer | No                                        | Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce. |
 
 ## Response Parameters
 
-| Parameter | Type     | Description |
-|-----------|----------|-------------|
-| `DATA`    | String   | The transaction hash, or the zero hash if the transaction is not yet available. (32 Bytes) |
+| Parameter | Type   | Description                                                                                |
+| --------- | ------ | ------------------------------------------------------------------------------------------ |
+| `DATA`    | String | The transaction hash, or the zero hash if the transaction is not yet available. (32 Bytes) |
 
 ## Request Example
 
@@ -35,14 +35,14 @@ Creates, signs, and sends a new transaction to the network. Creates new message 
 ethereum.request({
   method: "eth_sendTransaction",
   params: [
-    { 
-      from: "0x5A3897b0513FdBeEc7C469D9aF4fA6C0752aBea7", 
-      to: "0xDeaDbeefdEAdbeefdEadbAcFdeadbeefDEADbEEF", 
+    {
+      from: "0x5A3897b0513FdBeEc7C469D9aF4fA6C0752aBea7",
+      to: "0xDeaDbeefdEAdbeefdEadbAcFdeadbeefDEADbEEF",
       value: "0x0",
-      data: "0x"
-    }
+      data: "0x",
+    },
   ],
-})
+});
 ```
 
 ## Response Example

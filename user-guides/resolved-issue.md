@@ -33,7 +33,7 @@ If your transaction has been executed but still does not appear in your mining p
 To restore your account to its proper state, you visit the specified page on the website and wait for the automatic recovery process to complete. Please follow the steps below to ensure your addresses are correctly reflected:
 
 1. Access the website using the link provided below and connect your wallet.
-  https://app.intmax.io/mining-portfolio
+   https://app.intmax.io/mining-portfolio
 2. After successfully connecting your wallet, please click on the "View Address List" link.
 
 <figure><img src="/img/user-guides/resolved_issue_30.webp" alt="Mining Address List" /></figure>
@@ -43,4 +43,3 @@ To restore your account to its proper state, you visit the specified page on the
 <figure><img src="/img/user-guides/resolved_issue_40.webp" alt="Mining Address List" /></figure>
 
 4. Confirm that the number of addresses displayed in the list has increased, indicating the update is complete. Please click the "Back to Mining Portfolio" link to return to your mining portfolio page.
-

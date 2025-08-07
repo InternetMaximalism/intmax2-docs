@@ -5,7 +5,7 @@ description: "eth-requestAccounts - EIP1102"
 
 # Request Wallet Account
 
-Requests that the user provide an Ethereum address to be identified. 
+Requests that the user provide an Ethereum address to be identified.
 
 ## Request Parameters
 
@@ -13,9 +13,9 @@ None
 
 ## Response Parameters
 
-| Parameter     | Type                    | Description               |
-|---------------|-------------------------|---------------------------|
-| `AddressList` | Array\[string\]         | Array of wallet addresses |
+| Parameter     | Type            | Description               |
+| ------------- | --------------- | ------------------------- |
+| `AddressList` | Array\[string\] | Array of wallet addresses |
 
 ## Request Example
 
@@ -23,14 +23,14 @@ None
 // For wallet side example
 const intmax = intmaxWalletClient();
 intmax.on("eip155/eth_requestAccounts", (c) => {
-    return c.success({
-        accounts: ["0x1234..."],
-    });
+  return c.success({
+    accounts: ["0x1234..."],
+  });
 });
 
 // For dapp side example
 const ethereum = await webmax.provider("eip155");
-await ethereum.request({ method: "eth_requestAccounts", params: [] })
+await ethereum.request({ method: "eth_requestAccounts", params: [] });
 ```
 
 ## Response Example

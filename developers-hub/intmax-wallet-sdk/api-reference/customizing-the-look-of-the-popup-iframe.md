@@ -21,8 +21,7 @@ When integrating the INTMAX Wallet SDK into your dApp, you might want to customi
 
    const DAPP_METADATA = {
      name: "My Custom DApp", // Use your brand/project name here
-     description:
-       "This dApp allows users to interact with our custom smart contract.", // Use an appropriate description here
+     description: "This dApp allows users to interact with our custom smart contract.", // Use an appropriate description here
      icons: [DEFAULT_DAPP_ICON], // Use the defined icon path to your icon or logo here
    };
    ```

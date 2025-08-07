@@ -13,21 +13,21 @@ You can transfer assets from the INTMAX network to the Ethereum Mainnet. A trans
 ## Procedure
 
 1. **Specify Token and Amount:**
-  Select the type of token you want to withdraw and enter the amount.
+   Select the type of token you want to withdraw and enter the amount.
 2. **Enter Withdrawal Address:**
-  Provide the Ethereum address where you want the tokens to be sent.
+   Provide the Ethereum address where you want the tokens to be sent.
 3. **Click "Withdraw":**
-  After specifying the token, amount, and address, click the "Withdraw" button.
+   After specifying the token, amount, and address, click the "Withdraw" button.
 
 <figure><img src="/img/user-guides/withdrawal_from_intmax_network_10.webp" alt="Withdraw from INTMAX Network" /></figure>
 
 4. **Confirm the Transaction:**
-  Review the details on the Confirm page. If everything looks correct, click "Withdraw" button again to proceed.
+   Review the details on the Confirm page. If everything looks correct, click "Withdraw" button again to proceed.
 
 <figure><img src="/img/user-guides/withdrawal_from_intmax_network_20.webp" alt="Withdraw from INTMAX Network" /></figure>
 
 5. **Wait for the Transaction to Process:**
-  During the waiting screen, do not close your browser for at least the first 2 minutes to ensure the transaction processes smoothly.
+   During the waiting screen, do not close your browser for at least the first 2 minutes to ensure the transaction processes smoothly.
 
 ### ETH, USDC, and WBTC Withdrawals
 

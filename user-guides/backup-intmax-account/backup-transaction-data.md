@@ -66,6 +66,7 @@ The backup method will be explained in the next section.
 #### Backup Options
 
 Choose from various time ranges:
+
 - All (entire history)
 - 1 week (from now)
 - 1 month (from now)

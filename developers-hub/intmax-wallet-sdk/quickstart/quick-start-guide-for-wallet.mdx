@@ -3,8 +3,8 @@ sidebar_position: 4
 hide_table_of_contents: true
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Quick Start Guide for Wallet
 
@@ -16,20 +16,14 @@ Here's a quick start guide on setting up intmaxwalletsdk in your web wallet. Thi
 
 <Tabs>
   <TabItem value="npm" label="npm" default>
-  ```sh
-npm install intmax-walletsdk
-	```
-	</TabItem>
-	<TabItem value="yarn" label="yarn">
-	```sh
-yarn add intmax-walletsdk
-	```
-	</TabItem>
-	<TabItem value="pnpm" label="pnpm">
-	```sh
-pnpm add intmax-walletsdk
-	```
-	</TabItem>
+    ```sh npm install intmax-walletsdk ```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    ```sh yarn add intmax-walletsdk ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```sh pnpm add intmax-walletsdk ```
+  </TabItem>
 </Tabs>
 
 ## Usage
@@ -49,6 +43,7 @@ const sdk = intmaxWalletClient();
 Registers a callback function to be executed when a specific event occurs. Use the .on() method to listen for specific events and handle them accordingly.
 
 **Params:**
+
 - `path` (string): The event path, typically a combination of namespace and method name (e.g., "eip155/eth_requestAccounts", "intmax/intmax_ready", etc).
 - `cb` (function): The callback function to be executed. It receives a `context` object and should return an `AbstractResponse` or a Promise that resolves to an AbstractResponse. Check API reference for the event paths and expected return.
 
@@ -63,7 +58,7 @@ sdk.on("eip155/eth_requestAccounts", (context) => {
 });
 
 // To connect dapp to wallet
-sdk.on("intmax/intmax_connect", async (c) => {	
+sdk.on("intmax/intmax_connect", async (c) => {
 	if (isConnected(c, connections)) {
 		return c.success({
 			supportedNamespaces: ["eip155", "intmax"],
@@ -109,7 +104,7 @@ Cleans up resources by removing event listeners and stopping message dispatching
 sdk.destruct();
 ```
 
-By following these methods, developers can effectively integrate the intmaxWalletClient  into their wallets, enabling seamless communication and interaction between wallets and DApps.
+By following these methods, developers can effectively integrate the intmaxWalletClient into their wallets, enabling seamless communication and interaction between wallets and DApps.
 
 Explore the [API reference](../api-reference) section for more methods/events.
 For an end-to-end code example, you can check out the [wallet example](https://github.com/InternetMaximalism/intmax-walletsdk/tree/main/examples/wallet) GitHub repository.

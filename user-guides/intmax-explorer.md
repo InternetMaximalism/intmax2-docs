@@ -11,6 +11,7 @@ description: Explore is a tool for visualizing various activities occurring on t
 ## Introduction
 
 **INTMAX Explorer** is a tool for visualizing various activities occurring on the INTMAX Network, such as deposits, withdrawals, and block submissions. It is primarily used for the following purposes:
+
 - Monitoring the current state and historical activity of the INTMAX Network
 - Tracking your own deposit and withdrawal history
 - Checking the status and history of block submissions
@@ -18,30 +19,36 @@ description: Explore is a tool for visualizing various activities occurring on t
 ### Key Use Cases
 
 **From a User Perspective:**
+
 - Confirm whether your deposit or withdrawal was successfully processed
 
 **From a Block Builder Perspective:**
+
 - Verify whether your submitted blocks have been accepted by the network
 - View a list of successfully and unsuccessfully posted blocks
 
 ### Target Audience
 
 **Users of the INTMAX Network:**
+
 - Especially those who have made deposits, withdrawals, or transfers
 - Users who want to understand how their actions are processed on the network
 
 **Block Builders:**
+
 - Developers or node operators who want to verify whether their generated and submitted blocks have been accepted by the network
 
 ### Prerequisites
 
 This documentation assumes that the reader has a basic understanding of the following concepts:
+
 - Core blockchain concepts such as transactions, blocks, and addresses
 - The distinction between Layer 1 and Layer 2
 
 ### Privacy Limitations
 
 Due to privacy considerations, the Explorer does not display the following information:
+
 - **Address balances:** You cannot view how much ETH or token balance an address holds.
 - **Transaction contents:** The full details of transfer transactions are not exposed.
 - **INTMAX on‑chain addresses:**
@@ -62,6 +69,7 @@ You can access the INTMAX Explorer on:
 ## Blocks
 
 ### Validity
+
 - **Valid:** Indicates that the block contents have been verified and deemed correct according to protocol rules.
 - **Invalid:** Indicates that the block contents violate protocol rules and are therefore rejected. All transactions within this block are considered invalid and will be dropped.
 - **Empty:** Indicates that the block contains no transactions.
@@ -80,6 +88,7 @@ You can access the INTMAX Explorer on:
 ### Blocks List
 
 Displays a real-time paginated list of blocks, including:
+
 - Height (block number)
 - Hash
 - Timestamp
@@ -95,6 +104,7 @@ Filtering options are available by status and block type
 ### Block Details
 
 Provides detailed block-level information such as:
+
 - Status and timestamp
 - Block producer’s address
 - Block validity proof (ZKP)
@@ -114,6 +124,7 @@ This helps users and Block Builders confirm whether a specific block was posted 
 ### Deposits List
 
 Shows all deposit transactions, with columns including:
+
 - Deposit ID
 - Status
 - Timestamp
@@ -128,6 +139,7 @@ Users can filter by status or date to monitor deposit history effectively.
 ### Deposit Details
 
 Detailed view for a specific deposit, showing:
+
 - Status and timestamp
 - Linked L1 transaction hash
 
@@ -146,6 +158,7 @@ Filtering options help users track their deposit flows.
 ### Withdrawals List
 
 Lists all withdrawal transactions with details:
+
 - Withdrawal Hash
 - Status
 - Timestamp
@@ -160,6 +173,7 @@ Filtering options help users track their withdrawal flows.
 ### Withdrawal Details
 
 Provides in-depth details on a withdrawal transaction:
+
 - Status and timestamp
 - Linked L1 transaction hash
 
@@ -171,6 +185,7 @@ Provides in-depth details on a withdrawal transaction:
 ## Search Features
 
 The Search function allows navigation by entering:
+
 - Block height
 - Block hash
 - Deposit Hash

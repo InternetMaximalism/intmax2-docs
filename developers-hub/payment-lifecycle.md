@@ -83,7 +83,7 @@ The rollup contract maintains a cumulative withdrawal map to prevent double-spen
 | Step       | Actor                 | Data Shared                | Publicly Verifiable?  |
 | ---------- | --------------------- | -------------------------- | --------------------- |
 | Deposit    | User → Contract       | (Recipient L2 key, Amount) | ✅                    |
-| Transfer   | User ↔ Aggregator     | Transaction hash only      | ❌ (fully private)    |
+| Transfer   | User ↔ Aggregator    | Transaction hash only      | ❌ (fully private)    |
 | Transfer   | Aggregator → Contract | Merkle root + signature    | ✅                    |
 | Transfer   | Sender → Recipient    | ZK proof + Merkle path     | ❌ (off-chain only)   |
 | Withdrawal | User → Contract       | ZK proof of balance        | ✅ (verifiable proof) |
