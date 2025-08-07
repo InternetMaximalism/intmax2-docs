@@ -1,4 +1,4 @@
-# INTMAX2 Documentation Guide
+# INTMAX2 Docs
 
 ## Installation
 
