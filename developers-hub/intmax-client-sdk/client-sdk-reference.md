@@ -8,7 +8,7 @@ description: The INTMAX Client SDK provides a secure, high-performance interface
 The INTMAX Client SDK provides a secure, high-performance interface for interacting with the INTMAX network. Built with WebAssembly for optimized cryptographic processing, the SDK abstracts complex blockchain operations into a developer-friendly API that handles the complete transaction lifecycle—from creation and signing to broadcasting.
 This documentation covers the SDK's core functionality, available functions, and interface specifications to help developers build secure blockchain wallet integrations with confidence.
 
-**Latest Version**: `1.4.4`
+**Latest Version**: `1.4.5`
 
 **Check out the INTMAX Client SDK on GitHub**
 
@@ -22,7 +22,7 @@ This documentation covers the SDK's core functionality, available functions, and
 
 [Open Integration Guide](./integration-guide.md)
 
-# Architecture
+## Architecture
 
 This section outlines the core workflows supported by the INTMAX network: **Deposit**, **Transfer**, and **Withdrawal**. Each workflow is carefully designed to ensure security, scalability, and seamless interaction between Ethereum mainnet and INTMAX network.
 
@@ -113,8 +113,8 @@ INTMAX uses a unique address format that differs from Ethereum.
   | **Operation**                         | **Address to supply** |
   | ------------------------------------- | --------------------- |
   | Deposit                               | INTMAX address        |
-  | Withdraw                              | Ethereum address      |
   | On-chain transaction (INTMAX network) | INTMAX address        |
+  | Withdraw                              | Ethereum address      |
 
 - **Environment scope**
 
@@ -126,18 +126,35 @@ INTMAX uses a unique address format that differs from Ethereum.
   **Testnet**: A 95-character string starting with **T** (uppercase)
   - Example: `T6ubiG36LmNce6uzcJU3h5JR5FWa72jBBLUGmEPx5VXcFtvXnBB3bqice6uzcJU3h5JR5FWa72jBBLUGmEPx5VXcB3prnCZ`
 
-  **Important**: Be careful not to mix them up.
+  ️️
+  **⚠️ Important:** Be careful not to mix them up. Always verify which type of address is required for the operation you're performing, and ensure you are using the correct environment (Mainnet or Testnet) when deriving and using your INTMAX address.
 
-  Always verify which type of address is required for the operation you're performing, and ensure you are using the correct environment (Mainnet or Testnet) when deriving and using your INTMAX address.
+### Environment
 
-# SDK Interfaces
+INTMAX operates on two separate environments: **Mainnet** and **Testnet**.
+Even if derived from the same Ethereum address, an INTMAX address will be different between environments.
+Specify the environment explicitly when initializing the SDK.
 
-The `INTMAXClient` is an SDK interface designed for interacting with the INTMAX network. This interface provides essential features such as account management, transaction operations, deposits, and withdrawals. Below is an overview of each functionality.
+```ts
+IntMaxClient.init({ environment: "mainnet" });
+IntMaxClient.init({ environment: "testnet" });
+```
+
+### Privacy Model
+
+The INTMAX privacy model ensures that **only the wallet owner with the private key can view their balance and transaction history**.
+
+- Unlike public blockchains, third parties cannot directly check an address’s balance or history.
+- Transfer data uses `salt` and `nullifier` values to hide recipient addresses and prevent linking transactions to each other.
+
+## SDK Interfaces
+
+The `IntMaxClient` is an SDK interface designed for interacting with the INTMAX network. This interface provides essential features such as account management, transaction operations, deposits, and withdrawals. Below is an overview of each functionality.
 
 This interface offers high-level APIs for seamless integration with the INTMAX network. It integrates account login/logout, transaction management, and deposit/withdrawal processing, allowing developers to execute complex blockchain operations through simple functions. Additionally, with WebAssembly support, it ensures fast and secure processing.
 
 ```tsx
-export interface INTMAXClient {
+export interface IntMaxClient {
   // properties
   isLoggedIn: boolean;
   address: string;
@@ -180,11 +197,11 @@ export interface INTMAXClient {
 }
 ```
 
-# Function List
+### Function List Overview
 
 The **Function List** outlines key properties and interfaces of the INTMAX Client SDK, enabling seamless user authentication, token balance management, and interaction with the INTMAX network. It provides clear and standardized methods for handling authentication states, token information, and paginated data retrieval to ensure efficient integration and extensibility across different use cases.
 
-## Interfaces Overview
+**Interfaces Overview**
 
 The following interfaces are designed to be used as part of the INTMAX Client SDK. These interfaces provide a flexible and generic structure for handling paginated data retrieval and transaction-related operations. They ensure a standardized way to manage various entities, allowing seamless integration and extensibility across different use cases in the INTMAX ecosystem
 
@@ -246,7 +263,7 @@ export interface Token {
 }
 ```
 
-### Request(Token, Transaction, Deposit)
+### Request Interfaces(Token, Transaction, Deposit)
 
 ```tsx
 // Type representing a message signature in INTMAX format
@@ -343,7 +360,7 @@ export interface PrepareDepositTransactionResponse {
 }
 ```
 
-### Request (Withdrawal)
+### Request Interfaces(Withdrawal)
 
 ```tsx
 export type PaginationCursor = {
@@ -413,27 +430,21 @@ export interface FeeResponse {
 }
 ```
 
-### Technical Terms
+### Properties
 
-- **Nullifier**: A unique identifier used to prevent the same deposit/withdrawal from being used more than once.
-- **Salt**: A random value added during encryption or hashing to ensure different outputs from identical inputs. Used to conceal the recipient’s deposit address.
-- **Token index**: A numerical ID uniquely identifying tokens within the INTMAX network.
-
-## Properties
-
-### `isLoggedIn: boolean`
+#### `isLoggedIn: boolean`
 
 This property indicates the current authentication state of the wallet user. It returns true when a user has successfully completed the authentication process and has an active session. This is crucial for determining whether sensitive operations like transactions or data access can be performed.
 
-### `address: string`
+#### `address: string`
 
 This `address`, which corresponds one-to-one with the connected wallet's Ethereum address, represents the address **on the INTMAX network**.
 
-### `tokenBalances: TokenBalance[] | undefine`
+#### `tokenBalances: TokenBalance[] | undefine`
 
 Represents the user's current token balances, including token address, balance, symbol, decimals, and name. If undefined, the balances are not yet available.
 
-## Initialization
+### Initialization
 
 `IntMaxClient` is a core component of the INTMAX SDK that provides seamless interaction with the INTMAX network. Please specify either **testnet** or **mainnet** for the environment.
 
@@ -445,11 +456,11 @@ const intMaxClient = IntMaxClient.init({ environment: "mainnet" });
 
 To set up a local Balance Prover instance, please see Tips: [How to Run a Local Balance Prover](https://github.com/InternetMaximalism/intmax2-client-sdk/blob/main/README.md#tips-how-to-run-a-local-balance-prover)
 
-## Account
+### Account
 
 The Account module provides comprehensive authentication and cryptographic operations for wallet management.
 
-### `login`
+#### `login`
 
 Initiates wallet authentication and establishes a secure session. This method handles key derivation, session token management, and initial data synchronization. It is essential for secure access to protected wallet functionalities.
 
@@ -476,7 +487,7 @@ const loginResponse: LoginResponse = await client.login();
 }
 ```
 
-### `logout`
+#### `logout`
 
 Securely terminates the current wallet session and clears sensitive data from memory. This method ensures proper cleanup of authentication tokens, cached data, and any active connections. Critical for maintaining security when the user is finished with their wallet operations.
 
@@ -484,7 +495,7 @@ Securely terminates the current wallet session and clears sensitive data from me
 const res: void = await client.logout();
 ```
 
-### `getPrivateKey`
+#### `getPrivateKey`
 
 Securely retrieves the INTMAX private key required for signing operations when necessary. This can be used if the user wishes to back up their **INTMAX private key.** Transaction signing and decryption of transaction history can still be performed without executing this function.
 
@@ -492,7 +503,7 @@ Securely retrieves the INTMAX private key required for signing operations when n
 const privateKey: string = await client.getPrivateKey(); // will return hex string of private key
 ```
 
-### `signMessage`
+#### `signMessage`
 
 Signs a message using an INTMAX account. This function signs the provided message, which can be any arbitrary string.
 
@@ -511,7 +522,7 @@ const signature: SignMessageResponse = await client.signMessage(message);
 
 **Note**: The signature is computed deterministically. This means that signing the same message with the same account will always produce the same signature.
 
-### `verifySignature`
+#### `verifySignature`
 
 Verifies a signature generated using the `signMessage` function to ensure it matches the original message and INTMAX account.
 
@@ -526,13 +537,13 @@ const message = "Hello, World!";
 const isVerified: boolean = await client.verifySignature(signature, message);
 ```
 
-## Token
+### Token
 
 This SDK manages cryptocurrency and digital asset information within the wallet ecosystem.
 
 [Q. What are `tokenList` and `tokenBalances`](#q-what-are-tokenlist-and-tokenbalances)
 
-### `getTokensList`
+#### `getTokensList`
 
 This API retrieves a list of tokens. The `tokenIndex` parameter is particularly important as it is used to specify tokens in operations such as deposits, withdrawals, and transfers. This allows precise identification of tokens within the INTMAX Client SDK.
 
@@ -552,7 +563,7 @@ const tokens: Token[] = await client.getTokensList();
 ];
 ```
 
-### `fetchTokenBalances`
+#### `fetchTokenBalances`
 
 Retrieves all token balances held by the currently logged-in INTMAX account. This is useful for displaying the user’s asset holdings within an application.
 
@@ -579,11 +590,11 @@ const tokenBalances: TokenBalancesResponse = await client.fetchTokenBalances();
 }
 ```
 
-## Transaction
+### Transaction
 
 A transfer is made within the INTMAX network by executing a transaction on the network's transfer mechanism. It supports ETH, ERC20, ERC721, and ERC1155 tokens.
 
-### `fetchTransfers`
+#### `fetchTransfers`
 
 This function retrieves the history of tokens received by the user, including details like amount, sender (`from`), recipient (`to`), status, timestamp, and token information.
 
@@ -620,7 +631,7 @@ const transferList: FetchTransactionsResponse = await fetchTransfers({})
 ]
 ```
 
-### `fetchTransactions`
+#### `fetchTransactions`
 
 This function retrieves the history of tokens sent by the user. Each transaction may include multiple transfers to different recipients, including the payment of fees.
 
@@ -663,7 +674,7 @@ const transactionList: FetchTransactionsResponse = await fetchTransactions({})
 ]
 ```
 
-### `broadcastTransaction`
+#### `broadcastTransaction`
 
 The `broadcastTransaction` function broadcasts one or more transactions to the blockchain network. It accepts an array of transaction parameters, such as recipient addresses, transfer amounts, and token types. After broadcasting the transactions, the function verifies the root of the transaction tree and waits for confirmation. The response includes transaction results containing the confirmation status, block number, and other relevant information.
 
@@ -703,11 +714,11 @@ const transferResult = await client.broadcastTransaction(params, isWithdrawal);
 }
 ```
 
-## Deposit
+### Deposit
 
 A deposit is made from Ethereum mainnet to the INTMAX network by executing a transaction on the liquidity contract of Ethereum mainnet. It supports ETH, ERC20, ERC721, and ERC1155 tokens.
 
-### `fetchDeposits`
+#### `fetchDeposits`
 
 Retrieves a paginated list of deposit transactions with all associated details, such as amount, sender, recipient, status, timestamp, and token information. This method provides comprehensive data for tracking and managing deposits, enabling users to monitor transaction status and history efficiently.
 
@@ -730,7 +741,7 @@ const depositList: Transaction[] = await client.fetchDeposits({})[
 ];
 ```
 
-### `deposit`
+#### `deposit`
 
 Processes a deposit transaction to the user's account with all required transaction parameters. This method handles the complete deposit flow including validation, signing, broadcasting to the network — **and includes an on-chain AML (Anti-Money Laundering) check via a Predicate Contract**.
 
@@ -770,11 +781,11 @@ const deposit: PrepareDepositTransactionResponse = await client.deposit(params);
 
 **NOTE**: Currently, even if the `isMining` flag is set to true, it is not treated as mining.
 
-## Withdrawal
+### Withdrawal
 
 A withdrawal is made from the INTMAX network to Ethereum mainnet by executing a transaction on the liquidity contract of the mainnet. It supports ETH, ERC20, ERC721, and ERC1155 tokens.
 
-### `fetchWithdrawal`
+#### `fetchWithdrawal`
 
 Organizes withdrawal transactions into categorized lists based on their current status, including Failed, NeedClaim, Relayed, Requested, and Success states. This structured organization enables efficient filtering and management of withdrawals, allowing users to track transaction progress and handle different withdrawal states separately. Each status category maintains an array of ContractWithdrawal objects containing detailed transaction information.
 
@@ -814,7 +825,7 @@ const withdrawals = await client.fetchWithdrawals();
 }
 ```
 
-### `withdraw`
+#### `withdraw`
 
 The `withdraw` function is an asynchronous method that processes a withdrawal request from the user's wallet. This function performs comprehensive validation and security checks to ensure the withdrawal is handled safely and accurately. It follows the entire withdrawal flow, including verifying the user's balance, calculating transaction fees, and signing the transaction.
 
@@ -846,11 +857,11 @@ const withdrawResult = await client.withdraw(params);
 }
 ```
 
-### `claimWithdrawal`
+#### `claimWithdrawal`
 
 Initiates the claim process for one or more withdrawal transactions, returning a response containing the transaction hash and status. After execution of this function completes, the progress of the claim operation can be tracked to confirm its success on the blockchain.
 
-[**Q.** What is `claimWithdrawal`?](#q-what-is-claimwithdrawal)
+[Q. What is `claimWithdrawal`?](#q-what-is-claimwithdrawal)
 
 ```tsx
 // The withdrawal will be processed in approximately three hours
@@ -865,6 +876,12 @@ const claim = await client.claimWithdrawal(withdrawals.need_claim);
 
 **NOTE**: When there are no tokens available to claim, the error `No withdrawals to claim` occurs.
 
+## Technical Terms
+
+- **Nullifier**: A unique identifier used to prevent the same deposit/withdrawal from being used more than once.
+- **Salt**: A random value added during encryption or hashing to ensure different outputs from identical inputs. Used to conceal the recipient’s deposit address.
+- **Token index**: A numerical ID uniquely identifying tokens within the INTMAX network.
+
 ## Fee
 
 Please refer to the following for details about the fees.
@@ -873,7 +890,7 @@ Please refer to the following for details about the fees.
 
 [Q. What is the collateral fee?](#q-what-is-the-collateral-fee)
 
-### `getTransferFee`
+#### `getTransferFee`
 
 The getTransferFee function estimates the transaction fee required to perform a token transfer within the INTMAX network.
 
@@ -894,7 +911,7 @@ const trasnferFee: FeeResponse = await client.getTransferFee();
 }
 ```
 
-### `getWithdrawalFee`
+#### `getWithdrawalFee`
 
 This function estimates the transaction fee required to perform a token withdrawal within the INTMAX network.
 
@@ -912,9 +929,9 @@ const withdrawalFee: FeeResponse = await client.getWithdrawalFee();
 }
 ```
 
-# Examples
+## Examples
 
-## Usage for browser
+### Usage for browser
 
 We plan to provide JavaScript support for the following modules. Below, you will find examples for each module.
 
@@ -922,7 +939,7 @@ We plan to provide JavaScript support for the following modules. Below, you will
 npm i intmax2-client-sdk
 ```
 
-### Initiate INTMAX Client
+#### Initiate INTMAX Client
 
 `IntMaxClient` is a core component of the INTMAX SDK that provides seamless interaction with the INTMAX network. This class simplifies the process of integrating applications with the INTMAX network, enabling developers to interact with both the `mainnet` and `testnet` environments effortlessly.
 
@@ -934,7 +951,7 @@ const client = await IntMaxClient.init({ environment: "mainnet" });
 
 To set up a local Balance Prover instance, please see Tips: [How to Run a Local Balance Prover](https://github.com/InternetMaximalism/intmax2-client-sdk/blob/main/README.md#tips-how-to-run-a-local-balance-prover)
 
-### Login to INTMAX Network
+#### Login to INTMAX Network
 
 Here is an example of logging in to INTMAX. Users need to login once before using the SDK functions.
 
@@ -948,7 +965,7 @@ You should sign two message, they will be appeared in the popup window automatic
 await client.login();
 ```
 
-### Retrieve Balance
+#### Retrieve Balance
 
 This example retrieves the balances of the generated INTMAX account.
 
@@ -956,13 +973,13 @@ This example retrieves the balances of the generated INTMAX account.
 const { balances } = await client.fetchTokenBalances();
 ```
 
-## Usage for Node.js
+### Usage for Node.js
 
 ```bash
 npm i intmax2-server-sdk
 ```
 
-### Initiate INTMAX Client
+#### Initiate INTMAX Client
 
 ```tsx
 import { IntMaxNodeClient } from "intmax2-server-sdk";
@@ -974,7 +991,7 @@ const client = new IntMaxNodeClient({
 });
 ```
 
-### Login to INTMAX Network & Retrieve Balance
+#### Login to INTMAX Network & Retrieve Balance
 
 Here is an example of logging in to INTMAX and retrieving balances. Users need to retrieve their balances once before using the SDK functions.
 
@@ -983,9 +1000,9 @@ await client.login();
 const { balances } = await client.fetchTokenBalances();
 ```
 
-## Usage for both
+### Usage for both
 
-### Retrieve INTMAX Account Address & Private Key
+#### Retrieve INTMAX Account Address & Private Key
 
 This example retrieves the address and private key of the generated INTMAX account.
 
@@ -994,7 +1011,7 @@ const address = client.address; // Address of the INTMAX account
 const privateKey = client.getPrivateKey(); // Private key of the INTMAX account
 ```
 
-### **Sign & Verify Message**
+#### Sign & Verify Message
 
 Demonstrates how to sign a message twice and verify the signature.
 
@@ -1009,7 +1026,7 @@ if (!isVerified) {
 console.log("Verification succeeded");
 ```
 
-### **List Available Tokens & Retrieve Information for a Specific Token**
+#### List Available Tokens & Retrieve Information for a Specific Token
 
 Shows how to get the list of tokens supported by the network.
 
@@ -1022,7 +1039,7 @@ const nativeToken = tokens.find(
 );
 ```
 
-### **Fetch Transaction History**
+#### Fetch Transaction History
 
 Retrieves deposits, transfers, and sent transactions in parallel, then prints the latest entries.
 
@@ -1038,7 +1055,7 @@ console.log("Received Transfers:", transfers);
 console.log("Sent Transfers:", sentTxs);
 ```
 
-### Estimate Gas & Deposit
+#### Estimate Gas & Deposit
 
 Estimates gas for an ETH deposit and submits the deposit.
 
@@ -1073,7 +1090,7 @@ console.log("Transaction Hash:", depositResult.txHash);
 
 The final txHash obtained can be searched on [SepoliaScan](https://sepolia.etherscan.io/).
 
-### Check Transfer Fee & Broadcast Transaction
+#### Check Transfer Fee & Broadcast Transaction
 
 This example retrieves the current transfer fee (token index / amount). Then it sends 0.000001 ETH to another INTMAX address.
 
@@ -1103,7 +1120,7 @@ const tx = await client.broadcastTransaction(transfers);
 console.log("Transfer result:", tx);
 ```
 
-### Retrieve Withdrawal Fee & Execute Withdrawal
+#### Retrieve Withdrawal Fee & Execute Withdrawal
 
 This example shows how to fetch both withdrawal and transfer fees before withdrawing.
 
@@ -1144,13 +1161,13 @@ const claim = await client.claimWithdrawal(withdrawals.need_claim);
 console.log("Claim result:", claim);
 ```
 
-# Tips
+## Tips
 
-## How to Run a Local Balance Prover
+### How to Run a Local Balance Prover
 
 You can set up a local Balance Prover instance and send requests to it.
 
-### 1. Clone the Repository
+#### 1. Clone the Repository
 
 Clone the `intmax2` repository (branch `dev`) from GitHub to your local environment.
 
@@ -1158,7 +1175,7 @@ Clone the `intmax2` repository (branch `dev`) from GitHub to your local environm
 git clone git@github.com:InternetMaximalism/intmax2.git -b dev
 ```
 
-### 2. Navigate to the Balance Prover Directory
+#### 2. Navigate to the Balance Prover Directory
 
 Move into the `balance-prover` directory within the cloned repository.
 
@@ -1166,7 +1183,7 @@ Move into the `balance-prover` directory within the cloned repository.
 cd intmax2/balance-prover
 ```
 
-### 3. Prepare Environment Configuration
+#### 3. Prepare Environment Configuration
 
 Create an environment configuration file `.env` based on the provided `.example.env` template.
 
@@ -1174,7 +1191,7 @@ Create an environment configuration file `.env` based on the provided `.example.
 cp -n .example.env .env
 ```
 
-### 4. Start the Balance Prover
+#### 4. Start the Balance Prover
 
 Run the Balance Prover in release mode (`-r`) using Cargo.
 
@@ -1182,11 +1199,11 @@ Run the Balance Prover in release mode (`-r`) using Cargo.
 cargo run -r
 ```
 
-### 5. Change the SDK Config
+#### 5. Change the SDK Config
 
 Here's how to update the configuration for Browser and NodeJS, respectively.
 
-### 5-a. Browser
+**5-a. Browser**
 
 To use the private ZKP server hosted at `http://localhost:9001`, you can use the following code:
 
@@ -1204,7 +1221,7 @@ const intMaxClient = IntMaxClient.init({
 
 Set `use_private_zkp_server` to `false` when running the balance prover locally.
 
-### 5-b. NodeJS
+**5-b. NodeJS**
 
 To use the private ZKP server hosted at `http://localhost:9001`, you can use the following code:
 
@@ -1222,7 +1239,7 @@ const intMaxClient = new IntMaxNodeClient({
 
 Set `use_private_zkp_server` to `false` when running the balance prover locally.
 
-# FAQ
+## FAQ
 
 ### Q. Does the INTMAX network support smart contracts?
 
@@ -1308,7 +1325,7 @@ INTMAX is designed with strong privacy protection. Only the owner of a wallet ca
 
 **A.** The fetchTokenBalances function retrieves user data and simultaneously synchronizes token balances. Once the synchronization is complete, the execution time will be shorter for subsequent calls. **Normally, if balance synchronization is not required, it completes in about 6 seconds.**
 
-# Want to contribute or report an issue?
+## Want to contribute or report an issue?
 
 We welcome contributions and feedback!
 
@@ -1316,22 +1333,20 @@ Please feel free to open an [issue](https://github.com/InternetMaximalism/intmax
 
 Your support helps improve the INTMAX ecosystem.
 
-# References
-
-You’ll find links to the Rust code and other contract addresses below—please use them as reference material.
+## References
 
 You’ll find links to the Rust code and contract documentation below—please use them as reference material.
 
-### 📜 Smart Contracts
+### Smart Contracts
 
 Documentation for deployed contracts and how to interact with them. [**View Smart Contracts Documentation**](../intmax-nodes/smart-contracts.md)
 
-### 🔧 Rust CLI
+### Rust CLI
 
 Command-line interface for interacting with the INTMAX network using Rust.
 [**View INTMAX CLI on GitHub**](https://github.com/InternetMaximalism/intmax2/tree/dev/cli)
 
-### 🦀 Rust SDK
+### Rust SDK
 
 The official Rust SDK for interacting with the INTMAX network externally.
 [**View INTMAX Client SDK on GitHub**](https://github.com/InternetMaximalism/intmax2/tree/dev/client-sdk)
