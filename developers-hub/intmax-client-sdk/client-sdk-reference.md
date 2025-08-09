@@ -147,7 +147,7 @@ The INTMAX privacy model ensures that **only the wallet owner with the private k
 - Unlike public blockchains, third parties cannot directly check an address’s balance or history.
 - Transfer data uses `salt` and `nullifier` values to hide recipient addresses and prevent linking transactions to each other.
 
-## SDK Interfaces
+## SDK Interface
 
 The `IntMaxClient` is an SDK interface designed for interacting with the INTMAX network. This interface provides essential features such as account management, transaction operations, deposits, and withdrawals. Below is an overview of each functionality.
 
@@ -200,10 +200,6 @@ export interface IntMaxClient {
 ### Function List Overview
 
 The **Function List** outlines key properties and interfaces of the INTMAX Client SDK, enabling seamless user authentication, token balance management, and interaction with the INTMAX network. It provides clear and standardized methods for handling authentication states, token information, and paginated data retrieval to ensure efficient integration and extensibility across different use cases.
-
-**Interfaces Overview**
-
-The following interfaces are designed to be used as part of the INTMAX Client SDK. These interfaces provide a flexible and generic structure for handling paginated data retrieval and transaction-related operations. They ensure a standardized way to manage various entities, allowing seamless integration and extensibility across different use cases in the INTMAX ecosystem
 
 ### Basic Interfaces
 
@@ -444,6 +440,16 @@ This `address`, which corresponds one-to-one with the connected wallet's Ethereu
 
 Represents the user's current token balances, including token address, balance, symbol, decimals, and name. If undefined, the balances are not yet available.
 
+## API Reference
+
+This section describes all available functions and methods provided by the `IntMaxClient` SDK.
+Each function includes a detailed explanation of its purpose, parameters, return values,
+and usage examples. These APIs allow developers to perform account management, transactions,
+and deposit/withdrawal operations directly with the INTMAX network.
+
+All methods are asynchronous unless otherwise specified and are designed to handle
+secure cryptographic operations via WebAssembly for optimal performance.
+
 ### Initialization
 
 `IntMaxClient` is a core component of the INTMAX SDK that provides seamless interaction with the INTMAX network. Please specify either **testnet** or **mainnet** for the environment.
@@ -680,11 +686,9 @@ The `broadcastTransaction` function broadcasts one or more transactions to the b
 
 You can specify multiple transactions in a single call — up to a maximum of **63 transactions**.
 
-[Q. How are transaction fees determined on the INTMAX network?](#q-how-are-transaction-fees-determined-on-the-intmax-network)
-
-[Q. What happens to transaction fees when multiple transactions are batched together?](#q-what-happens-to-transaction-fees-when-multiple-transactions-are-batched-together)
-
-[Q. How do you use the return value of `broadcastTransaction`?](#q-how-do-you-use-the-return-value-of-broadcasttransaction)
+- [Q. How are transaction fees determined on the INTMAX network?](#q-how-are-transaction-fees-determined-on-the-intmax-network)
+- [Q. What happens to transaction fees when multiple transactions are batched together?](#q-what-happens-to-transaction-fees-when-multiple-transactions-are-batched-together)
+- [Q. How do you use the return value of `broadcastTransaction`?](#q-how-do-you-use-the-return-value-of-broadcasttransaction)
 
 ```tsx
 const params: BroadcastTransactionRequest[] = [
@@ -886,9 +890,8 @@ const claim = await client.claimWithdrawal(withdrawals.need_claim);
 
 Please refer to the following for details about the fees.
 
-[Q. How are transaction fees determined on the INTMAX network?](#q-how-are-transaction-fees-determined-on-the-intmax-network)
-
-[Q. What is the collateral fee?](#q-what-is-the-collateral-fee)
+- [Q. How are transaction fees determined on the INTMAX network?](#q-how-are-transaction-fees-determined-on-the-intmax-network)
+- [Q. What is the collateral fee?](#q-what-is-the-collateral-fee)
 
 #### `getTransferFee`
 
@@ -1339,16 +1342,20 @@ You’ll find links to the Rust code and contract documentation below—please u
 
 ### Smart Contracts
 
-Documentation for deployed contracts and how to interact with them. [**View Smart Contracts Documentation**](../intmax-nodes/smart-contracts.md)
+Documentation for deployed contracts and how to interact with them.
+
+[**View Smart Contracts Documentation**](../intmax-nodes/smart-contracts.md)
 
 ### Rust CLI
 
 Command-line interface for interacting with the INTMAX network using Rust.
+
 [**View INTMAX CLI on GitHub**](https://github.com/InternetMaximalism/intmax2/tree/dev/cli)
 
 ### Rust SDK
 
 The official Rust SDK for interacting with the INTMAX network externally.
+
 [**View INTMAX Client SDK on GitHub**](https://github.com/InternetMaximalism/intmax2/tree/dev/client-sdk)
 
 > This SDK enables seamless external interaction with the INTMAX network using Rust.
