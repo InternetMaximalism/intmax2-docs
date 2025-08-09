@@ -11,21 +11,22 @@ This document provides detailed instructions for setting up and operating the Bl
 
 **Standalone Mode also offers greater flexibility and customizability**, allowing operators to tailor their setup according to their infrastructure and operational needs.
 
-**Note**: We offer two versions: Mainnet and Testnet. Please make sure not to confuse them.
+**Note**: We offer two versions: **Mainnet** and **Testnet**. Please make sure not to confuse them.
 
 ## Key Features
 
-The Block Builder posts blocks to Scroll from the Ethereum account specified in the `BLOCK_BUILDER_PRIVATE_KEY` environment variable. It is a core component that interacts with the Scroll network. To support future enhancements, the Block Builder is designed to accept external transactions, requiring proper domain or IP address configuration for external access.
+The Block Builder posts blocks to **Scroll** from the Ethereum account specified by the private key. It is a core component that interacts with the Scroll network. To support future enhancements, the Block Builder is designed to accept external transactions.
 
-For stable operation in the mainnet environment, ensure the Block Builder runs continuously.
+To ensure stable operation in the mainnet environment, the Block Builder should run continuously.
 
 - **Transaction Submission:**
-  - The Block Builder collects transactions from external sources and submits them to the Scroll network as blocks. This ensures efficient interaction with the broader network and enables seamless block posting.
+  - The Block Builder collects transactions from external sources and submits them to the Scroll network as blocks. This enables efficient interaction with the broader network and ensures seamless block submission.
 - **Fee Collection:**
   - The Block Builder collects a fee of $0.005 per user per transaction.
-  - For each block, it can accumulate up to $0.005 \* 128 in fees, ensuring a scalable and incentivized operation.
-- **Online Status Announcement**
-  - A transaction is sent daily to the Block Registry Contract to notify the Indexer of the Block Builder's online status. The Indexer then distributes a list of active Block Builders to users.
+  - For each block, it can accumulate up to $0.005 × 128 in fees, supporting scalable and incentivized operation.
+- **Online Status Announcement:**
+  - The Block Builder sends a transaction to the [**Block Builder Registry Contract**](/developers-hub/intmax-nodes/smart-contracts#block-builder-registry) once a day to notify the [**Indexer**](/developers-hub/intmax-nodes/indexer) that it is online.
+  - The indexer plays a critical role in distributing the most suitable Block Builder URL to users, ensuring efficient and reliable network interaction.
 
 ## Requirements
 
@@ -49,18 +50,13 @@ Replace the placeholders with your actual credentials and URLs:
 - `BLOCK_BUILDER_PRIVATE_KEY=<private-key>`: The Ethereum private key of an account that holds ETH on Scroll Network.
 - `BLOCK_BUILDER_URL=<your-block-builder-url>`: The URL of your BlockBuilder that is **accessible from the internet**. If there is a port number, be sure to include it.
 
-  ⚠️ **Note:** Always use `https://` instead of http:// to ensure secure communication.
+  ⚠️ **Note:** Always use `https://` instead of `http://` to ensure secure communication.
 
 - `L2_RPC_URL=<your-scroll-rpc-url>`: The RPC endpoint for Scroll Network Ensure that the Scroll network is enabled in your Alchemy dashboard.
 
-⚠️ **Important:**
+**Important:** Never expose or share your private key (`<private-key>`). Keep it secure to prevent unauthorized access to your account. To ensure stable operation, it is **recommended that the Block Builder always maintains a minimum balance of 0.1 ETH on the Scroll Network**.
 
-- Never expose or share your private key (`<private-key>`). Keep it secure to prevent unauthorized access to your account.
-- To ensure stable operation, it is **recommended that the Block Builder always maintains a minimum balance of 0.1 ETH on the Scroll Network**.
-
-**NOTE:**
-
-If you are using the **Testnet** environment, please replace the RPC URL with the Scroll Sepolia RPC endpoint and use an account that holds ETH on the Scroll Sepolia Network instead. Also, ensure that the Scroll network is enabled in your Alchemy dashboard.
+**NOTE:** If you are using the **Testnet** environment, please replace the RPC URL with the Scroll Sepolia RPC endpoint and use an account that holds ETH on the Scroll Sepolia Network instead. Also, ensure that the Scroll network is enabled in your Alchemy dashboard.
 
 **Do not use quotation marks** when specifying values in the `.env` file.
 
@@ -147,9 +143,7 @@ Before running the following command, **please replace `<release-version>`** wit
 
 **Note:** Do not include the `v` prefix in the release version.
 
-👉 **Check the latest release here:**
-
-<!-- <https://github.com/InternetMaximalism/intmax2/pkgs/container/intmax2> -->
+👉 **Check the latest release [here:](https://github.com/InternetMaximalism/intmax2/pkgs/container/intmax2)**
 
 Before running the command, make sure to set up the `.env` file or configure the necessary environment variables.
 
@@ -201,9 +195,7 @@ Before running the following command, **please replace `<release-version>`** wit
 
 **Note:** Make sure to add the `v` prefix to the release version.
 
-👉 **Check the latest release here:**
-
-<!-- <https://github.com/InternetMaximalism/intmax2/releases> -->
+👉 **Check the latest release [here:](https://github.com/InternetMaximalism/intmax2/releases)**
 
 Before running the command, make sure to set up the `.env` file or configure the necessary environment variables.
 
@@ -276,10 +268,10 @@ curl https://<your-domain>/health-check
 You can verify the registration status of your Block Builder by calling the following API:
 
 ```bash
-# mainnet
+# Mainnet
 curl https://api.indexer.intmax.io/v1/indexer/builders/registration/<your-block-builder-address>
 
-# testnet
+# Testnet
 curl https://stage.api.indexer.intmax.io/v1/indexer/builders/registration/<your-block-builder-address>
 ```
 
@@ -306,7 +298,7 @@ This API allows you to confirm the current status of your Block Builder in the i
 Check the fee-related data for the Block Builder locally:
 
 ```bash
-curl <http://localhost:8080/fee-info>
+curl http://localhost:8080/fee-info
 
 # Expected response
 {
@@ -382,7 +374,6 @@ A block is considered submitted by your Block Builder if the minter address in t
 You can verify the submitted blocks via the Explorer at:
 
 - [Mainnet Explorer](https://explorer.intmax.io/)
-
 - [Testnet Explorer](https://beta.testnet.explorer.intmax.io/)
 
 ### Q: Where is the synchronized data stored inside the Docker container?
@@ -408,15 +399,7 @@ A: Yes, you can use an RPC provider other than Alchemy for `L2_RPC_URL`. Some ex
 
 The performance and stability may vary depending on the RPC provider, so please choose the one that best suits your environment and use case.
 
-### Q: How much is the gas fee for one block builder submission on the testnet β?
-
-Block Builder requires approximately **0.00005 ETH** in gas fees to submit a block. To ensure stable operation, it's recommended to keep a bit more than this amount. Please note that gas fees may fluctuate depending on the congestion of the Mainnet and Scroll networks.
-
-### Q: What is the minimum amount of ETH required to deposit?
-
-Please deposit at least 0.1 ETH. If your balance falls below 0.001 ETH, you will no longer be able to submit blocks, so please be careful. Please check and top up your balance regularly to ensure it does not fall below 0.001 ETH.
-
-### **Q: What** `BLOCK_BUILDER_URL` **should I set?**
+### Q: What `BLOCK_BUILDER_URL` should I set?
 
 Please set the `BLOCK_BUILDER_URL` that allows access to your Block Builder. Users will send transactions to your Block Builder through this URL. If the URL is not accessible, your Block Builder will not be able to submit blocks.
 
@@ -426,6 +409,10 @@ You can verify it by accessing $`${BLOCK_BUILDER_URL}/health-check` . If the URL
 { "name":"block-builder","version":"0.1.34" }
 ```
 
+### Q: How much is the gas fee for one block builder submission on the mainnet?
+
+Block Builder requires approximately **0.000016 ETH** in gas fees to submit a block. To ensure stable operation, it's recommended to keep a bit more than this amount. Please note that gas fees may fluctuate depending on the congestion of the Mainnet and Scroll networks.
+
 ### Q. How can we check if our indexer is registered
 
 Please send a request to the URL below. Three addresses registered as indexers will be returned at random. Repeat the request several times. This will give you the current list of active indexers.
@@ -433,6 +420,17 @@ Please send a request to the URL below. Three addresses registered as indexers w
 ```bash
 # Mainnet
 curl https://api.indexer.intmax.io/v1/indexer/builders
+
+[
+  {
+    "address": "0x9ac5289697c0fae66a31337c0447bea38bffa5ee",
+    "url": "https://api.node.intmax.io/block-builder"
+  },
+  {
+    "address": "0xa5de22aef9770067cc5284d94dab623c3cefa049",
+    "url": "https://api.node.intmax.io/secondary-block-builder"
+  }
+]
 
 # Testnet
 curl https://stage.api.indexer.intmax.io/v1/indexer/builders
@@ -452,28 +450,29 @@ curl https://stage.api.indexer.intmax.io/v1/indexer/builders
 ### Q. When will the URL of my BlockBuilder be registered with the indexer?
 
 After the block builder starts running, it registers its URL to the Block Builder Registry Contract once the time set in `INITIAL_HEART_BEAT_DELAY` has passed.
-If the URL is valid, it will be registered by the indexer 10 to 15 minutes later.
+**If the URL is valid, it will be registered by the indexer 10 to 15 minutes later.**
 To be registered, the URL must be accessible from the indexer's side.
 
-### Q: What is the minimum amount of ETH required to deposit? **(How much ETH should I keep for stable operation?)**
+### Q: What is the minimum amount of ETH required to deposit? (How much ETH should I keep for stable operation?)
 
-To ensure stable operation of the Block Builder, **please deposit at least 0.1 ETH**.
+To ensure stable operation of the Block Builder, **please deposit at least 0.01 ETH**.
 
-Submitting one block typically requires approximately **0.00005 ETH** in gas fees, but gas fees may fluctuate depending on network congestion. If your balance falls below **0.001 ETH**, you will no longer be able to submit blocks.
+Submitting one block typically requires approximately **0.000016 ETH** in gas fees, but gas fees may fluctuate depending on network congestion. If your balance falls below **0.001 ETH**, you will no longer be able to submit blocks.
 
 **Recommended balance management:**
 
-- **Always keep more than 0.1 ETH** in your account as a guideline.
-- **If your balance drops below 0.01 ETH,** please top up as soon as possible.
+- **Always keep more than 0.01 ETH** in your account as a guideline.
+- **If your balance drops below 0.002 ETH,** please top up as soon as possible.
 - **If your balance drops below 0.001 ETH,** block submission will fail, so regular balance checks and timely top-ups are strongly recommended.
 
-### **Q. Can the Block Builder set custom fees?**
+### Q. Can the Block Builder set custom fees?
 
 Yes, the Block Builder can set custom fees. The supported tokens are `ETH`, `~~USDC`, and `WBTC`,~~ each identified by a `tokenIndex` as follows:
 
 - `tokenIndex: 0` → ETH
-- `~~tokenIndex: 1` → USDC~~
-- `~~tokenIndex: 2` → WBTC~~
+- ~~`tokenIndex: 1` → ITX~~
+- ~~`tokenIndex: 2` → WBTC~~
+- ~~`tokenIndex: 3` → USDC~~
 
 For example, specifying `0:2500000000000` sets a fee of 0.0000025 ETH.
 
@@ -497,18 +496,16 @@ Access the source code and implementation details on GitHub.
 
 ### INTMAX Mainnet
 
-- App Frontend
+- App Frontend:
   [Open Mainnet App](https://app.intmax.io/)
-
-- Explorer
+- Explorer:
   [Open Mainnet Explorer](https://explorer.intmax.io/)
 
 ### INTMAX Testnet
 
-- App Frontend
+- App Frontend:
   [Open Testnet App](https://testnet.app.intmax.io/)
-
-- Explorer
+- Explorer:
   [Open Testnet Explorer](https://beta.testnet.explorer.intmax.io/)
 
 ### Smart Contracts

@@ -7,9 +7,9 @@ description: The Block Builder node is a critical component responsible for subm
 
 The Block Builder node is a critical component responsible for submitting blocks to the INTMAX Network.
 
-This guide provides step-by-step instructions for setting up and running an INTMAX2 Block Builder using the automated setup script **in Full Network Mode.** If you are looking for more flexible server-side management or want to deploy multiple Block Builders across different environments, please refer to the **Standalone Mode** documentation instead.
+This guide provides step-by-step instructions for setting up and running an INTMAX2 Block Builder using the automated setup script in **Full Network Mode.** If you are looking for more flexible server-side management or want to deploy multiple Block Builders across different environments, please refer to the **Standalone Mode** documentation instead.
 
-**Note**: We offer two versions: Mainnet and Testnet. Please make sure not to confuse them.
+**Note**: We offer two versions: **Mainnet** and **Testnet**. Please make sure not to confuse them.
 
 ## Key Features
 
@@ -23,7 +23,7 @@ To ensure stable operation in the mainnet environment, the Block Builder should 
   - The Block Builder collects a fee of $0.005 per user per transaction.
   - For each block, it can accumulate up to $0.005 × 128 in fees, supporting scalable and incentivized operation.
 - **Online Status Announcement:**
-  - The Block Builder sends a transaction to the **Block Registry Contract** once a day to notify the **indexer** that it is online.
+  - The Block Builder sends a transaction to the [**Block Builder Registry Contract**](/developers-hub/intmax-nodes/smart-contracts#block-builder-registry) once a day to notify the [**Indexer**](/developers-hub/intmax-nodes/indexer) that it is online.
   - The indexer plays a critical role in distributing the most suitable Block Builder URL to users, ensuring efficient and reliable network interaction.
 
 ## Requirements
@@ -39,27 +39,28 @@ To ensure stable operation in the mainnet environment, the Block Builder should 
 
 ## Getting Started
 
-### ⚠️ Important Security Notice
+#### ⚠️ Important Security Notice
 
-**Please be cautious when downloading and executing scripts from the internet.** Always verify the source and content of scripts before execution. Make sure you trust the source and understand what the script does before running it on your system.
+> **Please be cautious when downloading and executing scripts from the internet.** Always verify the source and content of scripts before execution. Make sure you trust the source and understand what the script does before running it on your system.
 
-**Always download from the official INTMAX2 repository URL specified below** to ensure you're getting the legitimate script.
+> **Always download from the official INTMAX2 repository URL specified below** to ensure you're getting the legitimate script.
 
 ### Prerequisites
 
 - Docker installed on your system
   - **[Windows Docker Link](https://docs.docker.com/desktop/install/windows-install)**
   - **[Mac Docker Link](https://docs.docker.com/desktop/install/mac-install)**
+  - **[Linux Docker Link](https://docs.docker.com/desktop/install/linux-install)**
 
-- A valid private key for the block builder with at least 0.01 ETH on Scroll Sepolia testnet
-- Access to an L2 RPC URL
+- A valid private key for the block builder with at least **0.01 ETH** on Scroll Sepolia testnet
+- Access to an **L2 RPC URL**
 - Linux/Windows/macOS environment with bash shell
 
 ### Quick Setup
 
 #### 1. Download the Setup Script
 
-⚠️ **Important:** Only download from the official INTMAX2 URL to ensure security and authenticity.
+⚠️ **Important:** Only download from the official [**INTMAX2 GitHub repository**](https://github.com/InternetMaximalism/intmax2) to ensure security and authenticity.
 
 ```bash
 # Mainnet
@@ -185,7 +186,7 @@ This section explains how to verify that your Block Builder instance is operatin
 
 Your Block Builder endpoint (as an example):
 
-`https://stage.proxy.builder.intmax.io/b7d899c2-6a77-4f7e-9c00-d970e9d6fb48`
+- `https://proxy.builder.intmax.io/b7d899c2-6a77-4f7e-9c00-d970e9d6fb48`
 
 **Health Check and Fee Information**
 
@@ -220,13 +221,9 @@ A: Yes, you can use an RPC provider other than Alchemy for `L2_RPC_URL`. Some ex
 
 The performance and stability may vary depending on the RPC provider, so please choose the one that best suits your environment and use case.
 
-### Q: How much is the gas fee for one block builder submission on the testnet β?
+### Q: How much is the gas fee for one block builder submission on the mainnet?
 
-Block Builder requires approximately 0.00005 ETH in gas fees to submit a block. To ensure stable operation, it's recommended to keep a bit more than this amount. Please note that gas fees may fluctuate depending on the congestion of the Mainnet and Scroll networks.
-
-### Q: What is the minimum amount of ETH required to deposit?
-
-Please deposit at least 0.1 ETH. If your balance falls below 0.001 ETH, you will no longer be able to submit blocks, so please be careful. Please check and top up your balance regularly to ensure it does not fall below 0.001 ETH.
+Block Builder requires approximately **0.000016 ETH** in gas fees to submit a block. To ensure stable operation, it's recommended to keep a bit more than this amount. Please note that gas fees may fluctuate depending on the congestion of the Mainnet and Scroll networks.
 
 ### Q. How can we check if our indexer is registered
 
@@ -270,14 +267,14 @@ To be registered, the URL must be accessible from the indexer's side.
 
 ### Q: What is the minimum amount of ETH required to deposit? (How much ETH should I keep for stable operation?)
 
-To ensure stable operation of the Block Builder, **please deposit at least 0.1 ETH**.
+To ensure stable operation of the Block Builder, **please deposit at least 0.01 ETH**.
 
-Submitting one block typically requires approximately **0.00005 ETH** in gas fees, but gas fees may fluctuate depending on network congestion. If your balance falls below **0.001 ETH**, you will no longer be able to submit blocks.
+Submitting one block typically requires approximately **0.000016 ETH** in gas fees, but gas fees may fluctuate depending on network congestion. If your balance falls below **0.001 ETH**, you will no longer be able to submit blocks.
 
 **Recommended balance management:**
 
-- **Always keep more than 0.1 ETH** in your account as a guideline.
-- **If your balance drops below 0.01 ETH,** please top up as soon as possible.
+- **Always keep more than 0.01 ETH** in your account as a guideline.
+- **If your balance drops below 0.002 ETH,** please top up as soon as possible.
 - **If your balance drops below 0.001 ETH,** block submission will fail, so regular balance checks and timely top-ups are strongly recommended.
 
 ### Q. Can the Block Builder set custom fees?
@@ -285,8 +282,9 @@ Submitting one block typically requires approximately **0.00005 ETH** in gas fee
 Yes, the Block Builder can set custom fees. The supported tokens are `ETH`, `~~USDC`, and `WBTC`,~~ each identified by a `tokenIndex` as follows:
 
 - `tokenIndex: 0` → ETH
-- `~~tokenIndex: 1` → USDC~~
-- `~~tokenIndex: 2` → WBTC~~
+- ~~`tokenIndex: 1` → ITX~~
+- ~~`tokenIndex: 2` → WBTC~~
+- ~~`tokenIndex: 3` → USDC~~
 
 For example, specifying `0:2500000000000` sets a fee of 0.0000025 ETH.
 
@@ -342,22 +340,21 @@ This mode is suitable for running multiple builders in parallel, and you can reg
 
 4. **Docker Swarm is not active**
 
-When running:
+   When running:
 
-```bash
-./builder.sh setup-env
-```
+   ```bash
+   ./builder.sh setup-env
+   ```
 
-You may encounter the following error:
+   You may encounter the following error:
 
-```
-❌ Docker Swarm is not active
-💡 Run: docker swarm init
-```
+   ```
+   ❌ Docker Swarm is not active
+   💡 Run: docker swarm init
+   ```
 
-This means **Docker Swarm mode has not been initialized** on your machine.
-
-- Docker Swarm is required to use `docker stack deploy` and manage services defined in a stack.
+   This means **Docker Swarm mode has not been initialized** on your machine.
+   - Docker Swarm is required to use `docker stack deploy` and manage services defined in a stack.
 
 ## References
 
@@ -371,18 +368,16 @@ Access the source code and implementation details on GitHub.
 
 ### INTMAX Mainnet
 
-- App Frontend
+- App Frontend:
   [Open Mainnet App](https://app.intmax.io/)
-
-- Explorer
+- Explorer:
   [Open Mainnet Explorer](https://explorer.intmax.io/)
 
 ### INTMAX Testnet
 
-- App Frontend
+- App Frontend:
   [Open Testnet App](https://testnet.app.intmax.io/)
-
-- Explorer
+- Explorer:
   [Open Testnet Explorer](https://beta.testnet.explorer.intmax.io/)
 
 ### Smart Contracts

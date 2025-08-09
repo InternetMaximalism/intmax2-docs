@@ -109,9 +109,9 @@ If penalty fees are **disabled**, it is recommended to maintain a balance of app
 
 Follow this guide to set up your Block Builder:
 
-[Block Builder Setup: Full Network Mode →](./full-netwrok.md)
+[View Full-Network Setup Guide](./full-netwrok.md)
 
-[Block Builder Setup: Standalone →](./standalone.md)
+[View Standalone Setup Guide](./standalone.md)
 
 ## FAQ
 
