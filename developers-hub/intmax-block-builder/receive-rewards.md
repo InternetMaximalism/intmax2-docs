@@ -16,9 +16,9 @@ This document covers the complete process from initial setup to reward claiming,
 - Check your accumulated balances and withdraw user fees
 - Claim ITX token rewards earned through block building activities
 
-# How to Receive Rewards
+## How to Receive Rewards
 
-## Preparation
+### Preparation
 
 You can claim your rewards using the command-line tool provided in the repository below:
 
@@ -58,7 +58,7 @@ L1_RPC_URL="https://eth-sepolia.g.alchemy.com/v2/your_api_key"
 L2_RPC_URL="https://scroll-sepolia.g.alchemy.com/v2/your_api_key"
 ```
 
-## User Fees
+### User Fees
 
 Once you've completed these setup steps, execute the following commands step-by-step:
 
@@ -96,7 +96,7 @@ cargo run -r -- sync-withdrawals --private-key <intmax-private-key>
 
 Ensure you replace placeholders such as `<eth-private-key>`, `<intmax-private-key>`, `<ethereum-address>`, and `<amount>` with your actual values.
 
-## ITX Token
+### ITX Token
 
 Please execute the following command to claim your rewards. Replace `<eth-private-key>` with your actual Ethereum private key:
 

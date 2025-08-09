@@ -368,16 +368,16 @@ Access the source code and implementation details on GitHub.
 
 ### INTMAX Mainnet
 
-- App Frontend
+- App Frontend:
   [Open Mainnet App](https://app.intmax.io/)
-- Explorer
+- Explorer:
   [Open Mainnet Explorer](https://explorer.intmax.io/)
 
 ### INTMAX Testnet
 
-- App Frontend
+- App Frontend:
   [Open Testnet App](https://testnet.app.intmax.io/)
-- Explorer
+- Explorer:
   [Open Testnet Explorer](https://beta.testnet.explorer.intmax.io/)
 
 ### Smart Contracts
