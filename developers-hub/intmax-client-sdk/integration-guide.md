@@ -47,7 +47,7 @@ yarn add intmax2-client-sdk
 pnpm i intmax2-client-sdk
 ```
 
-### **State Variables**
+### State Variables
 
 A lightweight React hook for initializing, authenticating, and tearing down an INTMAX client. First, define the required state variables.
 
@@ -633,10 +633,6 @@ The **intmax2-client-sdk** also provides functions for deposits, withdrawals, tr
 
 [INTMAX Client SDK Docs](./client-sdk-reference.md)
 
-## Tips: How to Run a Local Balance Prover
-
-To set up a local Balance Prover instance, please see Tips: [How to Run a Local Balance Prover](https://github.com/InternetMaximalism/intmax2-client-sdk/blob/main/README.md#tips-how-to-run-a-local-balance-prover)
-
 # How to Use intmax2-server-sdk
 
 This guide provides step-by-step examples for using the `intmax2-server-sdk` to interact with the INTMAX network. This SDK is primarily intended for use in **server-side applications** or when writing simple scripts. It covers everything from setting up the client, performing login, to managing deposits, withdrawals, and transaction histories.
@@ -761,6 +757,6 @@ The **intmax2-server-sdk** also provides functions for deposits, withdrawals, tr
 
 [View Client SDK Reference](./client-sdk-reference.md)
 
-# Conclusion
+## Tips: How to Run a Local Balance Prover
 
-This document provides a comprehensive walkthrough for integrating with the INTMAX network using both the intmax2-client-sdk and intmax2-server-sdk. By following the examples in sequence—from initialization and login to deposits, withdrawals, and transaction history—you can efficiently build applications that interact securely and privately with the INTMAX ecosystem.
+To set up a local Balance Prover instance, please see Tips: [How to Run a Local Balance Prover](https://github.com/InternetMaximalism/intmax2-client-sdk/blob/main/README.md#tips-how-to-run-a-local-balance-prover)
