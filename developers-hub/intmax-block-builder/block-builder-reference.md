@@ -12,15 +12,10 @@ Running a builder lets you:
 - **Earn rewards by helping finalize blocks.**
 - **Strengthen decentralization by contributing new permissionless capacity.**
 
-Choose the setup that matches your infrastructure style:
-
-| Guide                 | When to use                                                                       | Key points             |
-| --------------------- | --------------------------------------------------------------------------------- | ---------------------- |
-| **Full-Network Mode** | Builder **not publicly reachable** (NAT / firewall). INTMAX proxy relays traffic. | One-command full stack |
-| **Standalone Mode**   | Builder **can be exposed** via your own domain / LB.                              | Minimal install        |
-
-- Best for production-grade, flexible setups
-- Supports multiple Builder setups |
+| Guide                 | When to use                                                                                                         | Key points                                                                                                                   |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **Full-Network Mode** | When the Builder cannot be accessed publicly (behind NAT or firewall). Traffic is relayed through the INTMAX proxy. | Quick, one-command installation without domain or load balancer setup.                                                       |
+| **Standalone Mode**   | When the Builder can be made publicly accessible using your own domain or load balancer.                            | Minimal or customizable installation, best for production-grade and flexible setups, supports multiple independent Builders. |
 
 ---
 
@@ -34,7 +29,7 @@ A step-by-step guide for setting up and running an INTMAX2 Block Builder using t
 
 ### Block Builder Setup – Standalone
 
-Designed for advanced use cases requiring flexible server-side management or deployment across multiple environments. This guide offers a lightweight and modular Block Builder setup.
+Designed for advanced use cases requiring flexible server-side management or deployment across multiple environments, this guide offers a lightweight and modular Block Builder setup in Standalone Mode.
 
 [View Standalone Setup Guide](./standalone.md)
 
@@ -48,4 +43,4 @@ This guide supports business development as a Block Builder. It covers reward de
 
 A reward claiming guide for INTMAX Block Builders. It explains how to receive two types of rewards: **user fees** and **ITX tokens**, from setup to final claiming.
 
-[View Reward Claiming Guide](./receive-rewards.md)
+[View Receive Reward Guide](./receive-rewards.md)

@@ -5,6 +5,6 @@
     "type": "generated-index",
     "title": "INTMAX Block Builder",
     "slug": "/intmax-block-builder",
-    "description": "The Block Builder is the part of the INTMAX network that takes user transactions, puts them into blocks, and submits those blocks to the Layer 2 chain. If you want to run your own node, earn rewards, or learn how the system works, this page is for you."
+    "description": "The Block Builder is the part of the INTMAX network that takes user transactions, puts them into blocks, and submits those blocks to the Layer 2 chain. If you want to run your own node or earn rewards, this page is for you."
   }
 }
