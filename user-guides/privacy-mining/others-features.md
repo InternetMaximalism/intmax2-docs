@@ -15,25 +15,21 @@ Below is an explanation of the procedure to withdraw this remaining ETH.
 
 <figure><img src="/img/user-guides/other_features_10.webp" alt="Withdraw Rest Amount" /></figure>
 
-2. Specify the destination Ethereum address for the withdrawal.
-   You cannot use the currently connected wallet as the destination.
+2. The withdrawal destination address can only be the same as the one used previously.
+You cannot choose a different address freely.
 
 <figure><img src="/img/user-guides/other_features_20.webp" alt="Withdraw Rest Amount" /></figure>
 
-3. Do not specify a claim address—just click the button.
+3. Review the transaction details and click the "Confirm" button.
 
 <figure><img src="/img/user-guides/other_features_30.webp" alt="Withdraw Rest Amount" /></figure>
 
-4. Review the transaction details and click the "Confirm" button.
+4. Wait until the status changes to "Sync Withdrawals".
 
 <figure><img src="/img/user-guides/other_features_40.webp" alt="Withdraw Rest Amount" /></figure>
 
-5. Wait until the status changes to "Sync Withdrawals".
+5. Once the status is "Completed," you can safely leave the screen.
 
 <figure><img src="/img/user-guides/other_features_50.webp" alt="Withdraw Rest Amount" /></figure>
-
-6. Once the status is "Completed," you can safely leave the screen.
-
-<figure><img src="/img/user-guides/other_features_60.webp" alt="Withdraw Rest Amount" /></figure>
 
 **NOTE**: If you close the screen during the process, please start over from the beginning of the procedure.
