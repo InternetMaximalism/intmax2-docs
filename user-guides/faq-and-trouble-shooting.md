@@ -54,6 +54,7 @@ A: Popular mobile wallets that support In-App Browsers include:
 ### Q: It looks like the assets I deposited for mining have disappeared. How can I verify them?
 
 A: Note that regular deposits and mining deposits use different addresses. Regular deposits appear on the Transactions page, while mining deposits appear on the Mining Portfolio page.
+If the issue still persists, please check using the steps below.
 
 Please verify the deposited address by following the steps below.
 
