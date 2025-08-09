@@ -94,7 +94,7 @@ Welcome to the INTMAX Network Developers Hub. These guides are designed to help 
 ### For dApp Developers
 
 1. **Start with the [Client SDK](/developers-hub/intmax-client-sdk)** - High-performance WebAssembly-based SDK
-2. **Explore [Use Cases](./use-cases/)** - Real-world implementation examples
+2. **Explore [Use Cases](/developers-hub/use-cases)** - Real-world implementation examples
 3. **Review Transaction Lifecycle** - Understand create → sign → broadcast flow
 
 ### For Wallet Developers
