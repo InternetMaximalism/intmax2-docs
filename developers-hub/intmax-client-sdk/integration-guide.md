@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 6
 description: This document provides a practical guide for integrating with the INTMAX network using the intmax2-client-sdk and intmax2-server-sdk, complete with real code examples.
 ---
 
@@ -15,7 +15,7 @@ By following the examples in order, you’ll gain an intuitive understanding of 
 
 For comprehensive documentation and additional resources, visit:
 
-[View Client SDK Reference](./client-sdk-reference.md)
+[View Client SDK Overview](./overview.md)
 
 # Getting Started with intmax2-client-sdk
 
@@ -298,7 +298,7 @@ export default App;
 
 The **intmax2-client-sdk** also provides functions for deposits, withdrawals, transfers, and querying transaction history. For full details, please refer to the SDK documentation.
 
-[View Client SDK Reference](./client-sdk-reference.md)
+[View Client SDK Reference](./overview.md)
 
 ## Example: NextJS + TypeScript
 
@@ -631,7 +631,7 @@ default export function Home() {
 
 The **intmax2-client-sdk** also provides functions for deposits, withdrawals, transfers, and querying transaction history. For full details, please refer to the SDK documentation.
 
-[INTMAX Client SDK Docs](./client-sdk-reference.md)
+[INTMAX Client SDK Docs](./overview.md)
 
 # How to Use intmax2-server-sdk
 
@@ -755,7 +755,7 @@ npx tsx src/index.ts
 
 The **intmax2-server-sdk** also provides functions for deposits, withdrawals, transfers, and querying transaction history. For full details, please refer to the SDK documentation.
 
-[View Client SDK Reference](./client-sdk-reference.md)
+[View Client SDK Reference](./overview.md)
 
 ## Tips: How to Run a Local Balance Prover
 
