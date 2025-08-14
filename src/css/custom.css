@@ -10,8 +10,7 @@ figure img {
   max-height: 450px;
   height: auto;
 }
-
-figure.no-max-size img {
+figure.no-max-height img {
   max-height: none;
 }
 
