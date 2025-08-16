@@ -59,7 +59,7 @@ A `nonce` is a value related to the generation of an encryption key. The same no
 
 The value of the `encryptionKey` is derived from a fixed message signed by an external wallet and the nonce value. If there is a risk of the encryptionKey being compromised, you can generate a new encryption key by updating the nonce.
 
-[**Q.** What is “Login” in the context of the INTMAX network?](#q-what-is-login-in-the-context-of-the-intmax-network)
+[**Q.** What is “Login” in the context of the INTMAX network?](./faq#q-what-is-login-in-the-context-of-the-intmax-network)
 
 ```tsx
 const loginResponse: LoginResponse = await client.login();
@@ -128,7 +128,7 @@ const isVerified: boolean = await client.verifySignature(signature, message);
 
 This SDK manages cryptocurrency and digital asset information within the wallet ecosystem.
 
-[Q. What are `tokenList` and `tokenBalances`](#q-what-are-tokenlist-and-tokenbalances)
+[Q. What are `tokenList` and `tokenBalances`](./faq#q-what-are-tokenlist-and-tokenbalances)
 
 #### `getTokensList`
 
@@ -154,7 +154,7 @@ const tokens: Token[] = await client.getTokensList();
 
 Retrieves all token balances held by the currently logged-in INTMAX account. This is useful for displaying the user’s asset holdings within an application.
 
-[Q. Why does it take time to execute the fetchTokenBalances function?](#q-why-does-it-take-time-to-execute-the-fetchtokenbalances-function)
+[Q. Why does it take time to execute the fetchTokenBalances function?](./faq#q-why-does-it-take-time-to-execute-the-fetchtokenbalances-function)
 
 ```tsx
 const tokenBalances: TokenBalancesResponse = await client.fetchTokenBalances();
@@ -185,7 +185,7 @@ A transfer is made within the INTMAX network by executing a transaction on the n
 
 This function retrieves the history of tokens received by the user, including details like amount, sender (`from`), recipient (`to`), status, timestamp, and token information.
 
-[Q. What is the difference between a transfer and a transaction?](#q-what-is-the-difference-between-a-transfer-and-a-transaction)
+[Q. What is the difference between a transfer and a transaction?](./faq#q-what-is-the-difference-between-a-transfer-and-a-transaction)
 
 ```tsx
 const transferList: FetchTransactionsResponse = await fetchTransfers({})
@@ -224,7 +224,7 @@ This function retrieves the history of tokens sent by the user. Each transaction
 
 For details about the differences between transactions and transfers, please refer to the FAQ below.
 
-[Q. What is the difference between a transfer and a transaction?](#q-what-is-the-difference-between-a-transfer-and-a-transaction)
+[Q. What is the difference between a transfer and a transaction?](./faq#q-what-is-the-difference-between-a-transfer-and-a-transaction)
 
 ```tsx
 const transactionList: FetchTransactionsResponse = await fetchTransactions({})
@@ -267,9 +267,9 @@ The `broadcastTransaction` function broadcasts one or more transactions to the b
 
 You can specify multiple transactions in a single call — up to a maximum of **63 transactions**.
 
-- [Q. How are transaction fees determined on the INTMAX network?](#q-how-are-transaction-fees-determined-on-the-intmax-network)
-- [Q. What happens to transaction fees when multiple transactions are batched together?](#q-what-happens-to-transaction-fees-when-multiple-transactions-are-batched-together)
-- [Q. How do you use the return value of `broadcastTransaction`?](#q-how-do-you-use-the-return-value-of-broadcasttransaction)
+- [Q. How are transaction fees determined on the INTMAX network?](./faq#q-how-are-transaction-fees-determined-on-the-intmax-network)
+- [Q. What happens to transaction fees when multiple transactions are batched together?](./faq#q-what-happens-to-transaction-fees-when-multiple-transactions-are-batched-together)
+- [Q. How do you use the return value of `broadcastTransaction`?](./faq#q-how-do-you-use-the-return-value-of-broadcasttransaction)
 
 ```tsx
 const params: BroadcastTransactionRequest[] = [
@@ -446,7 +446,7 @@ const withdrawResult = await client.withdraw(params);
 
 Initiates the claim process for one or more withdrawal transactions, returning a response containing the transaction hash and status. After execution of this function completes, the progress of the claim operation can be tracked to confirm its success on the blockchain.
 
-[Q. What is `claimWithdrawal`?](#q-what-is-claimwithdrawal)
+[Q. What is `claimWithdrawal`?](./faq#q-what-is-claimwithdrawal)
 
 ```tsx
 // The withdrawal will be processed in approximately three hours
@@ -471,8 +471,8 @@ const claim = await client.claimWithdrawal(withdrawals.need_claim);
 
 Please refer to the following for details about the fees.
 
-- [Q. How are transaction fees determined on the INTMAX network?](#q-how-are-transaction-fees-determined-on-the-intmax-network)
-- [Q. What is the collateral fee?](#q-what-is-the-collateral-fee)
+- [Q. How are transaction fees determined on the INTMAX network?](./faq#q-how-are-transaction-fees-determined-on-the-intmax-network)
+- [Q. What is the collateral fee?](./faq#q-what-is-the-collateral-fee)
 
 #### `getTransferFee`
 

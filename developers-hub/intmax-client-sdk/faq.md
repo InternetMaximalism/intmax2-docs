@@ -17,7 +17,7 @@ No, the INTMAX network does **not** support smart contracts. Instead, interactio
 
 ### Q. Are an Ethereum address and an INTMAX address the same?
 
-No, they are distinct. For more details, please refer [Account System](#account-system).
+No, they are distinct. For more details, please refer [Account System](./overview#account-system).
 
 ### Q. How are transaction fees determined on the INTMAX network?
 
