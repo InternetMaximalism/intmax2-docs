@@ -33,3 +33,21 @@ You cannot choose a different address freely.
 <figure><img src="/img/user-guides/other_features_50.webp" alt="Withdraw Rest Amount" /></figure>
 
 **NOTE**: If you close the screen during the process, please start over from the beginning of the procedure.
+
+### Cancel Mining
+
+You can cancel a mining session even before the lock period has matured. However, please note that if you cancel, **no rewards will be granted**, and only the deposited ETH will be returned.
+
+1. First, click the **"Cancel Mining Session"** button.
+
+2. A confirmation dialog will then appear, warning you that if the lock period has not yet ended, you may lose the chance to receive rewards.
+By selecting **"Yes, Proceed"**, the cancellation process will continue, and you will be redirected to the withdrawal screen.
+
+<figure>
+  <img src="/img/user-guides/cancel_mining_10.webp" alt="Cancel Mining" />
+  <img src="/img/user-guides/cancel_mining_20.webp" alt="Cancel Mining" />
+</figure>
+
+3. Here, you can enter the destination Ethereum address and click the **"Cancel + Withdrawal"** button to withdraw the deposited ETH.
+
+<figure><img src="/img/user-guides/cancel_mining_30.webp" alt="Cancel Mining" /></figure>
