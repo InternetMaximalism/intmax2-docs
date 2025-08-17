@@ -25,6 +25,8 @@ const config: Config = {
     locales: ["en"],
   },
 
+  onBrokenAnchors: "throw",
+
   presets: [
     [
       "classic",
