@@ -18,6 +18,8 @@ This documentation covers the SDK's core functionality, available functions, and
 
 [View Examples on GitHub](https://github.com/InternetMaximalism/intmax2-client-sdk/tree/main/examples)
 
+[View E2E Examples on Github](https://github.com/InternetMaximalism/intmax2-e2e)
+
 **INTMAX Client SDK Integration Guide**
 
 [Open Integration Guide](./integration-guide.md)
