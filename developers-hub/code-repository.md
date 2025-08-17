@@ -34,6 +34,7 @@ Welcome to the official GitHub repositories of the INTMAX Network. Below is a li
 ## SDKs
 
 - [`intmax2-client-sdk`](https://github.com/InternetMaximalism/intmax2-client-sdk): TypeScript SDK for interacting with the INTMAX network (used by dApps).
+- [`intmax2-e2e`](https://github.com/InternetMaximalism/intmax2-e2e): End-to-end testing for the INTMAX network using TypeScript and Rust.
 - [`intmax-walletsdk`](https://github.com/InternetMaximalism/intmax-walletsdk): SDK for wallet providers to integrate with INTMAX using the WalletSDK protocol.
 
 ## Documents
