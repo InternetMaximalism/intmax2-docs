@@ -14,7 +14,7 @@ Welcome to the INTMAX Network Developers Hub. These guides are designed to help 
 
 ### Getting Started
 
-- **[Core Concepts](./core-concepts/rollup-architecture.md)** - Understand INTMAX's stateless, privacy-first Layer 2 architecture
+- **[Core Concepts](/developers-hub/core-concepts/)** - Understand INTMAX's stateless, privacy-first Layer 2 architecture
 - **[Payment Lifecycle](./payment-lifecycle.md)** - Learn the flow of deposits, transfers, and withdrawals with zk proofs
 - **[INTMAX Nodes](/developers-hub/intmax-nodes)** - Learn about different node types and their roles in the network
 
