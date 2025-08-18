@@ -29,21 +29,28 @@ export interface IntMaxClient {
   // token
   getTokensList: () => Promise<Token[]>;
   fetchTokenBalances: () => Promise<TokenBalancesResponse>;
+  getPaginatedTokens(params: {
+    tokenIndexes?: number[];
+    perPage?: number;
+    cursor?: string;
+  }): Promise<PaginatedResponse<Token>>;
 
   // transaction
-  fetchTransfers: (params: {}) => Promise<Transaction[]>;
-  fetchTransactions: (params: {}) => Promise<Transaction[]>;
+  fetchTransactions: (params?: FetchTransactionsRequest) => Promise<FetchTransactionsResponse>;
   broadcastTransaction: (
     rawTransfers: BroadcastTransactionRequest[],
-    isWithdrawal: boolean,
+    isWithdrawal: boolean
   ) => Promise<BroadcastTransactionResponse>;
 
+  //receiveTxs
+  fetchTransfers: (params?: FetchTransactionsRequest) => Promise<FetchTransactionsResponse>;
+
   // deposit
-  fetchDeposits: (params: {}) => Promise<Transaction[]>;
   deposit: (params: PrepareDepositTransactionRequest) => Promise<PrepareDepositTransactionResponse>;
+  fetchDeposits: (params?: FetchTransactionsRequest) => Promise<FetchTransactionsResponse>;
 
   // withdrawal
-  fetchWithdrawals: () => Promise<FetchWithdrawalsResponse>;
+  fetchWithdrawals: (params?: FetchWithdrawalsRequest) => Promise<FetchWithdrawalsResponse>;
   withdraw: (params: WithdrawRequest) => Promise<WithdrawalResponse>;
   claimWithdrawal: (params: ContractWithdrawal[]) => Promise<ClaimWithdrawalTransactionResponse>;
 
@@ -133,6 +140,12 @@ export interface TokenBalance {
   amount: bigint; // Amount held in the smallest unit (considering decimals)
 }
 
+interface PaginatedResponse<T> {
+  items: T[];
+  nextCursor: null | string;
+  total: number;
+}
+
 // Interface representing a complete transaction on INTMAX network
 export interface Transaction {
   digest: string; // Unique identifier for the transaction (UUID format)
@@ -148,8 +161,13 @@ export interface Transaction {
   tokenAddress?: string; // Contract address of the token (for non-native tokens)
 }
 
+export interface FetchItemsResponse<T> {
+  items: T[];
+  pagination: PaginationCursor;
+}
+
 // Type alias for transaction fetch responses
-export type FetchTransactionsResponse = Transaction[];
+export type FetchTransactionsResponse = FetchItemsResponse<Transaction>;
 
 // Interface for broadcasting a new transaction
 export interface BroadcastTransactionRequest {

@@ -90,3 +90,8 @@ INTMAX is designed with strong privacy protection. Only the owner of a wallet ca
 ### Q. Why does it take time to execute the fetchTokenBalances function?
 
 **A.** The fetchTokenBalances function retrieves user data and simultaneously synchronizes token balances. Once the synchronization is complete, the execution time will be shorter for subsequent calls. **Normally, if balance synchronization is not required, it completes in about 6 seconds.**
+
+### Q. Why does the `broadcastTransaction` function take a noticeable amount of time to complete?
+
+Operations such as sending or withdrawing funds must verify whether they can be executed based on the user's current and correct balance. Because the system needs to wait until the validity of the latest block is verified, the `broadcastTransaction` function requires a certain amount of time to complete.
+In the case of withdrawals, after broadcasting the transaction, it is necessary to synchronize the balance again to ensure it reflects the latest state. This step is required because an additional request must be sent to the node to complete the withdrawal process.
