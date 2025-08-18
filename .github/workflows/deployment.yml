@@ -1,10 +1,4 @@
-permissions:
-  contents: read
 name: Vercel Development Deployment
-
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 on:
   workflow_dispatch:
@@ -17,6 +11,13 @@ on:
   push:
     branches:
       - main
+
+permissions:
+  contents: read
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
   Deploy-Development:

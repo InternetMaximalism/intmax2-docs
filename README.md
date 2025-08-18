@@ -37,7 +37,12 @@ npm run build
 Run ESLint to check code quality and style:
 
 ```bash
+# Run ESLint to check code quality and style (no auto-fix)
 npm run lint
+
+# Run ESLint and automatically fix fixable issues
 npm run lint:fix
+
+# Run code formatter to unify style
 npm run format
 ```
