@@ -631,7 +631,7 @@ default export function Home() {
 
 The **intmax2-client-sdk** also provides functions for deposits, withdrawals, transfers, and querying transaction history. For full details, please refer to the SDK documentation.
 
-[INTMAX Client SDK Docs](./overview.md)
+[INTMAX Client SDK Docs](./api-reference.md)
 
 # How to Use intmax2-server-sdk
 
