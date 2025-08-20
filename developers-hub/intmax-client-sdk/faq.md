@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 description: A collection of frequently asked questions and answers about the INTMAX Client SDK. This page provides explanations for common developer inquiries regarding account management, fees, transactions, security, privacy, and more.
 ---
 

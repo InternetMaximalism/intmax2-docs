@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 4
 description: This document provides a practical guide for integrating with the INTMAX network using the intmax2-client-sdk and intmax2-server-sdk, complete with real code examples.
 ---
 
