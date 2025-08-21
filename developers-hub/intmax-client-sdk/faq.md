@@ -98,3 +98,22 @@ Operations such as sending or withdrawing funds must verify whether they can be 
 In the case of withdrawals, after broadcasting the transaction, it is necessary to synchronize the balance again to ensure it reflects the latest state. This step is required because an additional request must be sent to the node to complete the withdrawal process.
 
 In the server-sdk, you can shorten the execution time of the `broadcastTransaction` and `withdraw` functions by completing the balance synchronization in advance using the `sync` function. For more details, please refer to [the NodeJS example](examples#notes-for-using-nodejs).
+
+The approximate execution time for each function is as follows.
+Please note that the duration may increase further when the network is congested.
+
+#### Mainnet
+
+- broadcastTransaction (before sync): 164s
+- broadcastTransaction (after sync): 23s
+- waitForTransactionConfirmation (after transfer): 50s
+- withdraw (before sync): 302s
+- withdraw (after sync): 187s
+
+#### Testnet
+
+- broadcastTransaction (before sync): 256s
+- broadcastTransaction (after sync): 52s
+- waitForTransactionConfirmation (after transfer): 50s
+- withdraw (before sync): 472s
+- withdraw (after sync): 257s
