@@ -51,14 +51,6 @@ The Account module provides comprehensive authentication and cryptographic opera
 
 Initiates wallet authentication and establishes a secure session. This method handles key derivation, session token management, and initial data synchronization. It is essential for secure access to protected wallet functionalities.
 
-The `nonce` and `encryptionKey` can be used to protect a private key, enabling its recovery without needing external wallet signatures on subsequent uses. Using this feature is optional.
-
-The `encryptionKey` is a 32-byte string suitable for use as the key in AES-GCM encryption, and it is output as a Base64-encoded string.
-
-A `nonce` is a value related to the generation of an encryption key. The same nonce will always produce the same encryptionKey.
-
-The value of the `encryptionKey` is derived from a fixed message signed by an external wallet and the nonce value. If there is a risk of the encryptionKey being compromised, you can generate a new encryption key by updating the nonce.
-
 [**Q.** What is “Login” in the context of the INTMAX network?](./faq#q-what-is-login-in-the-context-of-the-intmax-network)
 
 ```tsx
@@ -73,6 +65,16 @@ const loginResponse: LoginResponse = await client.login();
   accessToken: "eyJkbGciOiJXUzUxNiIsInR3cCI6IkqXVCJ9.eyJhZGRyZXNzIjoiMHhmOWM3OGRhZTAxYWY3MjdlMmY2ZGI5MTU1Yjk0MmQ4YWI2MzFkZjRiIiwiZRhwIjoxNyQ5NjE4NjY2ODg5fQ.6Xa7fy0dtQBPDQR6mEJ1buH1fZo-GP6Fn8SgTDA8hGG1ZwkfMmpo-S36OUnxjPyIo76Ds4qz6ChFH40Ix40hfA"
 }
 ```
+
+**Advanced Feature:**
+
+The `nonce` and `encryptionKey` can be used to protect a private key, enabling its recovery without needing external wallet signatures on subsequent uses. Using this feature is optional.
+
+The `encryptionKey` is a 32-byte string suitable for use as the key in AES-GCM encryption, and it is output as a Base64-encoded string.
+
+A `nonce` is a value related to the generation of an encryption key. The same nonce will always produce the same encryptionKey.
+
+The value of the `encryptionKey` is derived from a fixed message signed by an external wallet and the nonce value. If there is a risk of the encryptionKey being compromised, you can generate a new encryption key by updating the nonce.
 
 #### `logout`
 
@@ -180,8 +182,6 @@ const tokens: Token[] = await client.getTokensList();
 #### `fetchTokenBalances`
 
 Retrieves all token balances held by the currently logged-in INTMAX account. This is useful for displaying the user’s asset holdings within an application.
-
-[Q. Why does it take time to execute the fetchTokenBalances function?](./faq#q-why-does-it-take-time-to-execute-the-fetchtokenbalances-function)
 
 ```tsx
 const tokenBalances: TokenBalancesResponse = await client.fetchTokenBalances();
@@ -296,7 +296,7 @@ You can specify multiple transactions in a single call — up to a maximum of **
 
 - [Q. How are transaction fees determined on the INTMAX network?](./faq#q-how-are-transaction-fees-determined-on-the-intmax-network)
 - [Q. What happens to transaction fees when multiple transactions are batched together?](./faq#q-what-happens-to-transaction-fees-when-multiple-transactions-are-batched-together)
-- [Q. How do you use the return value of `broadcastTransaction`?](./faq#q-how-do-you-use-the-return-value-of-broadcasttransaction)
+- [Q. How do you use the return value of `broadcastTransaction`?](./faq#q-how-do-you-use-the-return-value-of-broadcasttransaction-and-withdraw)
 
 ```tsx
 const params: BroadcastTransactionRequest[] = [
@@ -459,6 +459,8 @@ const withdrawals = await client.fetchWithdrawals();
 The `withdraw` function is an asynchronous method that processes a withdrawal request from the user's wallet. This function performs comprehensive validation and security checks to ensure the withdrawal is handled safely and accurately. It follows the entire withdrawal flow, including verifying the user's balance, calculating transaction fees, and signing the transaction.
 
 As with the `broadcastTransaction` function, after executing the `withdraw` function, you can use the `waitForTransactionConfirmation` function to wait until the transaction is finalized.
+
+- [Q. How do you use the return value of `broadcastTransaction` and `withdraw`?](./faq#q-how-do-you-use-the-return-value-of-broadcasttransaction-and-withdraw)
 
 ```tsx
 
