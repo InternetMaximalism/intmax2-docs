@@ -38,7 +38,7 @@ Currently, the SDK does not handle mining. Thus, the fee structure explained her
 
 Even when many transactions (for example, 63 transactions) are batched together into a single block, each individual transaction maintains the same fee structure.
 
-### Q. How do you use the return value of `broadcastTransaction` and `withdraw`?
+### Q. How do we use the return value of `broadcastTransaction` and `withdraw`?
 
 The `broadcastTransaction` and `withdraw` function returns a response like this:
 
@@ -53,6 +53,7 @@ The `broadcastTransaction` and `withdraw` function returns a response like this:
 ```
 
 This return value will be used with a function called `waitForTransactionConfirmation`. This function will allow you to wait until the transaction is confirmed.
+For more details, please refer to [the waitForTransactionConfirmation section in the API Reference](./api-reference#waitfortransactionconfirmation).
 
 ```ts
 const transferConfirmation = await client.waitForTransactionConfirmation({ txTreeRoot });

@@ -296,7 +296,7 @@ You can specify multiple transactions in a single call — up to a maximum of **
 
 - [Q. How are transaction fees determined on the INTMAX network?](./faq#q-how-are-transaction-fees-determined-on-the-intmax-network)
 - [Q. What happens to transaction fees when multiple transactions are batched together?](./faq#q-what-happens-to-transaction-fees-when-multiple-transactions-are-batched-together)
-- [Q. How do you use the return value of `broadcastTransaction`?](./faq#q-how-do-you-use-the-return-value-of-broadcasttransaction-and-withdraw)
+- [Q. How do you use the return value of `broadcastTransaction`?](./faq#q-how-do-we-use-the-return-value-of-broadcasttransaction-and-withdraw)
 
 ```tsx
 const params: BroadcastTransactionRequest[] = [
@@ -328,15 +328,17 @@ const transferResult = await client.broadcastTransaction(params, isWithdrawal);
 
 #### `waitForTransactionConfirmation`
 
-The `waitForTransactionConfirmation` function is used to verify whether a transfer or withdrawal has been fully finalized after execution.
-On the INTMAX network, transactions are submitted to nodes using the `broadcastTransaction`/`withdraw` function and then processed.
+The `waitForTransactionConfirmation` function is used to verify whether a transfer has been fully finalized after execution.
+On the INTMAX network, transactions are submitted to nodes using the `broadcastTransaction` function and then processed.
 
-The success response of `broadcastTransaction`/`withdraw` alone does not guarantee on-chain finalization.
+The success response of `broadcastTransaction` alone does not guarantee on-chain finalization.
 Therefore, the `waitForTransactionConfirmation` function provides a reliable way to track the transaction until its status becomes either `success` or `failed`.
 
 **Important:**
 
-* ⚠️ It is important to call `waitForTransactionConfirmation` after executing a transfer or withdrawal transaction.
+* ⚠️ It is important to call `waitForTransactionConfirmation` after executing a transfer transaction.
+
+**NOTE**: This function can also be used with the `txTreeRoot` of the `withdraw` function. However, since the transaction is already reflected on-chain once the `withdraw` function has finished executing, there is no need to use this function to wait any further.
 
 ```ts
 const txTreeRoot = "0x52146f411e84ccba11e0887a0780a558f41042300a1515c7ff2cb7e1dd8b8c77";
@@ -460,8 +462,6 @@ The `withdraw` function is an asynchronous method that processes a withdrawal re
 
 As with the `broadcastTransaction` function, after executing the `withdraw` function, you can use the `waitForTransactionConfirmation` function to wait until the transaction is finalized.
 
-- [Q. How do you use the return value of `broadcastTransaction` and `withdraw`?](./faq#q-how-do-you-use-the-return-value-of-broadcasttransaction-and-withdraw)
-
 ```tsx
 
 const params: WithdrawRequest = {
@@ -486,13 +486,6 @@ const withdrawResult = await client.withdraw(params);
     "0x124b88a1e566efd86078b2f9c305aacd83e56a686ae7731ee5b743a77421e580",
     "0x060f8bdd95502e610713529ec450da7ead1a8d85ebe5d3e81065ad22e3ab9672"
   ]
-}
-
-const withdrawalConfirmation = await client.waitForTransactionConfirmation(withdrawResult);
-
-// example
-{
-  "status": "success"
 }
 ```
 

@@ -227,9 +227,6 @@ const withdrawalResult = await client.withdraw({
 });
 console.log("Withdrawal result:", withdrawalResult);
 
-const withdrawalConfirmation = await client.waitForTransactionConfirmation(withdrawalResult);
-console.log("Withdrawal confirmation result:", withdrawalConfirmation);
-
 // Check pending withdrawals
 const { withdrawals } = await client.fetchWithdrawals();
 console.log("Withdrawals:", withdrawals);
@@ -270,7 +267,6 @@ await client.sync();
 ```ts
 await client.sync();
 const withdrawResult = await client.withdraw(params);
-const withdrawalConfirmation = await client.waitForTransactionConfirmation(withdrawResult);
 await client.sync();
 ```
 
