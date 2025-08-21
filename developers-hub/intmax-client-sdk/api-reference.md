@@ -458,6 +458,8 @@ const withdrawals = await client.fetchWithdrawals();
 
 The `withdraw` function is an asynchronous method that processes a withdrawal request from the user's wallet. This function performs comprehensive validation and security checks to ensure the withdrawal is handled safely and accurately. It follows the entire withdrawal flow, including verifying the user's balance, calculating transaction fees, and signing the transaction.
 
+As with the `broadcastTransaction` function, after executing the `withdraw` function, you can use the `waitForTransactionConfirmation` function to wait until the transaction is finalized.
+
 ```tsx
 
 const params: WithdrawRequest = {

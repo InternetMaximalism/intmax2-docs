@@ -38,9 +38,9 @@ Currently, the SDK does not handle mining. Thus, the fee structure explained her
 
 Even when many transactions (for example, 63 transactions) are batched together into a single block, each individual transaction maintains the same fee structure.
 
-### Q. How do you use the return value of `broadcastTransaction`?
+### Q. How do you use the return value of `broadcastTransaction` and `withdraw`?
 
-The function returns a response like this:
+The `broadcastTransaction` and `withdraw` function returns a response like this:
 
 ```json
 {
@@ -52,7 +52,11 @@ The function returns a response like this:
 }
 ```
 
-This return value will be used with a function called `waitForConfirmationTransaction`, which is currently under development. That function will allow you to wait until the transaction is confirmed.
+This return value will be used with a function called `waitForTransactionConfirmation`. This function will allow you to wait until the transaction is confirmed.
+
+```ts
+const transferConfirmation = await client.waitForTransactionConfirmation({ txTreeRoot });
+```
 
 ### Q. What is the collateral fee?
 
@@ -87,11 +91,9 @@ You can also batch multiple pending withdrawals and claim them together using `c
 
 INTMAX is designed with strong privacy protection. Only the owner of a wallet can view their asset balances and transaction history. This means that without the private key of a specific address, no one—not even network participants—can access this information.
 
-### Q. Why does it take time to execute the fetchTokenBalances function?
-
-**A.** The fetchTokenBalances function retrieves user data and simultaneously synchronizes token balances. Once the synchronization is complete, the execution time will be shorter for subsequent calls. **Normally, if balance synchronization is not required, it completes in about 6 seconds.**
-
 ### Q. Why does the `broadcastTransaction` function take a noticeable amount of time to complete?
 
 Operations such as sending or withdrawing funds must verify whether they can be executed based on the user's current and correct balance. Because the system needs to wait until the validity of the latest block is verified, the `broadcastTransaction` function requires a certain amount of time to complete.
 In the case of withdrawals, after broadcasting the transaction, it is necessary to synchronize the balance again to ensure it reflects the latest state. This step is required because an additional request must be sent to the node to complete the withdrawal process.
+
+In the server-sdk, you can shorten the execution time of the `broadcastTransaction` and `withdraw` functions by completing the balance synchronization in advance using the `sync` function. For more details, please refer to [the NodeJS example](examples#notes-for-using-nodejs).
