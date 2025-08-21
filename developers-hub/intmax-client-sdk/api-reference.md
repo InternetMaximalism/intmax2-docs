@@ -124,6 +124,33 @@ const message = "Hello, World!";
 const isVerified: boolean = await client.verifySignature(signature, message);
 ```
 
+#### `sync`
+
+```ts
+await intMaxClient.sync();
+```
+
+The `sync` function updates the user’s balance to the latest state.
+On the INTMAX network, a user’s balance must be refreshed before transfers or withdrawals.
+
+However, in the **frontend**, this function should not be called manually in normal use.
+When an instance of `IntMaxClient` is created, the `sync` function is automatically executed in the background at regular intervals.
+
+**Important:**
+
+* ⚠️ In the **frontend**, The `sync` function should not be called manually in normal use.
+* ⚠️ Be aware that multiple `sync` calls cannot run concurrently — if called at the same time, one of them will fail.
+* ✅ However, if you create two separate IntMaxClient instances with different private keys, it is safe to call their sync functions concurrently.
+
+#### `updateL1RpcUrl`
+
+You can customize the RPC URL of the Ethereum (Sepolia) network used when executing a deposit transaction.
+
+```tsx
+const newL1RpcUrl = "https://new-rpc-url.com";
+intMaxClient.updateL1RpcUrl(newL1RpcUrl);
+```
+
 ### Token
 
 This SDK manages cryptocurrency and digital asset information within the wallet ecosystem.
@@ -299,6 +326,23 @@ const transferResult = await client.broadcastTransaction(params, isWithdrawal);
 }
 ```
 
+#### `waitForTransactionConfirmation`
+
+The `waitForTransactionConfirmation` function is used to verify whether a transfer or withdrawal has been fully finalized after execution.
+On the INTMAX network, transactions are submitted to nodes using the `broadcastTransaction`/`withdraw` function and then processed.
+
+The success response of `broadcastTransaction`/`withdraw` alone does not guarantee on-chain finalization.
+Therefore, the `waitForTransactionConfirmation` function provides a reliable way to track the transaction until its status becomes either `success` or `failed`.
+
+**Important:**
+
+* ⚠️ It is important to call `waitForTransactionConfirmation` after executing a transfer or withdrawal transaction.
+
+```ts
+const txTreeRoot = "0x52146f411e84ccba11e0887a0780a558f41042300a1515c7ff2cb7e1dd8b8c77";
+const transferConfirmation = await client.waitForTransactionConfirmation({ txTreeRoot });
+```
+
 ### Deposit
 
 A deposit is made from Ethereum mainnet to the INTMAX network by executing a transaction on the liquidity contract of Ethereum mainnet. It supports ETH, ERC20, ERC721, and ERC1155 tokens.
@@ -332,6 +376,9 @@ Processes a deposit transaction to the user's account with all required transact
 
 Here, `estimateDepositGas` is necessary to validate whether there is enough gas available for the transaction in advance.
 
+The `deposit` function returns both the txHash and the status.
+`status: 1` represents Processing, and `status: 2` represents Completed.
+
 ```tsx
 const params: PrepareDepositTransactionRequest = {
   amount: 0.000001, // 0.000001 ETH
@@ -340,10 +387,9 @@ const params: PrepareDepositTransactionRequest = {
     tokenIndex: 0,
     decimals: 18,
     contractAddress: "0x0000000000000000000000000000000000000000",
-    price: 2417.08
   },
   address: "T7iFM2BEtd3JxkaUNfZge83CtAqhdgcjGgJpiityyrYMW739SyyDYF5bnR8fkSG3G9YT4VZtur3hKhvuDm5ZLneYLy8j7gG", // INTMAX Address
-  isMining: false,
+  skipConfirmation: false,
 }
 
 // Check gas estimation to verify if the transaction can be executed
@@ -363,8 +409,6 @@ const deposit: PrepareDepositTransactionResponse = await client.deposit(params);
   "txHash": "0xd03b99a0de83803bede24834715a36181008a73a76b627391042083c70af9c52" // Ethereum address
 }
 ```
-
-**NOTE**: Currently, even if the `isMining` flag is set to true, it is not treated as mining.
 
 ### Withdrawal
 
@@ -423,7 +467,6 @@ const params: WithdrawRequest = {
     tokenIndex: 0,
     decimals: 18,
     contractAddress: "0x0000000000000000000000000000000000000000",
-    price: 2417.08
   },
   address: "0xf9c78dAE01Af727E2F6Db9155B942D8ab631df4B", // ethereum address
 }
@@ -439,6 +482,13 @@ const withdrawResult = await client.withdraw(params);
     "0x124b88a1e566efd86078b2f9c305aacd83e56a686ae7731ee5b743a77421e580",
     "0x060f8bdd95502e610713529ec450da7ead1a8d85ebe5d3e81065ad22e3ab9672"
   ]
+}
+
+const withdrawalConfirmation = await client.waitForTransactionConfirmation(withdrawResult);
+
+// example
+{
+  "status": "success"
 }
 ```
 

@@ -10,10 +10,10 @@ The `IntMaxClient` is an SDK interface designed for interacting with the INTMAX 
 This interface offers high-level APIs for seamless integration with the INTMAX network. It integrates account login/logout, transaction management, and deposit/withdrawal processing, allowing developers to execute complex blockchain operations through simple functions. Additionally, with WebAssembly support, it ensures fast and secure processing.
 
 ```tsx
-export interface IntMaxClient {
+export interface INTMAXClient {
   // properties
   isLoggedIn: boolean;
-  address: string;
+  address: string; // INTMAX address
   tokenBalances: TokenBalance[] | undefined;
 
   // account
@@ -25,27 +25,32 @@ export interface IntMaxClient {
     signature: SignMessageResponse,
     message: string | Uint8Array,
   ) => Promise<boolean>;
+  sync: () => Promise<void>;
+  updatePublicClientRpc: (url: string) => void;
 
   // token
   getTokensList: () => Promise<Token[]>;
   fetchTokenBalances: () => Promise<TokenBalancesResponse>;
-  getPaginatedTokens(params: {
+  getPaginatedTokens: (params: {
     tokenIndexes?: number[];
     perPage?: number;
     cursor?: string;
-  }): Promise<PaginatedResponse<Token>>;
+  }) => Promise<PaginatedResponse<Token>>;
 
   // transaction
   fetchTransactions: (params?: FetchTransactionsRequest) => Promise<FetchTransactionsResponse>;
   broadcastTransaction: (
-    rawTransfers: BroadcastTransactionRequest[],
-    isWithdrawal: boolean
+    rawTransfers: BroadcastTransactionRequest[],    isWithdrawal?: boolean,
   ) => Promise<BroadcastTransactionResponse>;
+  waitForTransactionConfirmation: (
+    params: WaitForTransactionConfirmationRequest,
+  ) => Promise<WaitForTransactionConfirmationResponse>;
 
   //receiveTxs
   fetchTransfers: (params?: FetchTransactionsRequest) => Promise<FetchTransactionsResponse>;
 
   // deposit
+  estimateDepositGas: (params: PrepareEstimateDepositTransactionRequest) => Promise<bigint>;
   deposit: (params: PrepareDepositTransactionRequest) => Promise<PrepareDepositTransactionResponse>;
   fetchDeposits: (params?: FetchTransactionsRequest) => Promise<FetchTransactionsResponse>;
 
@@ -115,7 +120,7 @@ export interface Token {
   contractAddress: string; // Smart contract address of the token on Ethereum
   decimals?: number; // Number of decimal places for the token (e.g., 18 for ETH, 6 for USDC)
   image?: string; // URL to the token's icon/logo image
-  price: number; // Current price of the token in USD
+  price?: number; // Current price of the token in USD
   symbol?: string; // Token symbol (e.g., ETH, USDC, DAI)
   tokenIndex: number; // Unique identifier for the token within INTMAX network
   tokenType: TokenType; // Type classification of the token
@@ -197,18 +202,14 @@ export interface Transfer {
 }
 
 // Interface for configuring transaction confirmation waiting
-export interface WaitForTransactionConfirmationRequest {
+interface WaitForTransactionConfirmationRequest {
   txTreeRoot: string; // Transaction tree root to wait for confirmation
-  pollingInterval?: number; // Interval between confirmation checks in milliseconds
-  retryCount?: number; // Maximum number of retry attempts
-  retryDelay?: number; // Delay between retry attempts in milliseconds
-  timeout?: number; // Maximum time to wait for confirmation in milliseconds
+  pollInterval?: number; // Interval between confirmation checks in milliseconds
 }
 
 // Interface representing the result of transaction confirmation waiting
 export interface WaitForTransactionConfirmationResponse {
-  status: "not_found" | "success" | "confirmed"; // Status of the confirmation check
-  blockNumber: number | null; // Block number where transaction was confirmed (null if not found)
+  status: "not_found" | "success" | "confirmed" | "pending" | "failed"; // Status of the confirmation check
 }
 
 // Interface for preparing a deposit transaction
@@ -216,10 +217,11 @@ export interface PrepareDepositTransactionRequest {
   token: Token; // Token to be deposited
   amount: number; // Amount to deposit ex. 0.000001 means 0.000001 ETH
   address: string; // INTMAX address to receive the deposit on INTMAX Network
+  skipConfirmation?: boolean; // Flag indicating if confirmation is skipped
 }
 
 // Extended interface for deposit transaction gas estimation
-export interface PrepareEstimateDepositTransactionRequest extends PrepareDepositTransactionRequest {
+export interface PrepareEstimateDepositTransactionRequest extends Omit<PrepareDepositTransactionRequest, "skipConfirmation"> {
   isGasEstimation: boolean; // Flag indicating if this is for gas estimation only
 }
 
@@ -273,10 +275,20 @@ export interface LoginResponse {
 // Type defining available INTMAX network environments
 export type IntMaxEnvironment = "testnet" | "mainnet";
 
+// Configuration options for various URLs used in the SDK
+export type UrlConfig = {
+  balance_prover_url?: string; // URL for the balance prover service
+  use_private_zkp_server?: boolean; // Flag indicating if a private ZKP server should be used
+  rpc_url_l1?: string; // RPC URL for Ethereum (Sepolia)
+  rpc_url_l2?: string; // RPC URL for Scroll (Sepolia)
+};
+
 // Constructor parameters for browser environment
 export interface ConstructorParams {
   environment: IntMaxEnvironment; // Target network environment
   async_params?: ArrayBuffer; // Optional WebAssembly initialization parameters (URL of the file generated at build time)
+  urls?: UrlConfig; // Configuration options for various URLs used in the SDK
+  showLogs?: boolean; // Flag indicating if verbose logs should be shown
 }
 
 // Constructor parameters for Node.js environment
