@@ -51,14 +51,6 @@ The Account module provides comprehensive authentication and cryptographic opera
 
 Initiates wallet authentication and establishes a secure session. This method handles key derivation, session token management, and initial data synchronization. It is essential for secure access to protected wallet functionalities.
 
-The `nonce` and `encryptionKey` can be used to protect a private key, enabling its recovery without needing external wallet signatures on subsequent uses. Using this feature is optional.
-
-The `encryptionKey` is a 32-byte string suitable for use as the key in AES-GCM encryption, and it is output as a Base64-encoded string.
-
-A `nonce` is a value related to the generation of an encryption key. The same nonce will always produce the same encryptionKey.
-
-The value of the `encryptionKey` is derived from a fixed message signed by an external wallet and the nonce value. If there is a risk of the encryptionKey being compromised, you can generate a new encryption key by updating the nonce.
-
 [**Q.** What is “Login” in the context of the INTMAX network?](./faq#q-what-is-login-in-the-context-of-the-intmax-network)
 
 ```tsx
@@ -73,6 +65,16 @@ const loginResponse: LoginResponse = await client.login();
   accessToken: "eyJkbGciOiJXUzUxNiIsInR3cCI6IkqXVCJ9.eyJhZGRyZXNzIjoiMHhmOWM3OGRhZTAxYWY3MjdlMmY2ZGI5MTU1Yjk0MmQ4YWI2MzFkZjRiIiwiZRhwIjoxNyQ5NjE4NjY2ODg5fQ.6Xa7fy0dtQBPDQR6mEJ1buH1fZo-GP6Fn8SgTDA8hGG1ZwkfMmpo-S36OUnxjPyIo76Ds4qz6ChFH40Ix40hfA"
 }
 ```
+
+**Advanced Feature:**
+
+The `nonce` and `encryptionKey` can be used to protect a private key, enabling its recovery without needing external wallet signatures on subsequent uses. Using this feature is optional.
+
+The `encryptionKey` is a 32-byte string suitable for use as the key in AES-GCM encryption, and it is output as a Base64-encoded string.
+
+A `nonce` is a value related to the generation of an encryption key. The same nonce will always produce the same encryptionKey.
+
+The value of the `encryptionKey` is derived from a fixed message signed by an external wallet and the nonce value. If there is a risk of the encryptionKey being compromised, you can generate a new encryption key by updating the nonce.
 
 #### `logout`
 
@@ -124,6 +126,33 @@ const message = "Hello, World!";
 const isVerified: boolean = await client.verifySignature(signature, message);
 ```
 
+#### `sync`
+
+```ts
+await intMaxClient.sync();
+```
+
+The `sync` function updates the user’s balance to the latest state.
+On the INTMAX network, a user’s balance must be refreshed before transfers or withdrawals.
+
+However, in the **frontend**, this function should not be called manually in normal use.
+When an instance of `IntMaxClient` is created, the `sync` function is automatically executed in the background at regular intervals.
+
+**Important:**
+
+* ⚠️ In the **frontend**, The `sync` function should not be called manually in normal use.
+* ⚠️ Be aware that multiple `sync` calls cannot run concurrently — if called at the same time, one of them will fail.
+* ✅ However, if you create two separate IntMaxClient instances with different private keys, it is safe to call their sync functions concurrently.
+
+#### `updateL1RpcUrl`
+
+You can customize the RPC URL of the Ethereum (Sepolia) network used when executing a deposit transaction.
+
+```tsx
+const newL1RpcUrl = "https://new-rpc-url.com";
+intMaxClient.updateL1RpcUrl(newL1RpcUrl);
+```
+
 ### Token
 
 This SDK manages cryptocurrency and digital asset information within the wallet ecosystem.
@@ -153,8 +182,6 @@ const tokens: Token[] = await client.getTokensList();
 #### `fetchTokenBalances`
 
 Retrieves all token balances held by the currently logged-in INTMAX account. This is useful for displaying the user’s asset holdings within an application.
-
-[Q. Why does it take time to execute the fetchTokenBalances function?](./faq#q-why-does-it-take-time-to-execute-the-fetchtokenbalances-function)
 
 ```tsx
 const tokenBalances: TokenBalancesResponse = await client.fetchTokenBalances();
@@ -269,7 +296,7 @@ You can specify multiple transactions in a single call — up to a maximum of **
 
 - [Q. How are transaction fees determined on the INTMAX network?](./faq#q-how-are-transaction-fees-determined-on-the-intmax-network)
 - [Q. What happens to transaction fees when multiple transactions are batched together?](./faq#q-what-happens-to-transaction-fees-when-multiple-transactions-are-batched-together)
-- [Q. How do you use the return value of `broadcastTransaction`?](./faq#q-how-do-you-use-the-return-value-of-broadcasttransaction)
+- [Q. How do you use the return value of `broadcastTransaction`?](./faq#q-how-do-we-use-the-return-value-of-broadcasttransaction-and-withdraw)
 
 ```tsx
 const params: BroadcastTransactionRequest[] = [
@@ -297,6 +324,25 @@ const transferResult = await client.broadcastTransaction(params, isWithdrawal);
     "0xbccada67a9ad5eafae682fe000c955b6fd2bde90b16298dac87aa23bd021aa65"
   ]
 }
+```
+
+#### `waitForTransactionConfirmation`
+
+The `waitForTransactionConfirmation` function is used to verify whether a transfer has been fully finalized after execution.
+On the INTMAX network, transactions are submitted to nodes using the `broadcastTransaction` function and then processed.
+
+The success response of `broadcastTransaction` alone does not guarantee on-chain finalization.
+Therefore, the `waitForTransactionConfirmation` function provides a reliable way to track the transaction until its status becomes either `success` or `failed`.
+
+**Important:**
+
+* ⚠️ It is important to call `waitForTransactionConfirmation` after executing a transfer transaction.
+
+**NOTE**: This function can also be used with the `txTreeRoot` of the `withdraw` function. However, since the transaction is already reflected on-chain once the `withdraw` function has finished executing, there is no need to use this function to wait any further.
+
+```ts
+const txTreeRoot = "0x52146f411e84ccba11e0887a0780a558f41042300a1515c7ff2cb7e1dd8b8c77";
+const transferConfirmation = await client.waitForTransactionConfirmation({ txTreeRoot });
 ```
 
 ### Deposit
@@ -332,6 +378,9 @@ Processes a deposit transaction to the user's account with all required transact
 
 Here, `estimateDepositGas` is necessary to validate whether there is enough gas available for the transaction in advance.
 
+The `deposit` function returns both the txHash and the status.
+`status: 1` represents Processing, and `status: 2` represents Completed.
+
 ```tsx
 const params: PrepareDepositTransactionRequest = {
   amount: 0.000001, // 0.000001 ETH
@@ -340,10 +389,9 @@ const params: PrepareDepositTransactionRequest = {
     tokenIndex: 0,
     decimals: 18,
     contractAddress: "0x0000000000000000000000000000000000000000",
-    price: 2417.08
   },
   address: "T7iFM2BEtd3JxkaUNfZge83CtAqhdgcjGgJpiityyrYMW739SyyDYF5bnR8fkSG3G9YT4VZtur3hKhvuDm5ZLneYLy8j7gG", // INTMAX Address
-  isMining: false,
+  skipConfirmation: false,
 }
 
 // Check gas estimation to verify if the transaction can be executed
@@ -363,8 +411,6 @@ const deposit: PrepareDepositTransactionResponse = await client.deposit(params);
   "txHash": "0xd03b99a0de83803bede24834715a36181008a73a76b627391042083c70af9c52" // Ethereum address
 }
 ```
-
-**NOTE**: Currently, even if the `isMining` flag is set to true, it is not treated as mining.
 
 ### Withdrawal
 
@@ -414,6 +460,8 @@ const withdrawals = await client.fetchWithdrawals();
 
 The `withdraw` function is an asynchronous method that processes a withdrawal request from the user's wallet. This function performs comprehensive validation and security checks to ensure the withdrawal is handled safely and accurately. It follows the entire withdrawal flow, including verifying the user's balance, calculating transaction fees, and signing the transaction.
 
+As with the `broadcastTransaction` function, after executing the `withdraw` function, you can use the `waitForTransactionConfirmation` function to wait until the transaction is finalized.
+
 ```tsx
 
 const params: WithdrawRequest = {
@@ -423,7 +471,6 @@ const params: WithdrawRequest = {
     tokenIndex: 0,
     decimals: 18,
     contractAddress: "0x0000000000000000000000000000000000000000",
-    price: 2417.08
   },
   address: "0xf9c78dAE01Af727E2F6Db9155B942D8ab631df4B", // ethereum address
 }

@@ -121,9 +121,9 @@ Retrieves deposits, transfers, and sent transactions in parallel, then prints th
 
 ```tsx
 const [deposits, transfers, sentTxs] = await Promise.all([
-  client.fetchDeposits({}),
-  client.fetchTransfers({}),
-  client.fetchTransactions({}),
+  client.fetchDeposits(),
+  client.fetchTransfers(),
+  client.fetchTransactions(),
 ]);
 
 console.log("Deposits:", deposits);
@@ -141,7 +141,6 @@ const token = {
   tokenIndex: 0,
   decimals: 18,
   contractAddress: "0x0000000000000000000000000000000000000000",
-  price: 2417.08,
 };
 
 const depositParams = {
@@ -176,7 +175,6 @@ const token = {
   tokenIndex: 0,
   decimals: 18,
   contractAddress: "0x0000000000000000000000000000000000000000",
-  price: 2417.08,
 };
 
 const transferFee = await client.getTransferFee();
@@ -192,8 +190,10 @@ const transfers = [
   },
 ];
 
-const tx = await client.broadcastTransaction(transfers);
-console.log("Transfer result:", tx);
+const transferResult = await client.broadcastTransaction(transfers);
+console.log("Transfer result:", transferResult);
+const transferConfirmation = await client.waitForTransactionConfirmation(transferResult);
+console.log("Transfer confirmation result:", transferConfirmation);
 ```
 
 #### Retrieve Withdrawal Fee & Execute Withdrawal
@@ -208,7 +208,6 @@ const token = {
   tokenIndex: 0,
   decimals: 18,
   contractAddress: "0x0000000000000000000000000000000000000000",
-  price: 2417.08,
 };
 
 // Withdrawal fee
@@ -236,3 +235,39 @@ console.log("Withdrawals:", withdrawals);
 const claim = await client.claimWithdrawal(withdrawals.need_claim);
 console.log("Claim result:", claim);
 ```
+
+### Notes for Using NodeJS
+
+When using the server-sdk, it is recommended to run the `sync` function before and after calling the `broadcastTransaction` and `withdraw` functions.
+
+* **Without calling `sync`:**
+  Your balance will still be updated automatically before the next transfer or withdrawal, but this automatic update may take extra time.
+
+* **By calling `sync` in advance:**
+  Your balance is already updated, so transfers and withdrawals can start faster.
+
+* **After a transfer:**
+  Running `sync` ensures your balance reflects the completed transaction, making your next transfer smoother.
+
+**Important:**
+
+* ⚠️ Always run `sync` **before and after** transfers or withdrawals for the best experience.
+
+#### Transfer Example
+
+```ts
+await client.sync();
+const transferResult = await client.broadcastTransaction(params);
+const transferConfirmation = await client.waitForTransactionConfirmation(transferResult);
+await client.sync();
+```
+
+#### Withdrawal Example
+
+```ts
+await client.sync();
+const withdrawResult = await client.withdraw(params);
+await client.sync();
+```
+
+**NOTE**: In the **frontend**, The `sync` function should not be called manually in normal use.
