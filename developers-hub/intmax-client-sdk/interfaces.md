@@ -288,7 +288,7 @@ export interface ConstructorParams {
   environment: IntMaxEnvironment; // Target network environment
   async_params?: ArrayBuffer; // Optional WebAssembly initialization parameters (URL of the file generated at build time)
   urls?: UrlConfig; // Configuration options for various URLs used in the SDK
-  showLogs?: boolean; // Flag indicating if verbose logs should be shown
+  loggerLevel?: 'error' | 'warn' | 'info' | 'none'; // Logging level for the SDK
 }
 
 // Constructor parameters for Node.js environment

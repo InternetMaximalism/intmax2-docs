@@ -8,7 +8,7 @@ description: The INTMAX Client SDK provides a secure, high-performance interface
 The INTMAX Client SDK provides a secure, high-performance interface for interacting with the INTMAX network. Built with WebAssembly for optimized cryptographic processing, the SDK abstracts complex blockchain operations into a developer-friendly API that handles the complete transaction lifecycle—from creation and signing to broadcasting.
 This documentation covers the SDK's core functionality, available functions, and interface specifications to help developers build secure blockchain wallet integrations with confidence.
 
-**Latest Version**: `1.4.7`
+**Latest Version**: `1.5.0`
 
 **Check out the INTMAX Client SDK on GitHub**
 
