@@ -227,7 +227,7 @@ chmod +x block-builder
 ##########
 # example
 ##########
-curl -L https://github.com/InternetMaximalism/intmax2/releases/download/v0.1.31/intmax2-aarch64-unknown-linux-gnu.tar.gz \
+curl -L https://github.com/InternetMaximalism/intmax2/releases/download/v0.1.34/intmax2-aarch64-unknown-linux-gnu.tar.gz \
 | tar -xzv
 chmod +x block-builder
 ./block-builder
