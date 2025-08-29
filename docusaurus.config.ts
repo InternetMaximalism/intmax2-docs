@@ -11,7 +11,7 @@ const config: Config = {
     v4: true,
   },
 
-  url: "https://docs.intmax.io",
+  url: "https://docs.network.intmax.io",
   baseUrl: "/",
 
   organizationName: "InternetMaximalism",
