@@ -8,11 +8,9 @@ description: Terms of Use for the INTMAX Privacy Blockchain Testnet
 
 # Terms of Use (Testnet)
 
-## INTMAX Privacy Blockchain Testnet
+Last Updated: 12 December 2024
 
-Effective Date: 12 December 2024
-
-**Welcome to the INTMAX Privacy Blockchain Testnet ("Testnet"). By accessing or using the Testnet, you agree to comply with these Terms of Use. If you do not agree with these terms, you may not use the Testnet.**
+These Terms of Use ("Terms") govern your access to and use of the INTMAX testnet protocol, network, website, and related services (collectively, the "Services"). By accessing or using the Services, you agree to be bound by these Terms. If you do not agree, do not use the Services.
 
 ## 1. Overview of the Testnet
 
