@@ -33,6 +33,37 @@ cd intmax2
 
 Next, set up your environment variables in the `cli/.env` file. Specifically, you'll need an RPC URL, which you can obtain by creating an account with providers such as [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/) and generating an API key.
 
+⚠️ **Important:** `L1_RPC_URL` and `L2_RPC_URL` should be set to the RPC URLs of the Ethereum and Scroll networks, respectively.
+
+**Mainnet Environment Variables:**
+
+```bash
+ENV=prod
+IS_FASTER_MINING=false
+INDEXER_BASE_URL=https://api.indexer.intmax.io
+STORE_VAULT_SERVER_BASE_URL=https://api.node.intmax.io/store-vault-server
+LOCAL_BACKUP_PATH="data/mainnet"
+STORE_VAULT_TYPE=remote_with_backup
+BALANCE_PROVER_BASE_URL=https://api.private.zkp.intmax.io
+USE_PRIVATE_ZKP_SERVER=true
+VALIDITY_PROVER_BASE_URL=https://api.node.intmax.io/validity-prover
+WITHDRAWAL_SERVER_BASE_URL=https://api.node.intmax.io/withdrawal-server
+WALLET_KEY_VAULT_BASE_URL=https://api.keyvault.intmax.io/v1
+DEPOSIT_TIMEOUT=180
+TX_TIMEOUT=80
+BLOCK_BUILDER_QUERY_WAIT_TIME=5
+BLOCK_BUILDER_QUERY_INTERVAL=5
+BLOCK_BUILDER_QUERY_LIMIT=20
+LIQUIDITY_CONTRACT_ADDRESS=0xF65e73aAc9182e353600a916a6c7681F810f79C3 
+ROLLUP_CONTRACT_ADDRESS=0x1c88459D014e571c332BF9199aD2D35C93219A2e 
+WITHDRAWAL_CONTRACT_ADDRESS=0x86B06D2604D9A6f9760E8f691F86d5B2a7C9c449 
+REWARD_CONTRACT_ADDRESS=0xFe9Fca6e5AE58E6F06873D2beFB658424Ae07109
+L1_RPC_URL="https://eth-mainnet.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
+L2_RPC_URL="https://scroll-mainnet.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
+```
+
+**Testnet Environment Variables:**
+
 ```bash
 ENV=staging
 IS_FASTER_MINING=false
@@ -54,8 +85,8 @@ LIQUIDITY_CONTRACT_ADDRESS=0x81f3843aF1FBaB046B771f0d440C04EBB2b7513F
 ROLLUP_CONTRACT_ADDRESS=0xcEC03800074d0ac0854bF1f34153cc4c8bAEeB1E
 WITHDRAWAL_CONTRACT_ADDRESS=0x914aBB5c7ea6352B618eb5FF61F42b96AD0325e7
 REWARD_CONTRACT_ADDRESS=0x7f7a7734f74970bf8c5ca0ee0b6073f2e8dc5e30
-L1_RPC_URL="https://eth-sepolia.g.alchemy.com/v2/your_api_key"
-L2_RPC_URL="https://scroll-sepolia.g.alchemy.com/v2/your_api_key"
+L1_RPC_URL="https://eth-sepolia.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
+L2_RPC_URL="https://scroll-sepolia.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
 ```
 
 ### User Fees
