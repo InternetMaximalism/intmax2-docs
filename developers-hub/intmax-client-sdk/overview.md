@@ -157,10 +157,10 @@ You can set up a local Balance Prover instance and send requests to it.
 
 #### 1. Clone the Repository
 
-Clone the `intmax2` repository (branch `dev`) from GitHub to your local environment.
+Clone the `intmax2` repository (branch `main`) from GitHub to your local environment.
 
 ```bash
-git clone git@github.com:InternetMaximalism/intmax2.git -b dev
+git clone git@github.com:InternetMaximalism/intmax2.git -b main
 ```
 
 #### 2. Navigate to the Balance Prover Directory
@@ -249,12 +249,12 @@ Documentation for deployed contracts and how to interact with them.
 
 Command-line interface for interacting with the INTMAX network using Rust.
 
-[**View INTMAX CLI on GitHub**](https://github.com/InternetMaximalism/intmax2/tree/dev/cli)
+[**View INTMAX CLI on GitHub**](https://github.com/InternetMaximalism/intmax2/tree/main/cli)
 
 ### Rust SDK
 
 The official Rust SDK for interacting with the INTMAX network externally.
 
-[**View INTMAX Client SDK on GitHub**](https://github.com/InternetMaximalism/intmax2/tree/dev/client-sdk)
+[**View INTMAX Client SDK on GitHub**](https://github.com/InternetMaximalism/intmax2/tree/main/client-sdk)
 
 > This SDK enables seamless external interaction with the INTMAX network using Rust.

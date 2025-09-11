@@ -24,10 +24,19 @@ You can claim your rewards using the command-line tool provided in the repositor
 
 [View INTMAX CLI](../intmax-cli.md)
 
-First, clone the repository using:
+Clone the repository according to your environment:
+
+**Mainnet**
 
 ```bash
-git clone git@github.com:InternetMaximalism/intmax2.git
+git clone git@github.com:InternetMaximalism/intmax2.git -b main
+cd intmax2
+```
+
+**Testnet**
+
+```bash
+git clone git@github.com:InternetMaximalism/intmax2.git -b dev
 cd intmax2
 ```
 
@@ -93,25 +102,30 @@ L2_RPC_URL="https://scroll-sepolia.g.alchemy.com/v2/your_api_key" # !!! CHANGE Y
 
 Once you've completed these setup steps, execute the following commands step-by-step:
 
-**Step 1: Generate INTMAX keys from your Ethereum private key**
+**Step 1: Generate INTMAX keys from your Scroll private key**
 
 ```bash
-cargo run -r -- key-from-eth --eth-private-key <eth-private-key>
+cargo run -r -- key-from-backup-key --backup-key <scroll-private-key>
 ```
 
 Expected output:
 
 ```
-Private key: 0x...
-Public key: 0x...
+Address: i9eW...
+View Only Key: viewpair/0x49c1...
+Spend Key: 0x9821...
+Key Pair: keypair/0x49c1...
 ```
+
+**:warning: Important Notice**: **Never share your View Only Key, Spend Key, or Key Pair with anyone.**
+Especially if your Spend Key or Key Pair becomes known to others, they could move your assets on the INTMAX network, putting them at serious risk.
 
 **Step 2: Check your balance using your INTMAX private key**
 
 **Important:** For `<intmax-private-key>`, copy and paste the `Private key` starting with `0x` from the output log generated in Step 1.
 
 ```bash
-cargo run -r -- balance --private-key <intmax-private-key>
+cargo run -r -- balance --private-key <spend-key>
 ```
 
 > Note: This command may take a significant amount of time to complete. If you have previously submitted a large number of blocks, this command may take over **an hour** to complete.
@@ -119,8 +133,8 @@ cargo run -r -- balance --private-key <intmax-private-key>
 **Step 3: Withdraw your funds**
 
 ```bash
-cargo run -r -- withdrawal --private-key <intmax-private-key> --to <ethereum-address> --amount <amount> --token-index 0
-cargo run -r -- sync-withdrawals --private-key <intmax-private-key>
+cargo run -r -- withdrawal --private-key <spend-key> --to <ethereum-address> --amount <amount> --token-index 0
+cargo run -r -- sync-withdrawals --private-key <spend-key>
 ```
 
 > Note: Executing this command may take at least **2 minutes**.
@@ -132,7 +146,7 @@ Ensure you replace placeholders such as `<eth-private-key>`, `<intmax-private-ke
 Please execute the following command to claim your rewards. Replace `<eth-private-key>` with your actual Ethereum private key:
 
 ```bash
-cargo run -r -- claim-builder-reward --eth-private-key <eth-private-key>
+cargo run -r -- claim-builder-reward --eth-private-key <scroll-private-key>
 ```
 
 To execute the command, you'll need sufficient ETH to pay the gas fee (approximately **0.00001 ETH**) on the Scroll address corresponding to your Ethereum address.
