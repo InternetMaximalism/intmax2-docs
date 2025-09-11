@@ -34,7 +34,7 @@ You cannot choose a different address freely.
 
 **NOTE**: If you close the screen during the process, please start over from the beginning of the procedure.
 
-### Cancel Mining
+## Cancel Mining
 
 You can cancel a mining session even before the lock period has matured. However, please note that if you cancel, **no rewards will be granted**, and only the deposited ETH will be returned.
 
@@ -51,3 +51,33 @@ By selecting **"Yes, Proceed"**, the cancellation process will continue, and you
 3. Here, you can enter the destination Ethereum address and click the **"Cancel + Withdrawal"** button to withdraw the deposited ETH.
 
 <figure><img src="/img/user-guides/cancel_mining_30.webp" alt="Cancel Mining" /></figure>
+
+## Withdraw ETH to a Contract Address
+
+We would like to provide a clear explanation the procedure for withdrawing ETH to a contract address in mining.
+
+### :warning: **Important Notice**
+
+When specifying a withdrawal destination address, please make sure that it is **your own address**.
+In particular, specifying a **contract address** or an **exchange address** as the withdrawal destination is **not covered by our support**, and we do not take any responsibility in such cases.
+If you choose to send ETH to a contract address, please carefully confirm that the contract is able to **receive ETH deposits**.
+
+### 1. Purpose
+
+The purpose of this function is to enable the transfer of ETH that has entered a “withdrawable state” — for example, when attempting to withdraw to a contract address — so that it can actually be sent to the specified address.
+
+**NOTE**: In contrast, when sending to a regular address (EOA), the ETH is delivered directly to the address.
+
+### 2. When the Button Appears
+
+- The button will be displayed when your destination account has a withdrawable ETH balance.
+- If you have pending withdrawals, the button will trigger a claim process.
+
+<figure><img src="/img/user-guides/withdraw_eth_to_contract_10.webp" alt="Withdraw ETH" /></figure>
+
+### 3. How the Withdrawal Works
+
+- When you click the button, you will be asked to **sign a transaction with your connected wallet**.
+- This operation makes your funds available on Ethereum.
+
+<figure><img src="/img/user-guides/withdraw_eth_to_contract_20.webp" alt="Withdraw ETH" /></figure>
