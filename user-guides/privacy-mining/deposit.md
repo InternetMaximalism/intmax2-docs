@@ -27,3 +27,7 @@ To monitor your mining progress and review detailed performance metrics, you can
 ## Additional Note
 
 Please be aware that mining funds are managed separately from your primary Intmax address. As a result, any funds generated through mining operations will not appear in your standard INTMAX account balance. They can be tracked and managed exclusively within your dedicated mining portfolio.
+
+### Limit on Mining Operations
+Each wallet has a limit of 256 mining operations (i.e. pressing the “Mine” button to initiate a deposit). Once this limit is reached, further “Mine” operations from that wallet will no longer be accepted, and deposits cannot be initiated using that function.
+If you want to continue mining, please use a different address.
