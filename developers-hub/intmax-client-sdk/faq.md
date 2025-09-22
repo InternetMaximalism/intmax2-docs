@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 8
 description: A collection of frequently asked questions and answers about the INTMAX Client SDK. This page provides explanations for common developer inquiries regarding account management, fees, transactions, security, privacy, and more.
 ---
 
@@ -104,22 +104,22 @@ Please note that the duration may increase further when the network is congested
 
 ## Mainnet
 
-| Operation                          | Time (s) |
-|------------------------------------|----------|
-| broadcastTransaction (before sync) | 164      |
-| broadcastTransaction (after sync)  | 23       |
-| waitForTransactionConfirmation (after transfer) | 50 |
-| withdraw (before sync)             | 302      |
-| withdraw (after sync)              | 187      |
-| sync (after transfer)              | 139      |
+| Operation                                       | Time (s) |
+| ----------------------------------------------- | -------- |
+| broadcastTransaction (before sync)              | 164      |
+| broadcastTransaction (after sync)               | 23       |
+| waitForTransactionConfirmation (after transfer) | 50       |
+| withdraw (before sync)                          | 302      |
+| withdraw (after sync)                           | 187      |
+| sync (after transfer)                           | 139      |
 
 ## Testnet
 
-| Operation                          | Time (s) |
-|------------------------------------|----------|
-| broadcastTransaction (before sync) | 256      |
-| broadcastTransaction (after sync)  | 52       |
-| waitForTransactionConfirmation (after transfer) | 50 |
-| withdraw (before sync)             | 472      |
-| withdraw (after sync)              | 257      |
-| sync (after transfer)              | 216      |
+| Operation                                       | Time (s) |
+| ----------------------------------------------- | -------- |
+| broadcastTransaction (before sync)              | 256      |
+| broadcastTransaction (after sync)               | 52       |
+| waitForTransactionConfirmation (after transfer) | 50       |
+| withdraw (before sync)                          | 472      |
+| withdraw (after sync)                           | 257      |
+| sync (after transfer)                           | 216      |
