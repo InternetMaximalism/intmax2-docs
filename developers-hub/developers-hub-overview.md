@@ -96,6 +96,7 @@ Welcome to the INTMAX Network Developers Hub. These guides are designed to help 
 1. **Start with the [Client SDK](/developers-hub/intmax-client-sdk)** - High-performance WebAssembly-based SDK
 2. **Explore [Use Cases](/developers-hub/use-cases)** - Real-world implementation examples
 3. **Review Transaction Lifecycle** - Understand create → sign → broadcast flow
+4. **Check out [VibeCoding Guide](/developers-hub/intmax-client-sdk/vibe-coding-for-general-prompt.md)** - Quickly generate ideas and build prototypes using INTMAX + AI
 
 ### For Wallet Developers
 
