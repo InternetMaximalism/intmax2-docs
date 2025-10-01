@@ -40,6 +40,8 @@ git clone git@github.com:InternetMaximalism/intmax2.git -b dev
 cd intmax2
 ```
 
+⚠️ Note: If the `cargo` command is not available on your system, please install Rust and Cargo by following the instructions at the [official Rust installation page](https://rust-lang.org/tools/install/).
+
 Next, set up your environment variables in the `cli/.env` file. Specifically, you'll need an RPC URL, which you can obtain by creating an account with providers such as [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/) and generating an API key.
 
 ⚠️ **Important:** `L1_RPC_URL` and `L2_RPC_URL` should be set to the RPC URLs of the Ethereum and Scroll networks, respectively.
@@ -63,9 +65,9 @@ TX_TIMEOUT=80
 BLOCK_BUILDER_QUERY_WAIT_TIME=5
 BLOCK_BUILDER_QUERY_INTERVAL=5
 BLOCK_BUILDER_QUERY_LIMIT=20
-LIQUIDITY_CONTRACT_ADDRESS=0xF65e73aAc9182e353600a916a6c7681F810f79C3 
-ROLLUP_CONTRACT_ADDRESS=0x1c88459D014e571c332BF9199aD2D35C93219A2e 
-WITHDRAWAL_CONTRACT_ADDRESS=0x86B06D2604D9A6f9760E8f691F86d5B2a7C9c449 
+LIQUIDITY_CONTRACT_ADDRESS=0xF65e73aAc9182e353600a916a6c7681F810f79C3
+ROLLUP_CONTRACT_ADDRESS=0x1c88459D014e571c332BF9199aD2D35C93219A2e
+WITHDRAWAL_CONTRACT_ADDRESS=0x86B06D2604D9A6f9760E8f691F86d5B2a7C9c449
 REWARD_CONTRACT_ADDRESS=0xFe9Fca6e5AE58E6F06873D2beFB658424Ae07109
 L1_RPC_URL="https://eth-mainnet.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
 L2_RPC_URL="https://scroll-mainnet.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
