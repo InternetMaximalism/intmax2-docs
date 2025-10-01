@@ -147,6 +147,8 @@ Before running the following command, **please replace `<release-version>`** wit
 
 Before running the command, make sure to set up the `.env` file or configure the necessary environment variables.
 
+⚡ Tip: If you don’t need logs and want to avoid storage usage on your server, you can run Docker with `--log-driver=none`. This disables log persistence and prevents your disk from filling up.
+
 **x86-64 Architecture**
 
 ```bash
@@ -154,6 +156,7 @@ docker pull ghcr.io/internetmaximalism/intmax2:**<release-version>**
 docker run -d --rm \
     --env-file ./.env \
     --name block-builder \
+    --log-driver=none \
     -p 8080:8080 \
      ghcr.io/internetmaximalism/intmax2:**<release-version>** /app/block-builder
 
@@ -164,6 +167,7 @@ docker pull ghcr.io/internetmaximalism/intmax2:0.1.34
 docker run -d --rm \
     --env-file ./.env \
     --name block-builder \
+    --log-driver=none \
     -p 8080:8080 \
      ghcr.io/internetmaximalism/intmax2:0.1.34 /app/block-builder
 ```
@@ -175,6 +179,7 @@ docker pull ghcr.io/internetmaximalism/intmax2:**<release-version>**-arm64
 docker run -d --rm \
     --env-file ./.env \
     --name block-builder \
+    --log-driver=none \
     -p 8080:8080 \
      ghcr.io/internetmaximalism/intmax2:**<release-version>**-arm64 /app/block-builder
 
@@ -185,6 +190,7 @@ docker pull ghcr.io/internetmaximalism/intmax2:0.1.34-arm64
 docker run -d --rm \
     --env-file ./.env \
     --name block-builder \
+    --log-driver=none \
     -p 8080:8080 \
      ghcr.io/internetmaximalism/intmax2:0.1.34-arm64 /app/block-builder
 ```
