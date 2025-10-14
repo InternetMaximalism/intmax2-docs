@@ -52,6 +52,58 @@ By selecting **"Yes, Proceed"**, the cancellation process will continue, and you
 
 <figure><img src="/img/user-guides/cancel_mining_30.webp" alt="Cancel Mining" /></figure>
 
+## Resuming an Interrupted Claim
+
+Usually, in a mining session that is ready for claiming, you can claim your rewards by clicking the “Withdraw” or “Redeposit” button and following the on-screen instructions.
+However, this process may be interrupted if, for example, you close the browser before it is completed.
+
+If you open the details page of such a mining session, a “Claim Rewards” button and a warning message will be displayed.
+You can resume the interrupted process by clicking the “Claim Rewards” button.
+
+<figure><img src="/img/user-guides/claim-rewards_10.webp" alt="Claim Rewards" /></figure>
+
+The button display will change and attempt to execute the claim process.
+
+<figure><img src="/img/user-guides/claim-rewards_20.webp" alt="Claim Rewards" /></figure>
+
+If the claim fee payment has not been made, a "Top Up for Claim Fee" button will be displayed. Click the button.
+
+<figure><img src="/img/user-guides/claim-rewards_30.webp" alt="Claim Rewards" /></figure>
+
+A modal like the one below may appear, but click the “Next” button.
+
+<figure><img src="/img/user-guides/claim-rewards_40.webp" alt="Claim Rewards" /></figure>
+
+Click the "Yes, Proceed" button.
+
+<figure><img src="/img/user-guides/claim-rewards_50.webp" alt="Claim Rewards" /></figure>
+
+Review the transfer details and click the Send button.
+
+Your connected wallet will request a signature.
+
+<figure><img src="/img/user-guides/claim-rewards_60.webp" alt="Claim Rewards" /></figure>
+
+Once the signature is complete, you will see the transfer waiting screen.
+
+<figure><img src="/img/user-guides/claim-rewards_70.webp" alt="Claim Rewards" /></figure>
+
+When the transfer request is complete, the status will change. Clicking the "Go to Active Mining" button will return you to the mining session details screen.
+
+<figure><img src="/img/user-guides/claim-rewards_80.webp" alt="Claim Rewards" /></figure>
+
+The "Claim Rewards" button will be unclickable for approximately 5 minutes.
+
+Once the gas fee top-up is complete, the "Claim Rewards" button will become clickable again. Click the button.
+
+<figure><img src="/img/user-guides/claim-rewards_10.webp" alt="Claim Rewards" /></figure>
+
+When the "Claim Rewards" button is no longer displayed, the ITX token reward claim is complete.
+
+If the "Top Up for Claim Fee" button appears again at this point, wait about 10 minutes and then check the mining session again.
+
+<figure><img src="/img/user-guides/claim-rewards_90.webp" alt="Claim Rewards" /></figure>
+
 ## Withdraw ETH to a Contract Address
 
 We would like to provide a clear explanation the procedure for withdrawing ETH to a contract address in mining.
