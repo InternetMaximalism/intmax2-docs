@@ -170,7 +170,9 @@ If there are rewards available for you to claim, you'll see logs similar to the 
 [2025-06-01T00:00:00Z INFO  intmax2_client_sdk::external_api::contract::handlers] Transaction sent: "batch_claim_reward" with tx hash: 0x...
 ```
 
-### Troubleshooting
+## Troubleshooting
+
+### OpenSSL Build Error
 
 When running the CLI in a Debian-based Linux environment, you may encounter the following error:
 
@@ -200,4 +202,41 @@ apt update
 apt install -y build-essential pkg-config libssl-dev
 ```
 
-This will allow the CLI to build and run correctly.
+### Using Rustup Instead of the `apt` Package
+
+When Rust is installed via `apt install cargo rustc`, you cannot use the **nightly version** of Rust.
+To enable nightly and other toolchains, please install Rust through **Rustup** instead.
+
+Run the following command:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+When prompted during installation, **enter `1`** and press **Enter** to proceed with the default installation.
+
+To make the Rustup-managed Rust toolchain available in your shell, add the following line to your `~/.bashrc`:
+
+```bash
+export PATH="$HOME/.cargo/bin:$PATH"
+```
+
+Then apply the changes:
+
+```bash
+source ~/.bashrc
+```
+
+Run the following command to confirm that the Rust compiler being used is the one installed via Rustup:
+
+```bash
+which rustc
+```
+
+If the output shows:
+
+```
+/home/<username>/.cargo/bin/rustc
+```
+
+then your configuration is complete and Rustup is now managing your Rust toolchain.
