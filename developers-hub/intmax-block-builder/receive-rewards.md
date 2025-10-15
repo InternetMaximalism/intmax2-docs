@@ -167,3 +167,35 @@ If there are rewards available for you to claim, you'll see logs similar to the 
 [2025-06-01T00:00:00Z INFO  intmax2_client_sdk::external_api::contract::handlers] Sending transaction: batch_claim_reward with nonce 2368, gas limit 213439, value 0, max fee per gas 31360116, max priority fee per gas 100
 [2025-06-01T00:00:00Z INFO  intmax2_client_sdk::external_api::contract::handlers] Transaction sent: "batch_claim_reward" with tx hash: 0x...
 ```
+
+### Troubleshooting
+
+When running the CLI in a Debian-based Linux environment, you may encounter the following error:
+
+```
+Could not find directory of OpenSSL installation, and this `-sys` crate cannot
+proceed without this knowledge. If OpenSSL is installed and this crate had
+trouble finding it,  you can set the `OPENSSL_DIR` environment variable for the
+compilation process.
+
+Make sure you also have the development packages of openssl installed.
+For example, `libssl-dev` on Ubuntu or `openssl-devel` on Fedora.
+
+If you're in a situation where you think the directory *should* be found
+automatically, please open a bug at https://github.com/sfackler/rust-openssl
+and include information about your system as well as this message.
+
+$HOST = aarch64-unknown-linux-gnu
+$TARGET = aarch64-unknown-linux-gnu
+openssl-sys = 0.9.108
+```
+
+This issue occurs because the OpenSSL development libraries are missing.
+Please execute the following commands to install the required packages.
+
+```
+apt update
+apt install -y build-essential pkg-config libssl-dev
+```
+
+This will allow the CLI to build and run correctly.
