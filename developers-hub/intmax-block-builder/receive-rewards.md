@@ -16,6 +16,8 @@ This document covers the complete process from initial setup to reward claiming,
 - Check your accumulated balances and withdraw user fees
 - Claim ITX token rewards earned through block building activities
 
+**NOTE:** When receiving rewards, you need to clone the CLI and execute the command, but this does not have to be done on the server running the Block Builder.
+
 ## How to Receive Rewards
 
 ### Preparation
@@ -167,3 +169,74 @@ If there are rewards available for you to claim, you'll see logs similar to the 
 [2025-06-01T00:00:00Z INFO  intmax2_client_sdk::external_api::contract::handlers] Sending transaction: batch_claim_reward with nonce 2368, gas limit 213439, value 0, max fee per gas 31360116, max priority fee per gas 100
 [2025-06-01T00:00:00Z INFO  intmax2_client_sdk::external_api::contract::handlers] Transaction sent: "batch_claim_reward" with tx hash: 0x...
 ```
+
+## Troubleshooting
+
+### OpenSSL Build Error
+
+When running the CLI in a Debian-based Linux environment, you may encounter the following error:
+
+```
+Could not find directory of OpenSSL installation, and this `-sys` crate cannot
+proceed without this knowledge. If OpenSSL is installed and this crate had
+trouble finding it,  you can set the `OPENSSL_DIR` environment variable for the
+compilation process.
+
+Make sure you also have the development packages of openssl installed.
+For example, `libssl-dev` on Ubuntu or `openssl-devel` on Fedora.
+
+If you're in a situation where you think the directory *should* be found
+automatically, please open a bug at https://github.com/sfackler/rust-openssl
+and include information about your system as well as this message.
+
+$HOST = aarch64-unknown-linux-gnu
+$TARGET = aarch64-unknown-linux-gnu
+openssl-sys = 0.9.108
+```
+
+This issue occurs because the OpenSSL development libraries are missing.
+Please execute the following commands to install the required packages.
+
+```
+apt update
+apt install -y build-essential pkg-config libssl-dev
+```
+
+### Using Rustup Instead of the `apt` Package
+
+When Rust is installed via `apt install cargo rustc`, you cannot use the **nightly version** of Rust.
+To enable nightly and other toolchains, please install Rust through **Rustup** instead.
+
+Run the following command:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+When prompted during installation, **enter `1`** and press **Enter** to proceed with the default installation.
+
+To make the Rustup-managed Rust toolchain available in your shell, add the following line to your `~/.bashrc`:
+
+```bash
+export PATH="$HOME/.cargo/bin:$PATH"
+```
+
+Then apply the changes:
+
+```bash
+source ~/.bashrc
+```
+
+Run the following command to confirm that the Rust compiler being used is the one installed via Rustup:
+
+```bash
+which rustc
+```
+
+If the output shows:
+
+```
+/home/<username>/.cargo/bin/rustc
+```
+
+then your configuration is complete and Rustup is now managing your Rust toolchain.
