@@ -16,6 +16,8 @@ This document covers the complete process from initial setup to reward claiming,
 - Check your accumulated balances and withdraw user fees
 - Claim ITX token rewards earned through block building activities
 
+**NOTE:** When receiving rewards, you need to clone the CLI and execute the command, but this does not have to be done on the server running the Block Builder.
+
 ## How to Receive Rewards
 
 ### Preparation
