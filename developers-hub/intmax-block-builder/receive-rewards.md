@@ -239,3 +239,23 @@ If the output shows:
 ```
 
 then your configuration is complete and Rustup is now managing your Rust toolchain.
+
+### How to Fix Environment Variable Loading Errors
+
+When you run the following command:
+
+```sh
+cargo run -r -- claim-builder-reward --eth-private-key <scroll-private-key>
+```
+
+you may encounter an error like this:
+
+```
+Envy error: unknown variant `production`, expected one of `local`, `dev`, `staging`, `prod`
+```
+
+If you have correctly set the environment variables in your `.env` file but this error still occurs, please try running the following command instead. Make sure to replace `<scroll-private-key>` with your actual Scroll private key.
+
+```sh
+( set -a; source .env; set +a; cargo run -r -- claim-builder-reward --eth-private-key <scroll-private-key> )
+```
