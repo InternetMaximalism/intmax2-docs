@@ -22,35 +22,19 @@ This document covers the complete process from initial setup to reward claiming,
 
 ### Preparation
 
-You can claim your rewards using the command-line tool provided in the repository below:
-
-[View INTMAX CLI](../intmax-cli.md)
-
-Clone the repository according to your environment:
-
-**Mainnet**
+You can claim your rewards using the command-line tool. Below is an explanation of how to claim rewards on the **mainnet**.
 
 ```bash
 git clone git@github.com:InternetMaximalism/intmax2.git -b main
-cd intmax2
+cd intmax2/cli
 ```
 
-**Testnet**
-
-```bash
-git clone git@github.com:InternetMaximalism/intmax2.git -b dev
-cd intmax2
-```
-
-⚠️ Note: If the `cargo` command is not available on your system, please install Rust and Cargo by following the instructions at the [official Rust installation page](https://rust-lang.org/tools/install/).
-
-Next, set up your environment variables in the `cli/.env` file. Specifically, you'll need an RPC URL, which you can obtain by creating an account with providers such as [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/) and generating an API key.
+Next, set up your environment variables for the CLI. Specifically, you'll need an RPC URL, which you can obtain by creating an account with providers such as [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/) and generating an API key.
 
 ⚠️ **Important:** `L1_RPC_URL` and `L2_RPC_URL` should be set to the RPC URLs of the Ethereum and Scroll networks, respectively.
 
-**Mainnet Environment Variables:**
-
 ```bash
+cat <<EOF > .env
 ENV=prod
 IS_FASTER_MINING=false
 INDEXER_BASE_URL=https://api.indexer.intmax.io
@@ -73,38 +57,14 @@ WITHDRAWAL_CONTRACT_ADDRESS=0x86B06D2604D9A6f9760E8f691F86d5B2a7C9c449
 REWARD_CONTRACT_ADDRESS=0xFe9Fca6e5AE58E6F06873D2beFB658424Ae07109
 L1_RPC_URL="https://eth-mainnet.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
 L2_RPC_URL="https://scroll-mainnet.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
-```
-
-**Testnet Environment Variables:**
-
-```bash
-ENV=staging
-IS_FASTER_MINING=false
-INDEXER_BASE_URL=https://stage.api.indexer.intmax.io
-STORE_VAULT_SERVER_BASE_URL=https://stage.api.node.intmax.io/store-vault-server
-LOCAL_BACKUP_PATH="data/testnet_beta"
-STORE_VAULT_TYPE="remote_with_backup"
-BALANCE_PROVER_BASE_URL=https://stage.api.private.zkp.intmax.io
-USE_PRIVATE_ZKP_SERVER=true
-VALIDITY_PROVER_BASE_URL=https://stage.api.node.intmax.io/validity-prover
-WITHDRAWAL_SERVER_BASE_URL=https://stage.api.node.intmax.io/withdrawal-server
-WALLET_KEY_VAULT_BASE_URL=https://slxcnfhgxpfokwtathje.supabase.co/functions/v1/keyvault
-DEPOSIT_TIMEOUT=180
-TX_TIMEOUT=80
-BLOCK_BUILDER_QUERY_WAIT_TIME=5
-BLOCK_BUILDER_QUERY_INTERVAL=5
-BLOCK_BUILDER_QUERY_LIMIT=20
-LIQUIDITY_CONTRACT_ADDRESS=0x81f3843aF1FBaB046B771f0d440C04EBB2b7513F
-ROLLUP_CONTRACT_ADDRESS=0xcEC03800074d0ac0854bF1f34153cc4c8bAEeB1E
-WITHDRAWAL_CONTRACT_ADDRESS=0x914aBB5c7ea6352B618eb5FF61F42b96AD0325e7
-REWARD_CONTRACT_ADDRESS=0x7f7a7734f74970bf8c5ca0ee0b6073f2e8dc5e30
-L1_RPC_URL="https://eth-sepolia.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
-L2_RPC_URL="https://scroll-sepolia.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
+EOF
 ```
 
 ### User Fees
 
-Once you've completed these setup steps, execute the following commands step-by-step:
+Once you've completed these setup steps, execute the following commands step-by-step. Please run the following command in the **cli** directory of the **intmax2** repository.
+
+⚠️ Note: If the `rustup` command is not available on your system, please install Rust and Cargo by following the instructions at the [official Rust installation page](https://rust-lang.org/tools/install/).
 
 **Step 1: Generate INTMAX keys from your Scroll private key**
 
@@ -168,6 +128,45 @@ If there are rewards available for you to claim, you'll see logs similar to the 
 [2025-06-01T00:00:00Z INFO  intmax2_cli::cli::claim] Claiming block builder rewards for periods: [0, 1, 2]
 [2025-06-01T00:00:00Z INFO  intmax2_client_sdk::external_api::contract::handlers] Sending transaction: batch_claim_reward with nonce 2368, gas limit 213439, value 0, max fee per gas 31360116, max priority fee per gas 100
 [2025-06-01T00:00:00Z INFO  intmax2_client_sdk::external_api::contract::handlers] Transaction sent: "batch_claim_reward" with tx hash: 0x...
+```
+
+## Testnet
+
+When running the Block Builder on the **testnet**, the reward claiming process will also take place on the **testnet**.
+Please execute the following command.
+
+```bash
+git clone git@github.com:InternetMaximalism/intmax2.git -b dev
+cd intmax2/cli
+```
+
+⚠️ **Important:** `L1_RPC_URL` and `L2_RPC_URL` should be set to the RPC URLs of the Ethereum and Scroll networks, respectively.
+
+```bash
+cat <<EOF > .env
+ENV=staging
+IS_FASTER_MINING=false
+INDEXER_BASE_URL=https://stage.api.indexer.intmax.io
+STORE_VAULT_SERVER_BASE_URL=https://stage.api.node.intmax.io/store-vault-server
+LOCAL_BACKUP_PATH="data/testnet_beta"
+STORE_VAULT_TYPE="remote_with_backup"
+BALANCE_PROVER_BASE_URL=https://stage.api.private.zkp.intmax.io
+USE_PRIVATE_ZKP_SERVER=true
+VALIDITY_PROVER_BASE_URL=https://stage.api.node.intmax.io/validity-prover
+WITHDRAWAL_SERVER_BASE_URL=https://stage.api.node.intmax.io/withdrawal-server
+WALLET_KEY_VAULT_BASE_URL=https://slxcnfhgxpfokwtathje.supabase.co/functions/v1/keyvault
+DEPOSIT_TIMEOUT=180
+TX_TIMEOUT=80
+BLOCK_BUILDER_QUERY_WAIT_TIME=5
+BLOCK_BUILDER_QUERY_INTERVAL=5
+BLOCK_BUILDER_QUERY_LIMIT=20
+LIQUIDITY_CONTRACT_ADDRESS=0x81f3843aF1FBaB046B771f0d440C04EBB2b7513F
+ROLLUP_CONTRACT_ADDRESS=0xcEC03800074d0ac0854bF1f34153cc4c8bAEeB1E
+WITHDRAWAL_CONTRACT_ADDRESS=0x914aBB5c7ea6352B618eb5FF61F42b96AD0325e7
+REWARD_CONTRACT_ADDRESS=0x7f7a7734f74970bf8c5ca0ee0b6073f2e8dc5e30
+L1_RPC_URL="https://eth-sepolia.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
+L2_RPC_URL="https://scroll-sepolia.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
+EOF
 ```
 
 ## Troubleshooting
