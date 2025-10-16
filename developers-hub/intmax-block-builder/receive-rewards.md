@@ -18,6 +18,8 @@ This document covers the complete process from initial setup to reward claiming,
 
 **NOTE:** When receiving rewards, you need to clone the CLI and execute the command, but this does not have to be done on the server running the Block Builder.
 
+**NOTE:** The environment in which this operation is executed requires a **minimum of 1 GB of memory**.
+
 ## How to Receive Rewards
 
 ### Preparation
