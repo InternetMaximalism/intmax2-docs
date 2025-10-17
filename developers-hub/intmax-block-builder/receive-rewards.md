@@ -94,6 +94,22 @@ cargo run -r -- balance --private-key <spend-key>
 
 > Note: This command may take a significant amount of time to complete. If you have previously submitted a large number of blocks, this command may take over **an hour** to complete.
 
+During command execution, logs like the following will be displayed. The longer your node has been running, the more logs will be displayed.
+
+```
+[2025-10-17T06:00:00Z INFO  intmax2_client_sdk::external_api::local_backup_store_vault::local_store_vault] local_save_data_batch: topic: v1/ra_wo/transfer, pubkey: 0x0e9e...42cf, digest: 0xfb26...d381
+[2025-10-17T06:00:00Z INFO  intmax2_client_sdk::external_api::local_backup_store_vault::local_store_vault] local_save_data_batch: topic: v1/ra_wo/transfer, pubkey: 0x0e9e...42cf, digest: 0x5408...fc00
+```
+
+When the balance synchronization is complete, logs like the following will be displayed.
+
+```
+Balances:
+	Token #0:
+		Amount: 2342400000000000
+		Type: NATIVE
+```
+
 **Step 3: Withdraw your funds**
 
 ```bash
@@ -103,11 +119,11 @@ cargo run -r -- sync-withdrawals --private-key <spend-key>
 
 > Note: Executing this command may take at least **2 minutes**.
 
-Ensure you replace placeholders such as `<eth-private-key>`, `<intmax-private-key>`, `<ethereum-address>`, and `<amount>` with your actual values.
+Ensure you replace placeholders such as `<scroll-private-key>`, `<intmax-private-key>`, `<ethereum-address>`, and `<amount>` with your actual values.
 
 ### ITX Token
 
-Please execute the following command to claim your rewards. Replace `<eth-private-key>` with your actual Ethereum private key:
+Please execute the following command to claim your rewards. Replace `<scroll-private-key>` with your actual Scroll private key:
 
 ```bash
 cargo run -r -- claim-builder-reward --eth-private-key <scroll-private-key>
