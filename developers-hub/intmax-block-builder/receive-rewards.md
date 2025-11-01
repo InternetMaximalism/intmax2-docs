@@ -53,6 +53,9 @@ TX_TIMEOUT=80
 BLOCK_BUILDER_QUERY_WAIT_TIME=5
 BLOCK_BUILDER_QUERY_INTERVAL=5
 BLOCK_BUILDER_QUERY_LIMIT=20
+STORE_VAULT_MAX_RPS=5.0
+VALIDITY_PROVER_MAX_RPS=5.0
+BAD_GATEWAY_RETRY_LIMIT=3
 LIQUIDITY_CONTRACT_ADDRESS=0xF65e73aAc9182e353600a916a6c7681F810f79C3
 ROLLUP_CONTRACT_ADDRESS=0x1c88459D014e571c332BF9199aD2D35C93219A2e
 WITHDRAWAL_CONTRACT_ADDRESS=0x86B06D2604D9A6f9760E8f691F86d5B2a7C9c449
@@ -67,6 +70,18 @@ EOF
 Once you've completed these setup steps, execute the following commands step-by-step. Please run the following command in the **cli** directory of the **intmax2** repository.
 
 ⚠️ Note: If the `rustup` command is not available on your system, please install Rust and Cargo by following the instructions at the [official Rust installation page](https://rust-lang.org/tools/install/).
+
+**Step 0: Update the intmax2 repository**
+
+Before running any commands, make sure your intmax2 repository is up to date.
+Open your terminal, navigate to the repository directory, and pull the latest changes:
+
+```bash
+cd /path/to/intmax2
+git pull origin main
+```
+
+⚠️ Note: Please replace `/path/to/intmax2` with the actual directory path before executing the command.
 
 **Step 1: Generate INTMAX keys from your Scroll private key**
 
@@ -88,7 +103,7 @@ Especially if your Spend Key or Key Pair becomes known to others, they could mov
 
 **Step 2: Check your balance using your INTMAX private key**
 
-**Important:** For `<intmax-private-key>`, copy and paste the `Private key` starting with `0x` from the output log generated in Step 1.
+**Important:** For `<spend-key>`, copy and paste the `Private key` starting with `0x` from the output log generated in Step 1.
 
 ```bash
 cargo run -r -- balance --private-key <spend-key>
@@ -112,6 +127,12 @@ Balances:
 		Type: NATIVE
 ```
 
+If the following log appears and execution stops, please run the **balance** command again.
+
+```
+Client error: Server client error: Invalid response: Failed to read response: reqwest::Error { kind: Decode, source: reqwest::Error { kind: Body, source: TimedOut } }
+```
+
 **Step 3: Withdraw your funds**
 
 ```bash
@@ -121,7 +142,7 @@ cargo run -r -- sync-withdrawals --private-key <spend-key>
 
 > Note: Executing this command may take at least **2 minutes**.
 
-Ensure you replace placeholders such as `<scroll-private-key>`, `<intmax-private-key>`, `<ethereum-address>`, and `<amount>` with your actual values.
+Ensure you replace placeholders such as `<scroll-private-key>`, `<spend-key>`, `<ethereum-address>`, and `<amount>` with your actual values.
 
 ### ITX Token
 
