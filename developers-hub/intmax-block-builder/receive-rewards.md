@@ -41,7 +41,7 @@ ENV=prod
 IS_FASTER_MINING=false
 INDEXER_BASE_URL=https://api.indexer.intmax.io
 STORE_VAULT_SERVER_BASE_URL=https://api.node.intmax.io/store-vault-server
-LOCAL_BACKUP_PATH="data/mainnet"
+LOCAL_BACKUP_PATH=data/mainnet
 STORE_VAULT_TYPE=remote_with_backup
 BALANCE_PROVER_BASE_URL=https://api.private.zkp.intmax.io
 USE_PRIVATE_ZKP_SERVER=true
@@ -60,8 +60,8 @@ LIQUIDITY_CONTRACT_ADDRESS=0xF65e73aAc9182e353600a916a6c7681F810f79C3
 ROLLUP_CONTRACT_ADDRESS=0x1c88459D014e571c332BF9199aD2D35C93219A2e
 WITHDRAWAL_CONTRACT_ADDRESS=0x86B06D2604D9A6f9760E8f691F86d5B2a7C9c449
 REWARD_CONTRACT_ADDRESS=0xFe9Fca6e5AE58E6F06873D2beFB658424Ae07109
-L1_RPC_URL="https://eth-mainnet.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
-L2_RPC_URL="https://scroll-mainnet.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
+L1_RPC_URL=https://eth-mainnet.g.alchemy.com/v2/your_api_key # !!! CHANGE YOUR API KEY !!!
+L2_RPC_URL=https://scroll-mainnet.g.alchemy.com/v2/your_api_key # !!! CHANGE YOUR API KEY !!!
 EOF
 ```
 
@@ -109,13 +109,19 @@ Especially if your Spend Key or Key Pair becomes known to others, they could mov
 cargo run -r -- balance --private-key <spend-key>
 ```
 
-> Note: This command may take a significant amount of time to complete. If you have previously submitted a large number of blocks, this command may take over **an hour** to complete.
+> Note: This command may take a significant amount of time to complete. If you have previously submitted a large number of blocks, this command may take over **24 hours** to complete.
 
 During command execution, logs like the following will be displayed. The longer your node has been running, the more logs will be displayed.
 
 ```
 [2025-10-17T06:00:00Z INFO  intmax2_client_sdk::external_api::local_backup_store_vault::local_store_vault] local_save_data_batch: topic: v1/ra_wo/transfer, pubkey: 0x0e9e...42cf, digest: 0xfb26...d381
 [2025-10-17T06:00:00Z INFO  intmax2_client_sdk::external_api::local_backup_store_vault::local_store_vault] local_save_data_batch: topic: v1/ra_wo/transfer, pubkey: 0x0e9e...42cf, digest: 0x5408...fc00
+```
+
+> Note: If you continue to see synchronization logs like the following, it is safe to stop the command and rerun it later—the sync will resume from where it left off.
+
+```
+sync_transfer: MetaDataWithBlockNumber { meta: MetaData { timestamp: 1752000000, digest: 0x951d5ad4 }, block_number: 2000 }
 ```
 
 When the balance synchronization is complete, logs like the following will be displayed.
@@ -142,7 +148,13 @@ cargo run -r -- sync-withdrawals --private-key <spend-key>
 
 > Note: Executing this command may take at least **2 minutes**.
 
-Ensure you replace placeholders such as `<scroll-private-key>`, `<spend-key>`, `<ethereum-address>`, and `<amount>` with your actual values.
+Ensure you replace placeholders such as `<scroll-private-key>`, `<spend-key>`, `<ethereum-address>`, and `<amount>` with your actual values. Please specify in `<amount>` the value displayed in your balance **minus 35,000,000,000,000**. For example, if your balance is **2,342,400,000,000,000 wei**,
+please specify `2307400000000000` (= 2,342,400,000,000,000 − 35,000,000,000,000).
+
+```
+cargo run -r -- withdrawal --private-key <spend-key> --to <ethereum-address> --amount 2307400000000000 --token-index 0
+```
+
 
 ### ITX Token
 
@@ -187,8 +199,8 @@ ENV=staging
 IS_FASTER_MINING=false
 INDEXER_BASE_URL=https://stage.api.indexer.intmax.io
 STORE_VAULT_SERVER_BASE_URL=https://stage.api.node.intmax.io/store-vault-server
-LOCAL_BACKUP_PATH="data/testnet_beta"
-STORE_VAULT_TYPE="remote_with_backup"
+LOCAL_BACKUP_PATH=data/testnet_beta
+STORE_VAULT_TYPE=remote_with_backup
 BALANCE_PROVER_BASE_URL=https://stage.api.private.zkp.intmax.io
 USE_PRIVATE_ZKP_SERVER=true
 VALIDITY_PROVER_BASE_URL=https://stage.api.node.intmax.io/validity-prover
@@ -203,8 +215,8 @@ LIQUIDITY_CONTRACT_ADDRESS=0x81f3843aF1FBaB046B771f0d440C04EBB2b7513F
 ROLLUP_CONTRACT_ADDRESS=0xcEC03800074d0ac0854bF1f34153cc4c8bAEeB1E
 WITHDRAWAL_CONTRACT_ADDRESS=0x914aBB5c7ea6352B618eb5FF61F42b96AD0325e7
 REWARD_CONTRACT_ADDRESS=0x7f7a7734f74970bf8c5ca0ee0b6073f2e8dc5e30
-L1_RPC_URL="https://eth-sepolia.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
-L2_RPC_URL="https://scroll-sepolia.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
+L1_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/your_api_key # !!! CHANGE YOUR API KEY !!!
+L2_RPC_URL=https://scroll-sepolia.g.alchemy.com/v2/your_api_key # !!! CHANGE YOUR API KEY !!!
 EOF
 ```
 
