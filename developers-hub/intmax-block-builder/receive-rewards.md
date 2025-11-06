@@ -109,13 +109,19 @@ Especially if your Spend Key or Key Pair becomes known to others, they could mov
 cargo run -r -- balance --private-key <spend-key>
 ```
 
-> Note: This command may take a significant amount of time to complete. If you have previously submitted a large number of blocks, this command may take over **an hour** to complete.
+> Note: This command may take a significant amount of time to complete. If you have previously submitted a large number of blocks, this command may take over **24 hours** to complete.
 
 During command execution, logs like the following will be displayed. The longer your node has been running, the more logs will be displayed.
 
 ```
 [2025-10-17T06:00:00Z INFO  intmax2_client_sdk::external_api::local_backup_store_vault::local_store_vault] local_save_data_batch: topic: v1/ra_wo/transfer, pubkey: 0x0e9e...42cf, digest: 0xfb26...d381
 [2025-10-17T06:00:00Z INFO  intmax2_client_sdk::external_api::local_backup_store_vault::local_store_vault] local_save_data_batch: topic: v1/ra_wo/transfer, pubkey: 0x0e9e...42cf, digest: 0x5408...fc00
+```
+
+> Note: If you continue to see synchronization logs like the following, it is safe to stop the command and rerun it later—the sync will resume from where it left off.
+
+```
+sync_transfer: MetaDataWithBlockNumber { meta: MetaData { timestamp: 1752000000, digest: 0x951d5ad4 }, block_number: 2000 }
 ```
 
 When the balance synchronization is complete, logs like the following will be displayed.
@@ -142,7 +148,13 @@ cargo run -r -- sync-withdrawals --private-key <spend-key>
 
 > Note: Executing this command may take at least **2 minutes**.
 
-Ensure you replace placeholders such as `<scroll-private-key>`, `<spend-key>`, `<ethereum-address>`, and `<amount>` with your actual values.
+Ensure you replace placeholders such as `<scroll-private-key>`, `<spend-key>`, `<ethereum-address>`, and `<amount>` with your actual values. Please specify in `<amount>` the value displayed in your balance **minus 35,000,000,000,000**. For example, if your balance is **2,342,400,000,000,000 wei**,
+please specify `2307400000000000` (= 2,342,400,000,000,000 − 35,000,000,000,000).
+
+```
+cargo run -r -- withdrawal --private-key <spend-key> --to <ethereum-address> --amount 2307400000000000 --token-index 0
+```
+
 
 ### ITX Token
 
