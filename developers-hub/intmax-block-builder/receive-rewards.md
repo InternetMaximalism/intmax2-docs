@@ -41,7 +41,7 @@ ENV=prod
 IS_FASTER_MINING=false
 INDEXER_BASE_URL=https://api.indexer.intmax.io
 STORE_VAULT_SERVER_BASE_URL=https://api.node.intmax.io/store-vault-server
-LOCAL_BACKUP_PATH="data/mainnet"
+LOCAL_BACKUP_PATH=data/mainnet
 STORE_VAULT_TYPE=remote_with_backup
 BALANCE_PROVER_BASE_URL=https://api.private.zkp.intmax.io
 USE_PRIVATE_ZKP_SERVER=true
@@ -60,8 +60,8 @@ LIQUIDITY_CONTRACT_ADDRESS=0xF65e73aAc9182e353600a916a6c7681F810f79C3
 ROLLUP_CONTRACT_ADDRESS=0x1c88459D014e571c332BF9199aD2D35C93219A2e
 WITHDRAWAL_CONTRACT_ADDRESS=0x86B06D2604D9A6f9760E8f691F86d5B2a7C9c449
 REWARD_CONTRACT_ADDRESS=0xFe9Fca6e5AE58E6F06873D2beFB658424Ae07109
-L1_RPC_URL="https://eth-mainnet.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
-L2_RPC_URL="https://scroll-mainnet.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
+L1_RPC_URL=https://eth-mainnet.g.alchemy.com/v2/your_api_key # !!! CHANGE YOUR API KEY !!!
+L2_RPC_URL=https://scroll-mainnet.g.alchemy.com/v2/your_api_key # !!! CHANGE YOUR API KEY !!!
 EOF
 ```
 
@@ -199,8 +199,8 @@ ENV=staging
 IS_FASTER_MINING=false
 INDEXER_BASE_URL=https://stage.api.indexer.intmax.io
 STORE_VAULT_SERVER_BASE_URL=https://stage.api.node.intmax.io/store-vault-server
-LOCAL_BACKUP_PATH="data/testnet_beta"
-STORE_VAULT_TYPE="remote_with_backup"
+LOCAL_BACKUP_PATH=data/testnet_beta
+STORE_VAULT_TYPE=remote_with_backup
 BALANCE_PROVER_BASE_URL=https://stage.api.private.zkp.intmax.io
 USE_PRIVATE_ZKP_SERVER=true
 VALIDITY_PROVER_BASE_URL=https://stage.api.node.intmax.io/validity-prover
@@ -215,8 +215,8 @@ LIQUIDITY_CONTRACT_ADDRESS=0x81f3843aF1FBaB046B771f0d440C04EBB2b7513F
 ROLLUP_CONTRACT_ADDRESS=0xcEC03800074d0ac0854bF1f34153cc4c8bAEeB1E
 WITHDRAWAL_CONTRACT_ADDRESS=0x914aBB5c7ea6352B618eb5FF61F42b96AD0325e7
 REWARD_CONTRACT_ADDRESS=0x7f7a7734f74970bf8c5ca0ee0b6073f2e8dc5e30
-L1_RPC_URL="https://eth-sepolia.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
-L2_RPC_URL="https://scroll-sepolia.g.alchemy.com/v2/your_api_key" # !!! CHANGE YOUR API KEY !!!
+L1_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/your_api_key # !!! CHANGE YOUR API KEY !!!
+L2_RPC_URL=https://scroll-sepolia.g.alchemy.com/v2/your_api_key # !!! CHANGE YOUR API KEY !!!
 EOF
 ```
 
