@@ -181,6 +181,20 @@ If there are rewards available for you to claim, you'll see logs similar to the 
 [2025-06-01T00:00:00Z INFO  intmax2_client_sdk::external_api::contract::handlers] Transaction sent: "batch_claim_reward" with tx hash: 0x...
 ```
 
+You can check whether you have received the ITX tokens by following these steps:
+
+First, open the following URL:
+
+https://scrollscan.com/token/0xc0579287f3CDE6BF796BE6E2bB61DbB06DA85024#balances
+
+<figure><img src="/img/developers-hub/search-holders.webp" alt="ScrollScan holders" /></figure>
+
+Click the search icon in the top right corner of the page.
+In the search bar, enter the Scroll address of your Block Builder.
+The current balance will be displayed in the area highlighted by the red box in the following image.
+
+<figure><img src="/img/developers-hub/itx-token-balance.webp" alt="ScrollScan ITX balance" /></figure>
+
 ## Testnet
 
 When running the Block Builder on the **testnet**, the reward claiming process will also take place on the **testnet**.
