@@ -38,6 +38,7 @@ The recommended browsers are as follows:
 ### Unsupported Wallet
 
 - INTMAX Wallet (The INTMAX address changes every time you connect)
+- Connecting a hardware wallet via WalletConnect or a browser extension wallet 
 - iOS Safari + Coinbase Wallet (Unable to connect to the wallet)
 - iOS Safari + Rabby Wallet (Unable to connect to the wallet)
 - iOS Safari + OKX Wallet (Unable to deposit ETH)
