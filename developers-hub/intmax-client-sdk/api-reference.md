@@ -511,8 +511,27 @@ const claim = await client.claimWithdrawal(withdrawals.need_claim);
 ## Technical Terms
 
 - **Nullifier**: A unique identifier used to prevent the same deposit/withdrawal from being used more than once.
-- **Salt**: A random value added during encryption or hashing to ensure different outputs from identical inputs. Used to conceal the recipient’s deposit address.
+- **Salt**: A random value added during encryption or hashing to ensure different outputs from identical inputs. Used to conceal the recipient's deposit address.
 - **Token index**: A numerical ID uniquely identifying tokens within the INTMAX network.
+
+## Batch Size Limits
+
+The INTMAX Client SDK enforces batch size limits for certain operations to ensure optimal performance and prevent resource exhaustion:
+
+### Transaction Broadcasting
+
+- **Maximum transactions per `broadcastTransaction` call**: 63 transactions
+- This limit applies when batching multiple transfers in a single transaction broadcast
+
+### Data Fetching Operations
+
+- **Maximum items per internal API request**: 64 items
+- This limit applies to internal pagination used by:
+  - `fetchDeposits()`
+  - `fetchTransfers()`
+  - `fetchTransactions()`
+- The SDK automatically handles pagination, so you don't need to manage this limit when using high-level APIs
+- Specifying a value greater than 64 will result in an error: `Limit exceeds max batch size` or `Batch size exceeds maximum limit of 64`
 
 ## Fee
 

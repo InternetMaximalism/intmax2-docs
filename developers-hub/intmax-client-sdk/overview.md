@@ -146,8 +146,17 @@ IntMaxClient.init({ environment: "testnet" });
 
 The INTMAX privacy model ensures that **only the wallet owner with the private key can view their balance and transaction history**.
 
-- Unlike public blockchains, third parties cannot directly check an address’s balance or history.
+- Unlike public blockchains, third parties cannot directly check an address's balance or history.
 - Transfer data uses `salt` and `nullifier` values to hide recipient addresses and prevent linking transactions to each other.
+
+### Batch Size Limits
+
+The SDK enforces batch size limits for optimal performance:
+
+- **Transaction broadcasting**: Maximum 63 transactions per `broadcastTransaction` call
+- **Data fetching**: Maximum 64 items per internal API request. The SDK automatically handles pagination for high-level APIs like `fetchDeposits()`, `fetchTransfers()`, and `fetchTransactions()`.
+
+For more details, see the [API Reference](./api-reference.md#batch-size-limits).
 
 ## Tips
 
