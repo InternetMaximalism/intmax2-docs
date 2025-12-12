@@ -32,6 +32,12 @@ npm run build
 > This command builds the documentation site into the `build/` directory.
 > The output can be deployed to any static hosting service, such as Vercel, Netlify, GitHub Pages, or your own server.
 
+## Deployment
+
+When changes are merged to the `main` branch, the site is automatically deployed to:
+
+**https://docs.network.intmax.io/**
+
 ## Code Quality & Linting
 
 Run ESLint to check code quality and style:
